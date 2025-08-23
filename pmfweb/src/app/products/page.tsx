@@ -1,5 +1,13 @@
-import { Products } from "./components/Products";
+'use client';
+import React from 'react'
+import { Products } from './components/Products'
 
-export default function Page() {
-  return <Products />;
+const Productspage = () => {
+  return (
+    <div>
+      <Products/>
+    </div>
+  )
 }
+export default Productspage;
+

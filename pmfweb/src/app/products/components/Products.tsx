@@ -54,9 +54,9 @@ export function Products() {
   );
 
   return (
-    <div className="bg-black min-h-[100vh] text-white py-12 overflow-x-hidden overflow-y-auto relative scrollbar-hide">
+    <div className="bg-[#1a1a1a] min-h-[100vh] text-white py-12 overflow-x-hidden overflow-y-auto relative scrollbar-hide">
       {/* Heading */}
-<div className="max-w-full sm:max-w-2xl md:max-w-3xl lg:max-w-5xl xl:max-w-7xl mx-auto px-0 md:px-4 lg:px-8 xl:px-0 flex justify-between">
+<div className="px-6 sm:px-10 lg:px-16 flex justify-between">
       <h1 className="text-4xl font-bold mb-10 ">Products</h1>
       <div><img src="/images/filter.png" alt="filter" className="h-10 w-10 object-contain"/></div>
       </div>
@@ -94,7 +94,7 @@ export function Products() {
                     alt={product.name}
                     width={300}
                     height={200}
-                    className={`object-contain transition-transform duration-300 group-hover:scale-105 ${
+                    className={`object-contain transition-transform duration-300 hover:scale-180 ${
                       product.id === 5 ? "-rotate-12" : ""
                     }`}
                   />
@@ -117,7 +117,7 @@ export function Products() {
             {products.map((product) => (
               <li
                 key={product.id}
-                className="text-9xl font-medium text-center pb-3"
+                className="text-5xl md:text-7xl lg:text-7xl xl;text-9xl font-medium text-center pb-3"
               >
                 {product.name}
               </li>
