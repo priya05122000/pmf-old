@@ -84,7 +84,7 @@ const Review = () => {
   };
 
   return (
-    <section className="w-full bg-[#1a1a1a] px-4 sm:px-6 lg:px-16 pb-12 pt-16 flex flex-col md:flex-row">
+    <section className="w-full bg-[#151515] px-4 sm:px-6 lg:px-16 pb-12 pt-16 flex flex-col md:flex-row">
       {/* Left Section */}
       <div className="w-full md:w-2/5 flex flex-col justify-center mb-10 md:mb-0">
         <h2 className="font-bold leading-[1] tracking-[-0.02em] text-3xl sm:text-5xl md:text-6xl lg:text-5xl xl:text-7xl">

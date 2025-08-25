@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export const Footer = () => {
   return (
-    <footer className="w-full lg:h-[83vh] xl:h-[90vh] bg-[#1a1a1a] text-[#DFDFDF] relative overflow-hidden pb-10 lg:pb-0">
+    <footer className="w-full lg:h-[83vh] xl:h-[90vh] bg-[#151515] text-[#DFDFDF] relative overflow-hidden pb-10 lg:pb-0">
       {/* Logo */}
       <div className="w-full flex items-center pl-6 sm:pl-0 lg:pl-11">
         <Image
@@ -33,8 +33,8 @@ export const Footer = () => {
         {/* Explore Section (hidden on small) */}
         <div className="h-full pr-6 sm:pr-10 md:pr-20 lg:pr-24 mt-8 md:mt-20 lg:mt-15 hidden md:block">
           <h1
-            className="font-bold text-2xl bg-gradient-to-r from-[#B07515] via-[#E1BA60] via-[#F5D77F] 
-            via-[#FFFFD7] via-[#F5D77F] via-[#B07515] via-[#E1BA60] via-[#F5D77F] 
+            className="font-bold text-2xl bg-gradient-to-r from-[#B07515] via-[#E1BA60] via-[#F5D77F]
+            via-[#FFFFD7] via-[#F5D77F] via-[#B07515] via-[#E1BA60] via-[#F5D77F]
             via-[#FFFFD7] via-[#F5D77F] to-[#B07515] bg-clip-text text-transparent"
           >
             Explore

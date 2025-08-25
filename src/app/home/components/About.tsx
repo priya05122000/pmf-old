@@ -42,7 +42,7 @@ const About=()=>{
   }, []);
 
     return(
-         <section className="h-full bg-[#1a1a1a] px-6 sm:px-10 lg:px-16 py-12 overflow-hidden">
+         <section className="h-full bg-[#151515] px-6 sm:px-10 lg:px-16 py-12 overflow-hidden">
             <div className="h-full lg:h-[85vh] flex flex-col lg:flex-row">
                 <div className="w-full lg:w-2/3 flex-col flex xl:flex-row">
                     <div className="w-full xl:w-1/3 ">
@@ -108,7 +108,7 @@ const About=()=>{
           className="uppercase"
         >
           <textPath href="#circlePath" startOffset="0%">
-            Elegance in every weld 
+            Elegance in every weld
           </textPath>
         </text>
       </svg>
@@ -117,7 +117,7 @@ const About=()=>{
 
 
             </div>
-      
+
     </section>
     )
 }

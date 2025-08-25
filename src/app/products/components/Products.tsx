@@ -54,7 +54,7 @@ export function Products() {
   );
 
   return (
-    <div className="bg-[#1a1a1a] min-h-[100vh] text-white py-12 overflow-x-hidden overflow-y-auto relative scrollbar-hide">
+    <div className="bg-[#151515] min-h-[100vh] text-white py-12 overflow-x-hidden overflow-y-auto relative scrollbar-hide">
       {/* Heading */}
 <div className="px-6 sm:px-10 lg:px-16 flex justify-between">
       <h1 className="text-4xl font-bold mb-10 ">Products</h1>

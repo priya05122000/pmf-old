@@ -31,11 +31,11 @@ const services = [
 
 const Hello = () => {
   return (
-    
-    <section  className="bg-[#1a1a1a] py-12">
+
+    <section  className="bg-[#151515] py-12">
         <div className=" w-full min-h-[70vh] flex items-center justify-center bg-[url('/images/services.jpg')] bg-cover bg-center relative">
       <div className="w-full bg-black/30 backdrop-blur-[10px] flex flex-col lg:flex-row gap-10 lg:gap-5 px-6 sm:px-10 lg:px-16 py-15 ">
-        
+
         <div className="w-full lg:w-1/2 h-[40vh]  flex justify-center  lg:justify-start items-center">
         <h1 className="text-white font-bold text-center lg:text-left text-4xl md:text-6xl lg:text-4xl xl:text-6xl lg:leading-12 xl:leading-16">SAY HELLO!<br/> WE ARE HAPPY TO <br/> HEAR FROM YOU.</h1>
         </div>
@@ -51,7 +51,7 @@ const Hello = () => {
         </div>
         </div>
 
-       
+
       </div>
       </div>
     </section>

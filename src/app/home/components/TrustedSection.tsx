@@ -9,7 +9,7 @@ const logos = [
 
 const TrustedSection = () => {
   return (
-    <section className="bg-[#1a1a1a] text-white px-6 sm:px-10 lg:px-16 py-12">
+    <section className="bg-[#151515] text-white px-6 sm:px-10 lg:px-16 py-12">
       <div className="">
         {/* Heading */}
         <h1 className="text-[#FFFFFF] text-md md:text-3xl lg:text-xl xl:text-2xl font-semibold">Trusted by <span className="text-[#BEBEBE] "> 20,000+ </span>customers across Europe</h1>

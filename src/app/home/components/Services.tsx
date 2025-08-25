@@ -31,15 +31,15 @@ const services = [
 
 const Services = () => {
   return (
-    
-    <section  className="bg-[#1a1a1a] py-12">
+
+    <section  className="bg-[#151515] py-12">
         <div className=" w-full min-h-[80vh] flex items-center justify-center bg-[url('/images/services.jpg')] bg-cover bg-center relative">
       <div className="w-full bg-black/30 backdrop-blur-[10px] flex flex-col px-6 sm:px-10 lg:px-16 py-15 ">
-        
+
         {/* Heading */}
         <h2
           className="font-bold leading-[1] tracking-[-0.02em]
-          
+
           text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl
           bg-gradient-to-r from-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F] via-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F] to-[#B07515]
           bg-clip-text text-transparent"

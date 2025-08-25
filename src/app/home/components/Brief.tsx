@@ -23,7 +23,7 @@ const Brief = () => {
   }, []);
 
   return (
-    <section className="w-full min-h-[80vh] bg-[#1a1a1a] text-white flex flex-col lg:flex-row items-center justify-between px-6 sm:px-10 lg:px-16 py-12 gap-10 lg:gap-15  xl:gap-[300px]">
+    <section className="w-full min-h-[80vh] bg-[#151515] text-white flex flex-col lg:flex-row items-center justify-between px-6 sm:px-10 lg:px-16 py-12 gap-10 lg:gap-15  xl:gap-[300px]">
       {/* Left Column */}
       <div className="flex-1 text-center lg:text-left">
         <h1 className="text-lg md:text-[40px] lg:text-3xl xl:text-[45px] leading:none md:leading-12">

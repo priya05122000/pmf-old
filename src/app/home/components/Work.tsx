@@ -2,7 +2,7 @@ import React from "react";
 
 const Work=()=>{
     return(
-      <section className="w-full min-h-[100vh] bg-[#1a1a1a] py-12">
+      <section className="w-full min-h-[100vh] bg-[#151515] py-12">
         <div className="px-6 sm:px-10 lg:px-16">
 
             <h2 className="font-bold leading-[1] tracking-[-0.02em]

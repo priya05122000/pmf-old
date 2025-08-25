@@ -77,7 +77,7 @@ const Industries=()=>{
   }, [lockScroll]);
 
     return(
- <section  className="text-white bg-[#1a1a1a] px-6 sm:px-10 lg:px-16 py-15 ">
+ <section  className="text-white bg-[#151515] px-6 sm:px-10 lg:px-16 py-15 ">
       <div className="container mx-auto">
         {/* Heading */}
         <h2 className="font-bold leading-[1] tracking-[-0.02em]

@@ -18,8 +18,8 @@ import React from 'react'
 
   setFormData((prev) => ({
     ...prev,
-    [name]: type === "checkbox" && "checked" in e.target 
-      ? (e.target as HTMLInputElement).checked 
+    [name]: type === "checkbox" && "checked" in e.target
+      ? (e.target as HTMLInputElement).checked
       : value,
   }));
 };
@@ -32,7 +32,7 @@ import React from 'react'
   };
 
   return (
-    <div className="min-h-screen bg-[#1a1a1a] flex items-center justify-center px-4">
+    <div className="min-h-screen bg-[#151515] flex items-center justify-center px-4">
       <div className="w-full max-w-xl bg-transparent p-6 rounded-lg">
         {/* Title */}
         <h1 className="text-center font-bold leading-[1] tracking-[-0.02em]
@@ -50,7 +50,7 @@ import React from 'react'
               placeholder="Name"
               value={formData.firstName}
               onChange={handleChange}
-              className="w-1/2 p-3 bg-[#1a1a1a] border border-gray-700 rounded-md text-white placeholder-white focus:outline-none focus:border-yellow-400"
+              className="w-1/2 p-3 bg-[#151515] border border-gray-700 rounded-md text-white placeholder-white focus:outline-none focus:border-yellow-400"
               required
             />
             <input
@@ -59,7 +59,7 @@ import React from 'react'
               placeholder="Last name"
               value={formData.lastName}
               onChange={handleChange}
-              className="w-1/2 p-3 bg-[#1a1a1a] border border-gray-700 rounded-md text-white placeholder-white focus:outline-none focus:border-yellow-400"
+              className="w-1/2 p-3 bg-[#151515] border border-gray-700 rounded-md text-white placeholder-white focus:outline-none focus:border-yellow-400"
             />
           </div>
 
@@ -69,7 +69,7 @@ import React from 'react'
             placeholder="Mobile number"
             value={formData.mobile}
             onChange={handleChange}
-            className="w-full p-3 bg-[#1a1a1a] border border-gray-700 rounded-md text-white placeholder-white focus:outline-none focus:border-yellow-400"
+            className="w-full p-3 bg-[#151515] border border-gray-700 rounded-md text-white placeholder-white focus:outline-none focus:border-yellow-400"
             required
           />
 
@@ -79,7 +79,7 @@ import React from 'react'
             placeholder="Email address"
             value={formData.email}
             onChange={handleChange}
-            className="w-full p-3 bg-[#1a1a1a] border border-gray-700 rounded-md text-white placeholder-white focus:outline-none focus:border-yellow-400"
+            className="w-full p-3 bg-[#151515] border border-gray-700 rounded-md text-white placeholder-white focus:outline-none focus:border-yellow-400"
             required
           />
 
@@ -89,7 +89,7 @@ import React from 'react'
             rows={4}
             value={formData.message}
             onChange={handleChange}
-            className="w-full p-3 bg-[#1a1a1a] border border-gray-700 rounded-md text-white placeholder-white focus:outline-none focus:border-yellow-400"
+            className="w-full p-3 bg-[#151515] border border-gray-700 rounded-md text-white placeholder-white focus:outline-none focus:border-yellow-400"
             required
           />
 
