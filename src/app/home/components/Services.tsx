@@ -1,5 +1,6 @@
-"use client";
+
 import React from "react";
+import { GOLDEN_GRADIENT } from "@/lib/gradients";
 
 const services = [
   {
@@ -38,17 +39,14 @@ const Services = () => {
 
         {/* Heading */}
         <h2
-          className="font-bold leading-[1] tracking-[-0.02em]
-
+          className={`font-bold leading-[1] tracking-[-0.02em]
           text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl
-          bg-gradient-to-r from-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F] via-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F] to-[#B07515]
-          bg-clip-text text-transparent"
+          ${GOLDEN_GRADIENT} bg-clip-text text-transparent`}
         >
           Our Core Services
         </h2>
         <span
-          className="mb-6 block h-1 w-24 mt-2
-          bg-gradient-to-r from-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F] via-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F] to-[#B07515]"
+          className={`mb-6 block h-1 w-24 mt-2 ${GOLDEN_GRADIENT}`}
         />
 
         {/* Services List */}

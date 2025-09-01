@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from "react";
+import { GOLDEN_GRADIENT } from "@/lib/gradients";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 
 const Brief = () => {
@@ -35,11 +36,11 @@ const Brief = () => {
       <div className="flex-1 flex flex-col gap-8">
         {/* Heading */}
         <h2 className="text-4xl xl:text-5xl font-bold leading-tight">
-          <span className="font-extrabold leading-[1] tracking-[-0.02em] text-4xl sm:text-5xl md:text-7xl lg:text-5xl xl:text-6xl bg-gradient-to-r from-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F] via-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F] to-[#B07515] bg-clip-text text-transparent">
+          <span className={`font-extrabold leading-[1] tracking-[-0.02em] text-4xl sm:text-5xl md:text-7xl lg:text-5xl xl:text-6xl ${GOLDEN_GRADIENT} bg-clip-text text-transparent`}>
             Have a prief?
           </span>
           <br />
-          <span className="font-extrabold leading-[1] tracking-[-0.02em] text-4xl sm:text-5xl md:text-7xl lg:text-5xl xl:text-6xl bg-gradient-to-r from-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F] via-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F] to-[#B07515] bg-clip-text text-transparent">
+          <span className={`font-extrabold leading-[1] tracking-[-0.02em] text-4xl sm:text-5xl md:text-7xl lg:text-5xl xl:text-6xl ${GOLDEN_GRADIENT} bg-clip-text text-transparent`}>
             Send a brief!
           </span>
         </h2>

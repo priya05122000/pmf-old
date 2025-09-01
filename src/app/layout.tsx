@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ClientNavbarWrapper from "../components/ClientNavbarWrapper";
 import { Footer } from "@/components/Footer";
+import AOSInit from "@/components/AOSInit";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,12 +30,15 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+
+        <AOSInit />
+
         {/* ✅ Navbar appears everywhere */}
         <ClientNavbarWrapper />
 
         {/* ✅ Wrap page content */}
-        <main className="min-h-screen">{children}</main>
-        <Footer/>
+        <main className="min-h-screen pt-20">{children}</main>
+        <Footer />
       </body>
     </html>
   );

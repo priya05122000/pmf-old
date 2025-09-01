@@ -1,5 +1,5 @@
-"use client";
 
+import { GOLDEN_GRADIENT } from "@/lib/gradients";
 import { useState } from "react";
 import React from 'react'
 
@@ -35,9 +35,8 @@ import React from 'react'
     <div className="min-h-screen bg-[#151515] flex items-center justify-center px-4">
       <div className="w-full max-w-xl bg-transparent p-6 rounded-lg">
         {/* Title */}
-        <h1 className="text-center font-bold leading-[1] tracking-[-0.02em]
-          text-4xl sm:text-5xl md:text-7xl lg:text-5xl xl:text-6xl bg-gradient-to-r from-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F] via-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F]  to-[#B07515]
-            bg-clip-text text-transparent mb-8">
+        <h1 className={`text-center font-bold leading-[1] tracking-[-0.02em]
+          text-4xl sm:text-5xl md:text-7xl lg:text-5xl xl:text-6xl ${GOLDEN_GRADIENT} bg-clip-text text-transparent mb-8`}>
           Contact us
         </h1>
 
@@ -109,7 +108,7 @@ import React from 'react'
           {/* Submit Button */}
           <button
             type="submit"
-            className="w-full py-3 mt-4 font-semibold text-black rounded-sm bg-gradient-to-r from-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F] via-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F]  to-[#B07515] hover:opacity-90 transition"
+            className={`w-full py-3 mt-4 font-semibold text-black rounded-sm ${GOLDEN_GRADIENT} hover:opacity-90 transition`}
           >
             Submit
           </button>

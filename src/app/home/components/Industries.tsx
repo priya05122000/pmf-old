@@ -1,5 +1,5 @@
-"use client";
 
+import { GOLDEN_GRADIENT } from "@/lib/gradients";
 import Image from "next/image";
 import { useEffect, useRef,useState } from "react";
 import React from "react";
@@ -82,14 +82,11 @@ const Industries=()=>{
         {/* Heading */}
         <h2 className="font-bold leading-[1] tracking-[-0.02em]
           text-4xl sm:text-5xl md:text-7xl lg:text-5xl xl:text-7xl">
-          <span className="bg-gradient-to-r from-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F] via-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F]  to-[#B07515]
-            bg-clip-text text-transparent">Industries </span><br/>
-          <span className="bg-gradient-to-r from-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F] via-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F]  to-[#B07515]
-            bg-clip-text text-transparent">we support</span>
+          <span className={`${GOLDEN_GRADIENT} bg-clip-text text-transparent`}>Industries </span><br/>
+          <span className={`${GOLDEN_GRADIENT} bg-clip-text text-transparent`}>we support</span>
         </h2>
         <span
-          className="mb-6 block h-1 w-23  mt-2
-          bg-gradient-to-r from-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F] via-[#B07515] via-[#E1BA60] via-[#F5D77F] via-[#FFFFD7] via-[#F5D77F]  to-[#B07515]"
+          className={`mb-6 block h-1 w-23  mt-2 ${GOLDEN_GRADIENT}`}
         />
 
         {/* Grid */}
