@@ -29,41 +29,42 @@ const NavLink: FC<NavLinkProps> = ({ href, children, withDot = false }) => (
 const Hero: FC = () => {
   return (
     <GridSection className="relative overflow-x-hidden sm:-ml-4 lg:ml-0 lg:pl-4 xl:pl-0 lg:-mt-20">
-      <div className="col-span-2 col-start-2 bg-[url('/images/home.jpg')] h-[60vh] sm:h-[70vh] lg:h-screen  bg-right sm:bg-bottom-left bg-no-repeat bg-cover w-[100vw] xl:w-auto">
-      </div>
-      <div className="absolute w-1/4 h-1/3 bg-[var(--bg-color)] left-0 top-0 hidden lg:block">
-        <div className="relative p-6 h-full">
-          <Image
-            src="/logos/logo.png"
-            alt="logo1"
-            height={1000}
-            width={1000}
-            quality={100}
-            className="object-contain h-14 w-auto absolute right-0  px-4"
+      <div className="col-span-2 col-start-2 bg-[url('/images/home.jpg')] h-[80vh] lg:h-screen  bg-right sm:bg-bottom-left bg-no-repeat bg-cover w-[100vw] xl:w-auto">
+        <div className="absolute w-1/4 h-1/3 bg-[var(--bg-color)] left-0 top-0 hidden lg:block">
+          <div className="relative p-6 h-full">
+            <Image
+              src="/logos/logo.png"
+              alt="logo1"
+              height={1000}
+              width={1000}
+              quality={100}
+              className="object-contain h-14 w-auto absolute right-0  px-4"
+            />
+          </div>
+        </div>
+        <div className={`absolute w-1/3 ${BLUE_GRADIENT} left-0 top-1/3 text-white  justify-end p-2 gap-10 hidden lg:flex`} {...ANIMATIONS.fadeRight} >
+          <NavLink href="/home" withDot>
+            Home
+          </NavLink>
+          <NavLink href="/products">Products</NavLink>
+          <NavLink href="/contact-us">Contact Us</NavLink>
+        </div>
+        <div className="absolute w-[70vw] sm:w-1/2 lg:w-2/6 xl:w-2/7 h-full bg-[var(--bg-color)]/70 backdrop-blur-md right-0 top-0 flex flex-col items-end justify-center pl-6 pr-6 sm:pl-8 sm:pr-8 xl:pl-10 xl:pr-16" >
+          <Heading level={6} className="font-normal text-end text-white" {...ANIMATIONS.zoomInDown}>
+            We specialize in crafting high-quality stainless steel furniture, tailored to meet the demands of environments where hygiene is paramount.
+          </Heading>
+          <span
+            className={`mb-2  block h-1 w-14 sm:w-20 mt-10   ${GOLDEN_GRADIENT} `}
           />
+          <Heading level={3}
+            {...ANIMATIONS.zoomInUp}
+            className={`  ${GOLDEN_GRADIENT} bg-clip-text text-transparent text-end leading-tight`}
+          >
+            Your Complete Solution for Precision Sheet Metal Fabrication
+          </Heading>
         </div>
       </div>
-      <div className={`absolute w-1/3 ${BLUE_GRADIENT} left-0 top-1/3 text-white  justify-end p-2 gap-10 hidden lg:flex`} {...ANIMATIONS.fadeRight} >
-        <NavLink href="/home" withDot>
-          Home
-        </NavLink>
-        <NavLink href="/products">Products</NavLink>
-        <NavLink href="/contact-us">Contact Us</NavLink>
-      </div>
-      <div className="absolute w-[70vw] sm:w-1/2 lg:w-2/6 xl:w-2/7 h-full bg-[var(--bg-color)]/70 backdrop-blur-md right-0 top-0 flex flex-col items-end justify-center pl-6 pr-6 sm:pl-8 sm:pr-8 xl:pl-10 xl:pr-16" >
-        <Heading level={6} className="font-normal text-end text-white" {...ANIMATIONS.fadeDown}>
-          We specialize in crafting high-quality stainless steel furniture, tailored to meet the demands of environments where hygiene is paramount.
-        </Heading>
-        <span
-          className={`mb-2  block h-1 w-14 sm:w-20 mt-10   ${GOLDEN_GRADIENT} `}
-        />
-        <Heading level={3}
-          {...ANIMATIONS.fadeUp}
-          className={`  ${GOLDEN_GRADIENT} bg-clip-text text-transparent text-end leading-tight`}
-        >
-          Your Complete Solution for Precision Sheet Metal Fabrication
-        </Heading>
-      </div>
+
     </GridSection>
   )
 }

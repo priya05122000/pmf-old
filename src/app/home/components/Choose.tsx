@@ -79,7 +79,7 @@ const Choose: FC = () => {
                 <div className=" pt-10">
                   <span className={`mb-2 block h-1 w-16 ${GOLDEN_GRADIENT}`} />
                   <Heading level={2}
-                    className={`  ${GOLDEN_GRADIENT} bg-clip-text text-transparent  leading-tight`}
+                    className={`  ${GOLDEN_GRADIENT} bg-clip-text text-transparent  leading-16`}
                   >
                     Why Choose
                     <br />

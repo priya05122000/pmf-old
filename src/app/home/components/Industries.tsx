@@ -1,15 +1,20 @@
-
+import { useEffect, useRef } from "react";
+import GridSection from "@/components/GridSection";
+import Heading from "@/components/Heading";
 import { GOLDEN_GRADIENT } from "@/lib/gradients";
 import Image from "next/image";
-import { useEffect, useRef,useState } from "react";
-import React from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Paragraph from "@/components/Paragraph";
+import Span from "@/components/Span";
+import { ANIMATIONS } from "@/components/Animations";
 
 const industries = [
   {
     title: "Commitment to Excellence",
     description:
       "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.",
-    image: "/images/industry1.jpg", // replace with your image path
+    image: "/images/industry1.jpg",
   },
   {
     title: "Commitment to Excellence",
@@ -42,73 +47,101 @@ const industries = [
     image: "/images/industry3.jpg",
   },
 ];
-const Industries=()=>{
-   const containerRef = useRef<HTMLDivElement>(null);
+
+const Industries = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [lockScroll, setLockScroll] = useState(true);
+  const galleryRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const container = containerRef.current;
+    if (typeof window === "undefined") return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const gallery = galleryRef.current;
     const section = sectionRef.current;
-    if (!container || !section) return;
+    if (!gallery || !section) return;
 
-    const handleWheel = (e: WheelEvent) => {
-      if (!lockScroll) return; // allow normal scrolling when unlocked
+    // const getScrollLength = () => gallery.scrollWidth - section.offsetWidth;
 
-      if (e.deltaY === 0) return;
-      e.preventDefault();
+    const ctx = gsap.context(() => {
+      let totalWidth = gallery.scrollWidth - section.offsetWidth;
 
-      container.scrollLeft += e.deltaY;
+      gsap.to(gallery, {
+        x: -totalWidth,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          // end: () => `+=${getScrollLength()}`,
+          end: () => `+=${totalWidth}`,
+          pin: true,
+          scrub: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+    }, section);
 
-      // unlock vertical scroll only when we are at the very end
-      if (
-        container.scrollLeft + container.clientWidth >=
-        container.scrollWidth - 5
-      ) {
-        setLockScroll(false);
-      }
-    };
-
-    section.addEventListener("wheel", handleWheel, { passive: true });
+    const handleResize = () => ScrollTrigger.refresh();
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      section.removeEventListener("wheel", handleWheel);
+      ctx.revert();
+      window.removeEventListener("resize", handleResize);
     };
-  }, [lockScroll]);
+  }, []);
 
-    return(
- <section  className="text-white bg-[#151515] px-6 sm:px-10 lg:px-16 py-15 ">
-      <div className="container mx-auto">
-        {/* Heading */}
-        <h2 className="font-bold leading-[1] tracking-[-0.02em]
-          text-4xl sm:text-5xl md:text-7xl lg:text-5xl xl:text-7xl">
-          <span className={`${GOLDEN_GRADIENT} bg-clip-text text-transparent`}>Industries </span><br/>
-          <span className={`${GOLDEN_GRADIENT} bg-clip-text text-transparent`}>we support</span>
-        </h2>
-        <span
-          className={`mb-6 block h-1 w-23  mt-2 ${GOLDEN_GRADIENT}`}
-        />
-
-        {/* Grid */}
-        <div className="w-full h-auto flex gap-10 overflow-x-auto scrollbar-hide snap-x snap-mandatory scroll-smooth">
-          {industries.map((item, idx) => (
-            <div key={idx} className={`w-full md:w-1/3 lg:w-1/4 h-full flex flex-col ${idx % 2 === 0 ?'py-15':'py-0'} flex-shrink-0 snap-start`}>
-              <h3 className="text-sm font-semibold mb-2">{item.title}</h3>
-              <p className="text-sm text-gray-300 mb-4">{idx % 2 === 0 && item.description}</p>
-              <div className={`relative w-full ${idx % 2 === 0 ?'h-[600px]':'h-[800px]'}`}>
-  <Image
-    src={item.image}
-    alt={item.title}
-    fill
-    className={`object-cover ${idx ===0 && 'object-right'} rounded`}
-  />
-</div>
-
+  return (
+    <GridSection className="relative overflow-x-hidden min-h-screen  py-10 sm:ml-4 lg:ml-0 lg:pl-4 xl:pl-0 ">
+      <div className="col-span-2 col-start-2 w-[100vw] xl:w-auto">
+        <div {...ANIMATIONS.fadeRight}>
+          <Heading level={1} className="font-bold leading-12 tracking-[-0.02em]">
+            <span className={`${GOLDEN_GRADIENT} bg-clip-text text-transparent`}>Industries </span>
+            <br />
+            <span className={`${GOLDEN_GRADIENT} bg-clip-text text-transparent`}>we support</span>
+          </Heading>
+          <span className={`mb-6 block h-1 w-23 mt-4 ${GOLDEN_GRADIENT}`} />
+        </div>
+        <div ref={sectionRef} className="relative w-full overflow-hidden">
+          <div className="horiz-gallery-wrapper">
+            <div
+              ref={galleryRef}
+              className="horiz-gallery-strip w-fit  flex gap-10 py-4"
+            >
+              {industries.map((item, idx) => (
+                <div
+                  key={idx}
+                  className="
+                  w-full md:w-1/3 lg:w-1/5
+                  flex flex-col justify-between
+                  flex-shrink-0 snap-start
+                  bg-transparent
+                "
+                  style={{ height: idx % 2 === 0 ? 650 : 700 }}
+                >
+                  <div className=" py-5">
+                    <Paragraph className=" font-bold text-white mb-2 text-left">{item.title}</Paragraph>
+                    {idx % 2 === 0 && (
+                      <Span className="text-gray-300 mb-2 text-left">{item.description}</Span>
+                    )}
+                  </div>
+                  <div className="relative w-full flex-grow">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      className="object-cover rounded-xs"
+                      style={{ objectPosition: idx === 0 ? "right" : "center" }}
+                    />
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
         </div>
       </div>
-    </section>
-    )
-}
+    </GridSection>
+  );
+};
+
 export default Industries;
