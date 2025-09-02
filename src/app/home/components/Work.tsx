@@ -1,31 +1,56 @@
 
+import { ANIMATIONS } from "@/components/Animations";
+import GridSection from "@/components/GridSection";
+import Heading from "@/components/Heading";
+import Paragraph from "@/components/Paragraph";
+import Section from "@/components/Section";
 import { GOLDEN_GRADIENT } from "@/lib/gradients";
 import React from "react";
 
 const Work = () => {
   return (
-    <section className="w-full min-h-[100vh] bg-[#151515] py-12">
-      <div className="px-6 sm:px-10 lg:px-16">
 
-        <h2 className="font-bold leading-[1] tracking-[-0.02em]
-          text-4xl sm:text-5xl md:text-7xl lg:text-5xl xl:text-7xl">
-          <span className={`${GOLDEN_GRADIENT} bg-clip-text text-transparent`}>Work</span><br />
-          <span className={`${GOLDEN_GRADIENT} bg-clip-text text-transparent`}>Process</span>
-        </h2>
-        <span
-          className={`mb-6 block h-1 w-23  mt-2 ${GOLDEN_GRADIENT}`}
-        />
+    <div>
+      <Section>
+        <div {...ANIMATIONS.zoomIn}>
+          <Heading
+            level={1}
 
-      </div>
-      <div className=" w-full h-[50vh] md:w-[80%] md:h-[70vh]  relative pr-6 sm:pr-10 lg:pr-16 bg-[url('/images/workprocess.jpg')] bg-cover bg-center">
-        <div className="md:w-[450px] lg:w-[450px] xl:w-[500px]  absolute md:top-50 md:-right-27 lg:-right-40 xl:-right-50 bg-[#0000005E] backdrop-blur-sm p-3">
-          <p className="text-sm md:text-base font-extrabold text-white">
-            Crafting Tomorrow&apos;s Steel Future</p>
-          <p className="text-gray-200 md:text-[14px] lg:text-[16px] word-spacing-[10px] leading-6">Crafting Tomorrow's Steel Future
-            From sleek countertops to durable shelving units, our extensive range of stainless steel fabrications is designed to elevate the functionality and aesthetics of any space. At Fast Track Metallic Ind. L.L.C we strive to provide top-of-the-line equipment that meets your requirements and exceeds your expectations.</p>
+            className={`leading-14 ${GOLDEN_GRADIENT} bg-clip-text text-transparent py-1`}
+          >
+            <span className="font-bold -tracking-wider">Work</span>
+            <br />
+            <span className="font-bold -tracking-wider">Process</span>
+          </Heading>
+          <span className={`mb-6 block h-1 w-24 mt-2 sm:mt-4 ${GOLDEN_GRADIENT}`} />
         </div>
-      </div>
-    </section>
+      </Section>
+
+      <GridSection className="relative overflow-x-hidden sm:-ml-4 sm:mr-8 lg:-ml-8 lg:mr-4 xl:mr-0 lg:pl-0 xl:pl-0 my-10 ">
+        <div className="col-span-2   h-[50vh]  md:h-[60vh]  w-[100vw] lg:w-auto  relative">
+          {/* <div className="col-span-2  bg-[url('/images/workprocess.jpg')]  h-[50vh] md:w-[80%] md:h-[70vh]  bg-right sm:bg-bottom-left bg-no-repeat bg-cover w-[100vw] xl:w-auto  relative"> */}
+          <div className="bg-[url('/images/workprocess.jpg')] h-full w-full sm:w-[80vw] bg-right sm:bg-bottom-left bg-no-repeat bg-cover"></div>
+          <div className=" hidden sm:block absolute md:w-[450px] lg:w-[450px] xl:w-[500px] bg-[var(--light-bg-color)]/70  backdrop-blur-md p-4 right-0 top-2/3  -translate-y-1/2">
+            <div {...ANIMATIONS.zoomIn}>
+              <Paragraph className=" font-extrabold text-white">
+                Crafting Tomorrow&apos;s Steel Future</Paragraph>
+              <Paragraph className="text-white word-spacing-[10px] leading-6 mt-2">Crafting Tomorrow's Steel Future
+                From sleek countertops to durable shelving units, our extensive range of stainless steel fabrications is designed to elevate the functionality and aesthetics of any space. At Fast Track Metallic Ind. L.L.C we strive to provide top-of-the-line equipment that meets your requirements and exceeds your expectations.</Paragraph>
+            </div>
+
+          </div>
+          <div className="  sm:hidden absolute w-full bg-[var(--bg-color)]/70  backdrop-blur-md  top-10 right-0 left-0 bottom-10 flex  justify-center items-center ">
+            <Section >
+              <Paragraph className=" font-extrabold text-white" {...ANIMATIONS.zoomIn}>
+                Crafting Tomorrow&apos;s Steel Future</Paragraph>
+              <Paragraph className="text-white word-spacing-[10px] leading-6 mt-2" {...ANIMATIONS.zoomIn}>Crafting Tomorrow's Steel Future
+                From sleek countertops to durable shelving units, our extensive range of stainless steel fabrications is designed to elevate the functionality and aesthetics of any space. At Fast Track Metallic Ind. L.L.C we strive to provide top-of-the-line equipment that meets your requirements and exceeds your expectations.</Paragraph>
+            </Section>
+          </div>
+        </div>
+      </GridSection>
+    </div>
+
   )
 }
 export default Work;

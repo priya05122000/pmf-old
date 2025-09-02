@@ -1,19 +1,39 @@
+
 "use client";
+
+// React and hooks
 import React, { useEffect, useRef } from "react";
-import { GOLDEN_GRADIENT } from "@/lib/gradients";
+
+// Animation and motion
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 
-const Brief = () => {
-  const progressBars = [76, 76, 76];
-  const animationDuration = 1.5; // duration in seconds
-  const motionValues = useRef(progressBars.map(() => useMotionValue(0)));
+// UI Components
+import Section from "@/components/Section";
+import Heading from "@/components/Heading";
+import Paragraph from "@/components/Paragraph";
 
+// Constants
+import { GOLDEN_GRADIENT } from "@/lib/gradients";
+import { ANIMATIONS } from "@/components/Animations";
+
+
+const PROGRESS_BARS = [76, 76, 76];
+const ANIMATION_DURATION = 1.5; // seconds
+
+/**
+ * Brief section with animated progress bars and marketing content.
+ */
+const Brief = () => {
+  // Motion values for each progress bar
+  const motionValues = useRef(PROGRESS_BARS.map(() => useMotionValue(0)));
+
+  // Animate progress bars sequentially on mount
   useEffect(() => {
     const animateBars = async () => {
-      for (let i = 0; i < progressBars.length; i++) {
+      for (let i = 0; i < PROGRESS_BARS.length; i++) {
         await new Promise<void>((resolve) => {
-          animate(motionValues.current[i], progressBars[i], {
-            duration: animationDuration,
+          animate(motionValues.current[i], PROGRESS_BARS[i], {
+            duration: ANIMATION_DURATION,
             ease: [0.42, 0, 0.58, 1],
             onComplete: () => resolve(),
           });
@@ -24,65 +44,68 @@ const Brief = () => {
   }, []);
 
   return (
-    <section className="w-full min-h-[80vh] bg-[#151515] text-white flex flex-col lg:flex-row items-center justify-between px-6 sm:px-10 lg:px-16 py-12 gap-10 lg:gap-15  xl:gap-[300px]">
-      {/* Left Column */}
-      <div className="flex-1 text-center lg:text-left">
-        <h1 className="text-lg md:text-[40px] lg:text-3xl xl:text-[45px] leading:none md:leading-12">
-          We specialize in crafting high-quality stainless steel furniture, tailored to meet the demands of environments where hygiene is paramount.
-        </h1>
-      </div>
+    <Section>
+      <div className="w-full text-white flex flex-col lg:flex-row items-center justify-between lg:py-20 gap-10 lg:gap-30 xl:gap-80 my-10">
+        {/* Left Column: Description */}
+        <div className="flex-1 text-left">
+          <Heading level={4} className="text-white font-normal" {...ANIMATIONS.fadeRight}>
+            We specialize in crafting high-quality stainless steel furniture, tailored to meet the demands of environments where hygiene is paramount.
+          </Heading>
+        </div>
 
-      {/* Right Column */}
-      <div className="flex-1 flex flex-col gap-8">
-        {/* Heading */}
-        <h2 className="text-4xl xl:text-5xl font-bold leading-tight">
-          <span className={`font-extrabold leading-[1] tracking-[-0.02em] text-4xl sm:text-5xl md:text-7xl lg:text-5xl xl:text-6xl ${GOLDEN_GRADIENT} bg-clip-text text-transparent`}>
-            Have a prief?
-          </span>
-          <br />
-          <span className={`font-extrabold leading-[1] tracking-[-0.02em] text-4xl sm:text-5xl md:text-7xl lg:text-5xl xl:text-6xl ${GOLDEN_GRADIENT} bg-clip-text text-transparent`}>
-            Send a brief!
-          </span>
-        </h2>
+        {/* Right Column: Call to Action & Progress Bars */}
+        <div className="flex-1 flex flex-col gap-8  w-full">
+          <div>
+            <Heading
+              level={1}
+              {...ANIMATIONS.zoomIn}
+              className={`leading-14 ${GOLDEN_GRADIENT} bg-clip-text text-transparent py-1`}
+            >
+              <span className="font-bold -tracking-widest">Have a prief?</span>
+              <br />
+              <span className="font-bold -tracking-widest">Send a brief!</span>
+            </Heading>
+            <span className={`mb-6 block h-1 w-24 sm:mt-4 ${GOLDEN_GRADIENT}`} />
+          </div>
+          {/* Main Heading */}
 
-        {/* Subheading */}
-        <p className="text-sm md:text-base font-extrabold text-gray-200">
-          Crafting Tomorrow&apos;s Steel Future
-        </p>
 
-        {/* Animated Progress Bars */}
-        <div className="flex flex-col gap-6">
-          {progressBars.map((percent, idx) => {
-            const rounded = useTransform(motionValues.current[idx], (val) =>
-              Math.round(val)+"%"
-            );
-            const widthPercent = useTransform(motionValues.current[idx], (val) => `${val}%`);
+          {/* Subheading */}
+          <Paragraph className="font-extrabold text-white">
+            Crafting Tomorrow&apos;s Steel Future
+          </Paragraph>
 
-            return (
-              <div key={idx} className="w-full pb-4">
-                <div className="relative w-full h-2 rounded-full bg-[#E1BA60]/20 ">
-                {/* Filled Bar */}
-                  <motion.div
-                    className="h-2 bg-gradient-to-r from-[#FFD966] via-[#FFF4C1] to-[#B07515]"
-                    style={{ width: widthPercent }}
-                  />
-                {/* Thumb */}
-                  <motion.div
-                    className="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-gradient-to-r from-[#FFF4C1] to-[#B07515] shadow-lg border border-yellow-300 flex items-center justify-center"
-                    style={{ left: widthPercent, translateX: "-50%" }}
-                  >
-                    {/* Percentage */}
-                    <motion.span className="absolute top-[-24px] text-sm text-white">
-                      {rounded}
-                    </motion.span>
-                  </motion.div>
+          {/* Animated Progress Bars */}
+          <div className="flex flex-col gap-6 ">
+            {PROGRESS_BARS.map((percent, idx) => {
+              const rounded = useTransform(motionValues.current[idx], (val) => Math.round(val) + "%");
+              const widthPercent = useTransform(motionValues.current[idx], (val) => `${val}%`);
+
+              return (
+                <div key={idx} className="w-full pb-4">
+                  <div className="relative w-full h-2 rounded-full bg-[#E1BA60]/20">
+                    {/* Filled Bar */}
+                    <motion.div
+                      className="h-2 bg-gradient-to-r from-[#FFD966] via-[#FFF4C1] to-[#B07515]"
+                      style={{ width: widthPercent }}
+                    />
+                    {/* Thumb with Percentage */}
+                    <motion.div
+                      className="absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-gradient-to-r from-[#FFF4C1] to-[#B07515] shadow-lg border border-yellow-300 flex items-center justify-center"
+                      style={{ left: widthPercent, translateX: "-50%" }}
+                    >
+                      <motion.span className="absolute top-[-24px] text-sm text-white">
+                        {rounded}
+                      </motion.span>
+                    </motion.div>
+                  </div>
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
+          </div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 };
 

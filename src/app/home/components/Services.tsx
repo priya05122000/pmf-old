@@ -1,6 +1,11 @@
 
 import React from "react";
 import { GOLDEN_GRADIENT } from "@/lib/gradients";
+import GridSection from "@/components/GridSection";
+import Section from "@/components/Section";
+import Heading from "@/components/Heading";
+import Paragraph from "@/components/Paragraph";
+import { ANIMATIONS } from "@/components/Animations";
 
 const services = [
   {
@@ -33,46 +38,54 @@ const services = [
 const Services = () => {
   return (
 
-    <section  className="bg-[#151515] py-12">
-        <div className=" w-full min-h-[80vh] flex items-center justify-center bg-[url('/images/services.jpg')] bg-cover bg-center relative">
-      <div className="w-full bg-black/30 backdrop-blur-[10px] flex flex-col px-6 sm:px-10 lg:px-16 py-15 ">
+    <div className=" w-full min-h-[120vh] sm:min-h-[70vh] lg:min-h-[60vh] flex items-center justify-center bg-[url('/images/services.jpg')] bg-cover bg-no-repeat lg:bg-center relative">
+      <div className="w-full bg-[var(--bg-color)]/80 backdrop-blur-sm flex justify-center items-center min-h-[45vh] py-10">
+        <Section >
+          <div>
+            <div {...ANIMATIONS.fadeRight}>
+              {/* Heading */}
+              <Heading level={3}
 
-        {/* Heading */}
-        <h2
-          className={`font-bold leading-[1] tracking-[-0.02em]
-          text-3xl sm:text-4xl md:text-5xl lg:text-4xl xl:text-5xl
-          ${GOLDEN_GRADIENT} bg-clip-text text-transparent`}
-        >
-          Our Core Services
-        </h2>
-        <span
-          className={`mb-6 block h-1 w-24 mt-2 ${GOLDEN_GRADIENT}`}
-        />
+                className={`leading-[1] tracking-[-0.05em] ${GOLDEN_GRADIENT} bg-clip-text text-transparent`}>
+                Our Core Services
+              </Heading>
+              <span
+                className={`mb-6 block h-1 w-24 mt-2 ${GOLDEN_GRADIENT}`}
+              />
+            </div>
 
-        {/* Services List */}
-        <div
-          className="
+
+            <div className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-5 justify-between  gap-5 sm:gap-10 pt-5 xl:pt-10" {...ANIMATIONS.fadeUp}>
+              {services.map((service, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 snap-start"
+                >
+                  <Paragraph className="text-white font-bold mb-2">
+                    {service.title}
+                  </Paragraph>
+                  <Paragraph className="text-white leading-snug">
+                    {service.description}
+                  </Paragraph>
+                </div>
+              ))}
+            </div>
+
+            {/* Services List */}
+            {/* <div
+                    className="
             flex flex-col gap-7 mt-10
             md:flex-row md:overflow-x-auto scrollbar-hide md:snap-x md:snap-mandatory
           "
-        >
-          {services.map((service, index) => (
-            <div
-              key={index}
-              className="flex-shrink-0 md:w-[300px] snap-start"
-            >
-              <h3 className="text-white font-semibold text-lg mb-3">
-                {service.title}
-              </h3>
-              <p className="text-gray-200 text-sm leading-relaxed">
-                {service.description}
-              </p>
-            </div>
-          ))}
-        </div>
+                  >
+
+                  </div> */}
+          </div>
+        </Section>
+
       </div>
-      </div>
-    </section>
+    </div>
+
   );
 };
 
