@@ -37,9 +37,8 @@ const Work = () => {
               <Paragraph className="text-white word-spacing-[10px] leading-6 mt-2">Crafting Tomorrow's Steel Future
                 From sleek countertops to durable shelving units, our extensive range of stainless steel fabrications is designed to elevate the functionality and aesthetics of any space. At Fast Track Metallic Ind. L.L.C we strive to provide top-of-the-line equipment that meets your requirements and exceeds your expectations.</Paragraph>
             </div>
-
           </div>
-          <div className="  sm:hidden absolute w-full bg-[var(--bg-color)]/70  backdrop-blur-md  top-10 right-0 left-0 bottom-10 flex  justify-center items-center ">
+          <div className="sm:hidden absolute w-full bg-[var(--bg-color)]/70  backdrop-blur-md  top-10 right-0 left-0 bottom-10 flex  justify-center items-center ">
             <Section >
               <Paragraph className=" font-extrabold text-white" {...ANIMATIONS.zoomIn}>
                 Crafting Tomorrow&apos;s Steel Future</Paragraph>
