@@ -54,7 +54,12 @@ const getActiveNavInfo = (
 };
 
 // Main Navbar component
-const Navbar: React.FC<{ hide?: boolean }> = ({ hide = false }) => {
+interface NavbarProps {
+  hide?: boolean;
+  className?: string;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ hide = false, className = "" }) => {
   const [mobileMenu, setMobileMenu] = useState<MobileMenuState>({
     isOpen: false,
     activeSubmenu: null
@@ -86,7 +91,7 @@ const Navbar: React.FC<{ hide?: boolean }> = ({ hide = false }) => {
 
   return (
     <nav
-      className={`fixed  block  lg:hidden top-0 left-0 w-full z-50 transition-all duration-300 ${hide ? "opacity-0 pointer-events-none" : "opacity-100"}`}
+      className={`fixed block lg:hidden top-0 left-0 w-full z-50 transition-all duration-300 ${hide ? "opacity-0 pointer-events-none" : "opacity-100"} ${className}`}
       role="navigation"
       aria-label="Main navigation"
     >

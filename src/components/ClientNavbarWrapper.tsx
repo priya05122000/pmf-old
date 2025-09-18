@@ -6,8 +6,8 @@ import Navbar from "./Navbar";
 export default function ClientNavbarWrapper() {
   const pathname = usePathname();
 
-  if (pathname ==="/home" || pathname === "/") {
-    // Home page → show only on mobile & tablet
+  // Home page → show only on mobile & tablet
+  if (pathname === "/home" || pathname === "/") {
     return <Navbar className="block lg:hidden" />;
   }
 
