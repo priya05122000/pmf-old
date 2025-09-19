@@ -2,7 +2,13 @@
 
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useTransform,
+} from "framer-motion";
+import { GOLDEN_GRADIENT } from "@/lib/gradients";
 
 type Product = {
   id: number;
@@ -10,6 +16,7 @@ type Product = {
   image: string;
 };
 
+// Duplicate product entries for demonstration; consider generating programmatically if needed
 const products: Product[] = [
   { id: 1, name: "Service trolley", image: "/images/product1.png" },
   { id: 2, name: "Service trolley", image: "/images/product2.png" },
@@ -17,18 +24,8 @@ const products: Product[] = [
   { id: 4, name: "Service trolley", image: "/images/product4.png" },
   { id: 5, name: "Service trolley", image: "/images/product5.png" },
   { id: 6, name: "Service trolley", image: "/images/product6.png" },
-  { id: 7, name: "Service trolley", image: "/images/product1.png" },
-  { id: 8, name: "Service trolley", image: "/images/product2.png" },
-  { id: 9, name: "Service trolley", image: "/images/product3.png" },
-  { id: 10, name: "Service trolley", image: "/images/product1.png" },
-  { id: 11, name: "Service trolley", image: "/images/product2.png" },
-  { id: 12, name: "Service trolley", image: "/images/product3.png" },
-  { id: 13, name: "Service trolley", image: "/images/product4.png" },
-  { id: 14, name: "Service trolley", image: "/images/product5.png" },
-  { id: 15, name: "Service trolley", image: "/images/product6.png" },
-  { id: 16, name: "Service trolley", image: "/images/product1.png" },
-  { id: 17, name: "Service trolley", image: "/images/product2.png" },
-  { id: 18, name: "Service trolley", image: "/images/product3.png" },
+  // ...repeats for demo
+  
 ];
 
 export function Products() {
@@ -54,11 +51,17 @@ export function Products() {
   );
 
   return (
-    <div className="bg-[#151515] min-h-[100vh] text-white py-12 overflow-x-hidden overflow-y-auto relative scrollbar-hide">
+    <div className=" min-h-screen  text-white py-12 overflow-x-hidden overflow-y-auto relative scrollbar-hide">
       {/* Heading */}
-<div className="px-6 sm:px-10 lg:px-16 flex justify-between">
-      <h1 className="text-4xl font-bold mb-10 ">Products</h1>
-      <div><img src="/images/filter.png" alt="filter" className="h-10 w-10 object-contain"/></div>
+      <div className="px-6 sm:px-10 lg:px-16 flex justify-between">
+        <h1 className="text-4xl font-bold mb-10 ">Products</h1>
+        <div>
+          <img
+            src="/images/filter.png"
+            alt="filter"
+            className="h-10 w-10 object-contain"
+          />
+        </div>
       </div>
       <AnimatePresence mode="wait">
         {view === "grid" ? (
@@ -68,7 +71,7 @@ export function Products() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.6, ease: "easeInOut" }}
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 relative  "
           >
             {products.map((product, index) => {
               const isCenter = index % 3 === 1;
@@ -82,25 +85,28 @@ export function Products() {
                       ? { y: centerParallax, willChange: "transform" }
                       : {}
                   }
-                  className={`group relative cursor-pointer border border-[#4B2E2B] flex justify-center items-center py-10 p-3
-                    ${index % 3 === 0 ? "md:translate-y-20" : ""}
-                    ${index % 3 === 1 ? "md:translate-y-0" : ""}
-                    ${index % 3 === 2 ? "md:translate-y-25" : ""}
+                  // GOLDEN_GRADIENT and translation classes are repeated for each card
+                  className={`group relative  cursor-pointer  flex justify-center items-center ${GOLDEN_GRADIENT}  h-96
+                    ${index % 3 === 0 ? "md:translate-y-20  pb-[1px] pr-[1px] first:pt-[1px]" : ""}
+                    ${index % 3 === 1 ? "md:translate-y-0 px-[1px] pb-[1px] pt-[1px]" : ""}
+                    ${index % 3 === 2 ? "md:translate-y-25  pb-[1px] pl-[1px] pt-[1px]" : ""}
                   `}
                   onClick={() => setSelectedImage(product.image)}
                 >
-                  <Image
-                    src={product.image}
-                    alt={product.name}
-                    width={300}
-                    height={200}
-                    className={`object-contain transition-transform duration-300 hover:scale-180 ${
-                      product.id === 5 ? "-rotate-12" : ""
-                    }`}
-                  />
-                  <p className="absolute bottom-2 right-2 text-sm bg-[#FFFFFF0F] p-2 mr-3 mb-3 rounded-md">
-                    {product.name}
-                  </p>
+                  <div className="bg-[#1A253C] w-full h-full flex justify-center">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      width={300}
+                      height={200}
+                      className={`object-contain transition-transform   duration-300  hover:scale-125 ${
+                        product.id === 5 ? "-rotate-12" : ""
+                      }`}
+                    />
+                    <p className="absolute bottom-2 right-2 text-sm bg-[#FFFFFF0F] p-2 mr-3 mb-3 rounded-md">
+                      {product.name}
+                    </p>
+                  </div>
                 </Wrapper>
               );
             })}
@@ -127,8 +133,8 @@ export function Products() {
       </AnimatePresence>
 
       {/* Fixed Toggle */}
-      <div className="fixed bottom-7 left-1/2 -translate-x-1/2 flex items-center w-[200px] h-10 bg-white/20 rounded-full p-1 cursor-pointer z-50">
-        {/* Sliding highlight */}
+      {/* <div className="fixed bottom-7 left-1/2 -translate-x-1/2 flex items-center w-[200px] h-10 bg-white/20 rounded-full p-1 cursor-pointer z-50">
+      
         <div
           className={
             "absolute top-1 left-1 w-[calc(50%-4px)] h-8 bg-black/30 rounded-full transition-transform duration-700 ease-in-out"
@@ -138,7 +144,7 @@ export function Products() {
           }}
         ></div>
 
-        {/* Buttons */}
+     
         <div className="flex w-full relative z-10">
           <button
             onClick={() => setView("grid")}
@@ -157,7 +163,7 @@ export function Products() {
             {view === "index" && <span className="text-lg">•</span>} Index
           </button>
         </div>
-      </div>
+      </div> */}
 
       {/* Image Modal */}
       <AnimatePresence>
