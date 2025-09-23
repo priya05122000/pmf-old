@@ -94,15 +94,16 @@ const Industries = () => {
     <GridSection className="relative overflow-x-hidden min-h-screen  py-10 sm:ml-4 lg:ml-0 lg:pl-4 xl:pl-0 ">
       <div className="col-span-2 col-start-2 w-[100vw] xl:w-auto">
         <div {...ANIMATIONS.fadeRight}>
+        
           <article>
-            <Heading level={2} className={`  leading-12`}>
-              Industries
+            <Heading level={1}  className={`leading-14 py-1`}>
+             Industries
               <br />
               we support
             </Heading>
           </article>
 
-          <span className={`mb-6 block h-1 w-23 mt-4 ${GOLDEN_GRADIENT}`} />
+          <span className={`mb-6 block h-1 w-20 mt-4 ${GOLDEN_GRADIENT}`} />
         </div>
         <div ref={sectionRef} className="relative w-full overflow-hidden">
           <div className="horiz-gallery-wrapper">

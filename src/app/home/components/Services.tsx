@@ -41,13 +41,15 @@ const Services = () => {
         <Section>
           <div>
             <div {...ANIMATIONS.fadeRight}>
-              {/* Heading */}
-              <Heading
-                level={3}
-                className={`leading-[1] tracking-[-0.05em] ${GOLDEN_GRADIENT} bg-clip-text text-transparent`}
-              >
-                Our Core Services
-              </Heading>
+              <article>
+                <Heading
+                  level={3}
+                  className={`leading-[1] tracking-[-0.05em]`}
+                >
+                  Our Core Services
+                </Heading>
+              </article>
+
               <span className={`mb-6 block h-1 w-24 mt-2 ${GOLDEN_GRADIENT}`} />
             </div>
 
