@@ -1,61 +1,77 @@
-"use client";
 import React from "react";
+import { GOLDEN_GRADIENT } from "@/lib/gradients";
+import GridSection from "@/components/GridSection";
+import Section from "@/components/Section";
+import Heading from "@/components/Heading";
+import Paragraph from "@/components/Paragraph";
+import { ANIMATIONS } from "@/components/Animations";
+import Link from "next/link";
 
-const services = [
-  {
-    title: "Custom Metal Fabrication",
-    description:
-      "Design and fabrication of components and structures using mild steel and stainless steel, tailored to client specifications.",
-  },
-  {
-    title: "Retail Fit-Outs",
-    description:
-      "Fabricated metal structures for showrooms, display units, shelving, and interior elements that enhance brand visibility and functionality.",
-  },
-  {
-    title: "Construction Solutions",
-    description:
-      "Structural steelworks, staircases, balustrades, handrails, frames, and other integral components for commercial and residential buildings.",
-  },
-  {
-    title: "Healthcare & Hospital Projects",
-    description:
-      "Stainless steel works that meet stringent hygiene standards, including trolley benches, sinks, handrails, and custom furnishings.",
-  },
-  {
-    title: "Hospitality Industry Fabrication",
-    description:
-      "High-quality stainless steel kitchen equipment, food counters, furnishings, and decorative metal fixtures for hotels and restaurants.",
-  },
-];
-
-const Hello = () => {
-  return (
-
-    <section  className="bg-[#151515] py-12">
-        <div className=" w-full min-h-[70vh] flex items-center justify-center bg-[url('/images/services.jpg')] bg-cover bg-center relative">
-      <div className="w-full bg-black/30 backdrop-blur-[10px] flex flex-col lg:flex-row gap-10 lg:gap-5 px-6 sm:px-10 lg:px-16 py-15 ">
-
-        <div className="w-full lg:w-1/2 h-[40vh]  flex justify-center  lg:justify-start items-center">
-        <h1 className="text-white font-bold text-center lg:text-left text-4xl md:text-6xl lg:text-4xl xl:text-6xl lg:leading-12 xl:leading-16">SAY HELLO!<br/> WE ARE HAPPY TO <br/> HEAR FROM YOU.</h1>
+const Hello = () => (
+  <div className="w-full min-h-[120vh] sm:min-h-[70vh] lg:min-h-[60vh] flex items-center justify-center bg-[url('/images/services.jpg')] bg-cover bg-no-repeat lg:bg-center relative">
+    <div className="w-full bg-[var(--light-bg-color)]/70 backdrop-blur-sm flex justify-center items-center min-h-[45vh] py-10">
+      <Section>
+        <div className="grid grid-cols-1 md:grid-cols-2 h-full">
+          <div className=" h-full flex items-center">
+            <Heading level={2} className="text-white" {...ANIMATIONS.fadeRight}>
+              SAY HELLO! <br /> WE ARE HAPPY TO HEAR FROM YOU.
+            </Heading>
+          </div>
+          <div className="h-full flex items-center">
+            <div className=" text-white space-y-6 text-base ">
+              <div>
+                <Heading level={5} className="font-bold   mb-1">
+                  Promed Metal Furniture L.L.C-FZ
+                </Heading>
+                <div className="mb-1">
+                  <Paragraph size="base" className="block">
+                    P.O. Box: 54256 Dubai - UAE
+                  </Paragraph>
+                  <Paragraph size="base" className="block">
+                    Tel: <Link href="tel:042572530">04 2572530</Link>
+                  </Paragraph>
+                  <Paragraph size="base" className="block">
+                    <Link href="mailto:info@promedworld.com">
+                      info@promedworld.com
+                    </Link>
+                  </Paragraph>
+                </div>
+              </div>
+              <div className="mt-6">
+                <Heading level={5} className="font-bold   mb-1">
+                  Our sister concern:
+                </Heading>
+                <div>
+                  <Paragraph size="base" className="block">
+                    Fast Track Metallic Ind LLC P.O.Box 96648 Sharjah - U.A.E
+                  </Paragraph>
+                  <Paragraph size="base" className="block">
+                    Tel: <Link href="tel:042572530">04 2572530</Link> |{" "}
+                    <Link
+                      href="https://www.promedworld.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      www.promedworld.com
+                    </Link>
+                  </Paragraph>
+                  <Paragraph className="block">
+                    <Link
+                      href="https://www.fasttrackmi.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      www.fasttrackmi.com
+                    </Link>
+                  </Paragraph>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="w-full lg:w-1/2 h-[40vh]  flex flex-col justify-between xl:pl-[18%]">
-        <div>
-            <h1 className="text-white font-bold text-2xl">Promed Metal Furniture L.L.C-FZ </h1>
-            <p className="text-white">P.O. Box: 54256 Dubai - UAE Tel: 04 2572530<br/> info@promedworld.com </p>
-        </div>
-        <div>
-            <h1 className="text-white font-bold text-2xl">Our sister concern: </h1>
-            <p className="text-white">Fast Track Metalic Ind LLC P.O.Box 96648 Sharjah - U..A.E </p>
-            <p className="text-white">Tel: 065351536 | www.promedworld.com<br/> www.fasttrackmi.com</p>
-        </div>
-        </div>
-
-
-      </div>
-      </div>
-    </section>
-  );
-};
+      </Section>
+    </div>
+  </div>
+);
 
 export default Hello;

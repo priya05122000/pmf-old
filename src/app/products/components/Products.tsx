@@ -44,16 +44,23 @@ function ProductCard({
       }}
       onClick={onClick}
     >
-  <div className="w-full h-96 flex justify-center items-center " style={{ backgroundColor: 'var(--bg-color)' }}>
+      <div
+        className="w-full h-96 flex justify-center items-center "
+        style={{ backgroundColor: "var(--bg-color)" }}
+      >
         <Image
           src={product.image}
           alt={product.name}
           width={300}
           height={200}
-          className={`object-contain transition-transform duration-300 hover:scale-125 ${product.id === 5 ? "-rotate-12" : ""
-            }`}
+          className={`object-contain transition-transform duration-300 hover:scale-125 ${
+            product.id === 5 ? "-rotate-12" : ""
+          }`}
         />
-  <p className="absolute bottom-2 right-2 text-sm p-2 mr-3 mb-3 rounded-md" style={{ backgroundColor: 'rgba(255,255,255,0.06)' }}>
+        <p
+          className="absolute bottom-2 right-2 text-sm p-2 mr-3 mb-3 rounded-md"
+          style={{ backgroundColor: "rgba(255,255,255,0.06)" }}
+        >
           {product.name}
         </p>
       </div>
@@ -62,7 +69,13 @@ function ProductCard({
 }
 
 // Image Modal
-function ImageModal({ image, onClose }: { image: string; onClose: () => void }) {
+function ImageModal({
+  image,
+  onClose,
+}: {
+  image: string;
+  onClose: () => void;
+}) {
   return (
     <AnimatePresence>
       {image && (
@@ -151,7 +164,7 @@ export function Products() {
         </div>
       </Section>
 
-  <div className="grid-section flex pt-20 text-foreground overflow-hidden relative">
+      <div className="grid-section flex pt-20 text-foreground overflow-hidden relative">
         {/* Left Column */}
         <div ref={leftRef} className="flex-1 flex flex-col">
           {leftProducts.map((p) => (
@@ -184,7 +197,6 @@ export function Products() {
               product={p}
               onClick={() => setSelectedImage(p.image)}
               className="border-y border-l  border-[#B07515] "
-
             />
           ))}
         </div>

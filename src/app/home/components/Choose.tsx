@@ -58,7 +58,7 @@ const Choose: FC = () => {
       <div className="py-20">
         <div>
           <div className="w-full flex flex-col items-center lg:items-start">
-            <Heading level={6} className="text-white">
+            <Heading level={6} className="text-white uppercase">
               Trusted by <span className="text-[#BEBEBE]">20,000+</span>{" "}
               customers across Europe
             </Heading>

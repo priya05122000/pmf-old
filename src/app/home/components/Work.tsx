@@ -1,4 +1,3 @@
-
 import { ANIMATIONS } from "@/components/Animations";
 import GridSection from "@/components/GridSection";
 import Heading from "@/components/Heading";
@@ -9,11 +8,10 @@ import React from "react";
 
 const Work = () => {
   return (
-
     <div>
       <Section>
         <div {...ANIMATIONS.zoomIn}>
-          <Heading
+          {/* <Heading
             level={1}
 
             className={`leading-14 ${GOLDEN_GRADIENT} bg-clip-text text-transparent py-1`}
@@ -21,8 +19,17 @@ const Work = () => {
             <span className="font-bold -tracking-wider">Work</span>
             <br />
             <span className="font-bold -tracking-wider">Process</span>
-          </Heading>
-          <span className={`mb-6 block h-1 w-24 mt-2 sm:mt-4 ${GOLDEN_GRADIENT}`} />
+          </Heading> */}
+          <article>
+            <Heading level={1} className={`leading-14 -tracking-wider py-1`}>
+              Work
+              <br />
+              Process
+            </Heading>
+          </article>
+          <span
+            className={`mb-6 block h-1 w-24 mt-2 sm:mt-4 ${GOLDEN_GRADIENT}`}
+          />
         </div>
       </Section>
 
@@ -33,23 +40,42 @@ const Work = () => {
           <div className=" hidden sm:block absolute md:w-[450px] lg:w-[450px] xl:w-[500px] bg-[var(--light-bg-color)]/70  backdrop-blur-md p-4 right-0 top-2/3  -translate-y-1/2">
             <div {...ANIMATIONS.zoomIn}>
               <Paragraph className=" font-extrabold text-white">
-                Crafting Tomorrow&apos;s Steel Future</Paragraph>
-              <Paragraph className="text-white word-spacing-[10px] leading-6 mt-2">Crafting Tomorrow's Steel Future
-                From sleek countertops to durable shelving units, our extensive range of stainless steel fabrications is designed to elevate the functionality and aesthetics of any space. At Fast Track Metallic Ind. L.L.C we strive to provide top-of-the-line equipment that meets your requirements and exceeds your expectations.</Paragraph>
+                Crafting Tomorrow&apos;s Steel Future
+              </Paragraph>
+              <Paragraph className="text-white word-spacing-[10px] leading-6 mt-2">
+                Crafting Tomorrow's Steel Future From sleek countertops to
+                durable shelving units, our extensive range of stainless steel
+                fabrications is designed to elevate the functionality and
+                aesthetics of any space. At Fast Track Metallic Ind. L.L.C we
+                strive to provide top-of-the-line equipment that meets your
+                requirements and exceeds your expectations.
+              </Paragraph>
             </div>
           </div>
           <div className="sm:hidden absolute w-full bg-[var(--bg-color)]/70  backdrop-blur-md  top-10 right-0 left-0 bottom-10 flex  justify-center items-center ">
-            <Section >
-              <Paragraph className=" font-extrabold text-white" {...ANIMATIONS.zoomIn}>
-                Crafting Tomorrow&apos;s Steel Future</Paragraph>
-              <Paragraph className="text-white word-spacing-[10px] leading-6 mt-2" {...ANIMATIONS.zoomIn}>Crafting Tomorrow's Steel Future
-                From sleek countertops to durable shelving units, our extensive range of stainless steel fabrications is designed to elevate the functionality and aesthetics of any space. At Fast Track Metallic Ind. L.L.C we strive to provide top-of-the-line equipment that meets your requirements and exceeds your expectations.</Paragraph>
+            <Section>
+              <Paragraph
+                className=" font-extrabold text-white"
+                {...ANIMATIONS.zoomIn}
+              >
+                Crafting Tomorrow&apos;s Steel Future
+              </Paragraph>
+              <Paragraph
+                className="text-white word-spacing-[10px] leading-6 mt-2"
+                {...ANIMATIONS.zoomIn}
+              >
+                Crafting Tomorrow's Steel Future From sleek countertops to
+                durable shelving units, our extensive range of stainless steel
+                fabrications is designed to elevate the functionality and
+                aesthetics of any space. At Fast Track Metallic Ind. L.L.C we
+                strive to provide top-of-the-line equipment that meets your
+                requirements and exceeds your expectations.
+              </Paragraph>
             </Section>
           </div>
         </div>
       </GridSection>
     </div>
-
-  )
-}
+  );
+};
 export default Work;

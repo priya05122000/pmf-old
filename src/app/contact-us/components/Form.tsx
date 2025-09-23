@@ -1,99 +1,134 @@
-
+import React, { useState, ChangeEvent, FormEvent, FC } from "react";
+import Heading from "@/components/Heading";
+import Span from "@/components/Span";
 import { GOLDEN_GRADIENT } from "@/lib/gradients";
-import { useState } from "react";
-import React from 'react'
 
- const Form = () => {
-    const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
-    mobile: "",
-    email: "",
-    message: "",
-    consent: false,
-  });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-  const { name, value, type } = e.target;
-
-  setFormData((prev) => ({
-    ...prev,
-    [name]: type === "checkbox" && "checked" in e.target
-      ? (e.target as HTMLInputElement).checked
-      : value,
-  }));
+type FormData = {
+  firstName: string;
+  lastName: string;
+  mobile: string;
+  email: string;
+  message: string;
+  consent: boolean;
 };
 
+const initialFormData: FormData = {
+  firstName: "",
+  lastName: "",
+  mobile: "",
+  email: "",
+  message: "",
+  consent: false,
+};
 
-  const handleSubmit = (e: React.FormEvent) => {
+type InputProps = {
+  name: keyof Omit<FormData, "consent" | "message">;
+  type?: string;
+  placeholder: string;
+  value: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  required?: boolean;
+  className?: string;
+};
+
+const FormInput: FC<InputProps> = ({ name, type = "text", placeholder, value, onChange, required, className }) => (
+  <input
+    type={type}
+    name={name}
+    placeholder={placeholder}
+    value={value}
+    onChange={onChange}
+    className={className}
+    required={required}
+    autoComplete="off"
+  />
+);
+
+const Form: FC = () => {
+  const [formData, setFormData] = useState<FormData>(initialFormData);
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
+    }));
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    // TODO: Replace with actual submit logic
     alert("Form submitted!");
+    setFormData(initialFormData);
   };
 
   return (
-    <div className="min-h-screen bg-[#151515] flex items-center justify-center px-4">
+    <div className="py-10 sm:py-20 flex items-center justify-center px-4">
       <div className="w-full max-w-xl bg-transparent p-6 rounded-lg">
         {/* Title */}
-        <h1 className={`text-center font-bold leading-[1] tracking-[-0.02em]
+        {/* <h1 className={`text-center font-bold leading-[1] tracking-[-0.02em]
           text-4xl sm:text-5xl md:text-7xl lg:text-5xl xl:text-6xl ${GOLDEN_GRADIENT} bg-clip-text text-transparent mb-8`}>
           Contact us
-        </h1>
+        </h1> */}
+
+        <article>
+          <Heading
+            level={1}
+            className={`leading-[1] tracking-[-0.02em] mb-8 text-center`}
+          >
+            Contact us
+          </Heading>
+        </article>
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="flex gap-4">
-            <input
-              type="text"
+            <FormInput
               name="firstName"
               placeholder="Name"
               value={formData.firstName}
               onChange={handleChange}
-              className="w-1/2 p-3 bg-[#151515] border border-gray-700 rounded-md text-white placeholder-white focus:outline-none focus:border-yellow-400"
               required
+              className="w-1/2 p-3 border border-gray-700 text-white placeholder-white focus:outline-none focus:border-[#b8892d]"
             />
-            <input
-              type="text"
+            <FormInput
               name="lastName"
               placeholder="Last name"
               value={formData.lastName}
               onChange={handleChange}
-              className="w-1/2 p-3 bg-[#151515] border border-gray-700 rounded-md text-white placeholder-white focus:outline-none focus:border-yellow-400"
+              className="w-1/2 p-3 border border-gray-700 text-white placeholder-white focus:outline-none focus:border-[#b8892d]"
             />
           </div>
-
-          <input
-            type="text"
+          <FormInput
             name="mobile"
             placeholder="Mobile number"
             value={formData.mobile}
             onChange={handleChange}
-            className="w-full p-3 bg-[#151515] border border-gray-700 rounded-md text-white placeholder-white focus:outline-none focus:border-yellow-400"
             required
+            className="w-full p-3 border border-gray-700 text-white placeholder-white focus:outline-none focus:border-[#b8892d]"
           />
-
-          <input
-            type="email"
+          <FormInput
             name="email"
+            type="email"
             placeholder="Email address"
             value={formData.email}
             onChange={handleChange}
-            className="w-full p-3 bg-[#151515] border border-gray-700 rounded-md text-white placeholder-white focus:outline-none focus:border-yellow-400"
             required
+            className="w-full p-3 border border-gray-700 text-white placeholder-white focus:outline-none focus:border-[#b8892d]"
           />
-
           <textarea
             name="message"
             placeholder="Message"
             rows={4}
             value={formData.message}
             onChange={handleChange}
-            className="w-full p-3 bg-[#151515] border border-gray-700 rounded-md text-white placeholder-white focus:outline-none focus:border-yellow-400"
+            className="w-full p-3 border border-gray-700 text-white placeholder-white focus:outline-none focus:border-[#b8892d]"
             required
+            autoComplete="off"
           />
-
           {/* Consent */}
-          <label className="flex items-start gap-2 text-sm text-white">
+          <label className="flex items-start gap-2 text-white">
             <input
               type="checkbox"
               name="consent"
@@ -102,19 +137,20 @@ import React from 'react'
               className="mt-1"
               required
             />
-            By submitting this form, I agree to Terms & Conditions and Privacy Policy. I consent to receive updates and notifications via Email, WhatsApp and SMS.
+            <Span>
+              By submitting this form, I agree to Terms & Conditions and Privacy Policy. I consent to receive updates and notifications via Email, WhatsApp and SMS.
+            </Span>
           </label>
-
           {/* Submit Button */}
           <button
             type="submit"
-            className={`w-full py-3 mt-4 font-semibold text-black rounded-sm ${GOLDEN_GRADIENT} hover:opacity-90 transition`}
+            className={`w-full py-3 mt-4 font-semibold text-blue-custom rounded-sm ${GOLDEN_GRADIENT} hover:opacity-90 transition`}
           >
             Submit
           </button>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 export default Form;

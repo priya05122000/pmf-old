@@ -82,16 +82,17 @@ const Reviews: React.FC = () => {
         <div className="grid grid-cols-[1fr_2fr] h-full">
           {/* Heading */}
           <div className="mb-8 h-full flex flex-col justify-center">
-            <Heading level={1} className="leading-[1] tracking-[-0.02em]">
-              <span className={`${GOLDEN_GRADIENT} bg-clip-text text-transparent`}>
-                Review
-              </span>
-            </Heading>
+            <article>
+              <Heading level={1} className="leading-[1] tracking-[-0.02em]">
+                  Review
+              </Heading>
+            </article>
+
             <span className={`mb-6 block h-1 w-16 mt-2 ${GOLDEN_GRADIENT}`} />
           </div>
 
           {/* Swiper */}
-          <div className="flex-1 min-w-0">
+          <div className="flex-1 min-w-0 ">
             <Swiper
               modules={[Navigation, Autoplay]}
               spaceBetween={16}
@@ -109,7 +110,7 @@ const Reviews: React.FC = () => {
                 <SwiperSlide key={idx}>
                   <div className="overflow-hidden mx-auto relative">
                     <div className={`p-1 ${GOLDEN_GRADIENT}`}>
-                      <div className="bg-white relative overflow-hidden">
+                      <div className="relative overflow-hidden">
                         <Image
                           src={review.image}
                           alt={review.title}
@@ -121,17 +122,27 @@ const Reviews: React.FC = () => {
                         {/* Blue gradient overlay */}
                         <div
                           className="absolute inset-0 pointer-events-none"
-                          style={{ backgroundColor: 'rgba(var(--light-bg-color-rgb, 54,75,100), 0.4)' }}
+                          style={{
+                            backgroundColor:
+                              "rgba(var(--light-bg-color-rgb, 54,75,100), 0.4)",
+                          }}
                         />
                         {/* Text overlay */}
                         <div className="absolute inset-0 flex flex-col justify-start p-5 z-10">
                           <div className="p-2">
-                            <Heading level={3} className="text-white font-bold leading-none drop-shadow-lg">
+                            <Heading
+                              level={3}
+                              className="text-white font-bold leading-none drop-shadow-lg"
+                            >
                               {review.title}
                             </Heading>
-                            <span className={`mb-4 block h-1 w-16 sm:w-20 mt-2 ${GOLDEN_GRADIENT}`} />
+                            <span
+                              className={`mb-4 block h-1 w-16 sm:w-20 mt-2 ${GOLDEN_GRADIENT}`}
+                            />
                             {review.content && (
-                              <Paragraph size="base" className="text-white ">{review.content}</Paragraph>
+                              <Paragraph size="base" className="text-white ">
+                                {review.content}
+                              </Paragraph>
                             )}
                             {review.list && Array.isArray(review.list) && (
                               <ParagraphList className="text-white list-disc list-inside space-y-1 mt-2">
@@ -173,7 +184,7 @@ const Reviews: React.FC = () => {
                 if (node && navigation.prevEl !== node)
                   setNavigation((nav) => ({ ...nav, prevEl: node }));
               }}
-              className="text-2xl text-gold   focus:outline-none cursor-pointer"
+              className="text-2xl text-[#B07515]  focus:outline-none cursor-pointer"
               aria-label="Previous"
               type="button"
             >
@@ -184,7 +195,7 @@ const Reviews: React.FC = () => {
                 if (node && navigation.nextEl !== node)
                   setNavigation((nav) => ({ ...nav, nextEl: node }));
               }}
-              className="text-2xl text-gold    focus:outline-none cursor-pointer"
+              className="text-2xl text-[#B07515]   focus:outline-none cursor-pointer"
               aria-label="Next"
               type="button"
             >
