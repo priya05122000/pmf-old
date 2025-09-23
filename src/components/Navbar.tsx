@@ -32,7 +32,7 @@ const NAV_LINKS: NavLink[] = [
 ];
 
 const COMPANY = {
-  name: "Mayil Mark",
+  name: "Promed",
   logo: "/logos/logo.png",
   homeUrl: "/home"
 };
@@ -53,13 +53,171 @@ const getActiveNavInfo = (
   return { activeLink: "", activeSubmenu: null };
 };
 
-// Main Navbar component
+// --- COMPONENTS ---
+
+const Logo: React.FC = () => (
+  <div className="flex items-center gap-2 shrink-0 h-full justify-center">
+    <Link href={COMPANY.homeUrl}>
+      <Image
+        src={COMPANY.logo}
+        alt={`${COMPANY.name} Logo`}
+        width={1000}
+        height={1000}
+        className="w-auto h-10 object-contain"
+        quality={100}
+        priority
+      />
+    </Link>
+  </div>
+);
+
+interface NavLinksListProps {
+  navLinks: NavLink[];
+  activeLink: string;
+  activeSubmenu: string | null;
+  onLinkClick?: (link: NavLink) => void;
+  onSubmenuClick?: (submenu: SubMenu) => void;
+  submenuOpenLabel?: string | null;
+  isMobile?: boolean;
+  onSubmenuToggle?: (label: string) => void;
+  onClose?: () => void;
+}
+
+const NavLinksList: React.FC<NavLinksListProps> = ({
+  navLinks,
+  activeLink,
+  activeSubmenu,
+  onLinkClick,
+  onSubmenuClick,
+  submenuOpenLabel,
+  isMobile = false,
+  onSubmenuToggle,
+  onClose,
+}) => (
+  <ul
+    className={
+      isMobile
+        ? "flex flex-col items-stretch gap-0 text-deep-green font-medium font-inter tracking-wide bg-[var(--light-bg-color)] py-0 z-20 text-white"
+        : "hidden lg:flex ml-10 items-center justify-end text-sm xl:text-base text-white-custom font-medium font-inter"
+    }
+  >
+    {navLinks.map(link => (
+      <React.Fragment key={link.label}>
+        <li
+          className={
+            isMobile
+              ? `px-6 sm:px-8 py-3 w-full text-deep-green text-left text-sm border-b last:border-b-0 border-deep-green ${activeLink === link.label ? "font-bold text-deep-green" : ""
+              } cursor-pointer transition-colors duration-200 hover:text-primary flex items-center justify-between`
+              : `relative ml-10 ${activeLink === link.label ? "text-accent" : ""} hover:text-accent cursor-pointer transition-colors duration-200 group`
+          }
+          onClick={() => {
+            if (isMobile && link.submenus && onSubmenuToggle) onSubmenuToggle(link.label);
+            else if (isMobile && !link.submenus && onClose) onClose();
+            if (onLinkClick) onLinkClick(link);
+          }}
+        >
+          {link.submenus ? (
+            <>
+              <span className={isMobile ? "block w-full" : "block w-full h-full py-2"}>
+                {link.label}
+              </span>
+              {isMobile && (
+                <svg
+                  className={`ml-2 w-4 h-4 text-gray-500 transition-transform duration-200 ${submenuOpenLabel === link.label ? "rotate-180" : ""}`}
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              )}
+            </>
+          ) : (
+            <Link
+              href={link.href || "#"}
+              className={
+                isMobile
+                  ? "block w-full h-full"
+                  : "block w-full h-full py-2 text-white text-lg font-medium cursor-pointer hover:text-white/70"
+              }
+              onClick={isMobile ? onClose : undefined}
+            >
+              {link.label}
+            </Link>
+          )}
+          {/* Desktop submenu */}
+          {!isMobile && link.submenus && (
+            <ul className="absolute left-0 top-full bg-background text-gray-900 rounded shadow-lg min-w-[200px] z-40 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible pointer-events-none group-hover:pointer-events-auto transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
+              {link.submenus.map(submenu => (
+                <li key={submenu.label} className="px-4 py-2 transition-colors duration-150">
+                  <Link
+                    href={submenu.href}
+                    className={`block w-full text-sm ${activeSubmenu === submenu.label ? "text-accent" : ""}`}
+                  >
+                    {submenu.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+        {/* Mobile submenu */}
+        {isMobile && link.submenus && submenuOpenLabel === link.label && (
+          <ul className="px-8 py-2">
+            {link.submenus.map(submenu => (
+              <li key={submenu.label} className="py-1 text-xs">
+                <Link
+                  href={submenu.href}
+                  className={`transition-colors duration-150 ${activeSubmenu === submenu.label
+                    ? "text-accent font-bold"
+                    : "text-gray-700 hover:text-black"
+                    }`}
+                  onClick={onClose}
+                >
+                  {submenu.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        )}
+      </React.Fragment>
+    ))}
+  </ul>
+);
+
+interface HamburgerButtonProps {
+  isOpen: boolean;
+  onClick: () => void;
+}
+
+const HamburgerButton: React.FC<HamburgerButtonProps> = ({ isOpen, onClick }) => (
+  <button
+    className="lg:hidden flex flex-col justify-center items-center ml-auto text-white"
+    onClick={onClick}
+    aria-label={isOpen ? "Close menu" : "Open menu"}
+    aria-expanded={isOpen}
+  >
+    {isOpen ? (
+      <RxCross1 className="text-3xl rounded my-0.5 transition-all duration-300 text-white-custom" />
+    ) : (
+      <RxHamburgerMenu className="text-3xl rounded my-0.5 transition-all duration-300 text-white-custom" />
+    )}
+  </button>
+);
+
 interface NavbarProps {
   hide?: boolean;
   className?: string;
+  homeHeroStyle?: boolean;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ hide = false, className = "" }) => {
+const Navbar: React.FC<NavbarProps> = ({
+  hide = false,
+  className = "",
+  homeHeroStyle = false,
+}) => {
   const [mobileMenu, setMobileMenu] = useState<MobileMenuState>({
     isOpen: false,
     activeSubmenu: null
@@ -89,191 +247,62 @@ const Navbar: React.FC<NavbarProps> = ({ hide = false, className = "" }) => {
     });
   };
 
+  // Hero-style class for /home
+  // const heroNavClass =
+  //   "absolute w-1/3 left-0 top-1/3 text-white justify-start gap-10 hidden lg:flex z-50";
+  const heroNavClass =
+    "fixed top-1/3";
+
   return (
     <nav
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${hide ? "opacity-0 pointer-events-none" : "opacity-100"} ${className}`}
+      className={`
+    left-0  z-50
+    ${hide ? "opacity-0 pointer-events-none" : "opacity-100"}
+    ${className}
+    ${pathname === "/home" && homeHeroStyle
+          ? heroNavClass
+          : "fixed top-0 w-full"}
+  `}
       role="navigation"
       aria-label="Main navigation"
     >
 
       <div className="max-w-full">
-        <div className="bg-[var(--bg-color)] ">
-          <Section className="">
-            <div className="flex items-center h-20 w-full relative">
-              <Logo />
-
-              <DesktopNavigation activeLink={activeLink} activeSubmenu={activeSubmenu} />
+        <div className="bg-[var(--bg-color)]">
+          <Section>
+            <div className={`flex items-center w-full relative ${pathname === "/home" ? "py-0" : "py-2"}`}>
+              <div style={{ visibility: pathname === "/home" ? "hidden" : "visible" }}>
+                <Logo />
+              </div>
+              <NavLinksList
+                navLinks={NAV_LINKS}
+                activeLink={activeLink}
+                activeSubmenu={activeSubmenu}
+              />
               <HamburgerButton isOpen={mobileMenu.isOpen} onClick={toggleMobileMenu} />
             </div>
           </Section>
         </div>
       </div>
-      <MobileNavigation
-        mobileMenu={mobileMenu}
-        activeLink={activeLink}
-        activeSubmenu={activeSubmenu}
-        onSubmenuToggle={handleSubmenuToggle}
-        onClose={closeMobileMenu}
-      />
+      {/* Mobile Navigation */}
+      <div className="lg:hidden">
+        <div className={`transition-all duration-300 ease-in-out ${mobileMenu.isOpen
+          ? "max-h-[500px] opacity-100 scale-100"
+          : "max-h-0 opacity-0 scale-95 pointer-events-none"
+          } overflow-hidden`}>
+          <NavLinksList
+            navLinks={NAV_LINKS}
+            activeLink={activeLink}
+            activeSubmenu={activeSubmenu}
+            isMobile
+            submenuOpenLabel={mobileMenu.activeSubmenu}
+            onSubmenuToggle={handleSubmenuToggle}
+            onClose={closeMobileMenu}
+          />
+        </div>
+      </div>
     </nav>
   );
 };
 
 export default Navbar;
-
-// --- COMPONENTS ---
-
-const Logo: React.FC = () => (
-  <div className="flex items-center gap-2 shrink-0  h-full justify-center ">
-    <Link href={COMPANY.homeUrl}>
-      <Image
-        src={COMPANY.logo}
-        alt={`${COMPANY.name} Logo`}
-        width={1000}      // match the actual display size
-        height={1000}
-        className="w-40 sm:w-52 h-auto object-contain"
-        quality={100}
-        priority
-      />
-    </Link>
-  </div>
-);
-
-
-
-interface DesktopNavigationProps {
-  activeLink: string;
-  activeSubmenu: string | null;
-}
-
-const DesktopNavigation: React.FC<DesktopNavigationProps> = ({ activeLink, activeSubmenu }) => (
-  <ul className="hidden lg:flex flex-1 items-center justify-end text-sm xl:text-base text-white-custom font-medium font-inter">
-    {NAV_LINKS.map(link => (
-      <li
-        key={link.label}
-        className={`relative   ml-10  ${activeLink === link.label ? "text-accent" : ""} hover:text-accent cursor-pointer transition-colors duration-200 group`}
-      >
-        {link.submenus ? (
-          <span className="block w-full h-full py-2 ">{link.label}</span>
-        ) : (
-          <Link href={link.href || "#"} className="block w-full h-full py-2  text-white text-lg font-medium cursor-pointer hover:text-white/70">{link.label}</Link>
-        )}
-        {link.submenus && (
-          <ul className="absolute left-0 top-full bg-background text-gray-900 rounded shadow-lg min-w-[200px] z-40 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible pointer-events-none group-hover:pointer-events-auto transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-            {link.submenus.map(submenu => (
-              <li key={submenu.label} className="px-4 py-2 transition-colors duration-150">
-                <Link
-                  href={submenu.href}
-                  className={`block w-full text-sm ${activeSubmenu === submenu.label ? "text-accent" : ""}`}
-                >
-                  {submenu.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </li>
-    ))}
-  </ul>
-);
-
-interface HamburgerButtonProps {
-  isOpen: boolean;
-  onClick: () => void;
-}
-
-const HamburgerButton: React.FC<HamburgerButtonProps> = ({ isOpen, onClick }) => (
-  <button
-    className="lg:hidden flex flex-col justify-center items-center ml-auto text-white"
-    onClick={onClick}
-    aria-label={isOpen ? "Close menu" : "Open menu"}
-    aria-expanded={isOpen}
-  >
-    {isOpen ? (
-      <RxCross1 className="text-3xl rounded my-0.5 transition-all duration-300 text-white-custom" />
-    ) : (
-      <RxHamburgerMenu className="text-3xl rounded my-0.5 transition-all duration-300 text-white-custom" />
-    )}
-  </button>
-);
-
-interface MobileNavigationProps {
-  mobileMenu: MobileMenuState;
-  activeLink: string;
-  activeSubmenu: string | null;
-  onSubmenuToggle: (label: string) => void;
-  onClose: () => void;
-}
-
-const MobileNavigation: React.FC<MobileNavigationProps> = ({
-  mobileMenu,
-  activeLink,
-  activeSubmenu,
-  onSubmenuToggle,
-  onClose
-}) => (
-  <div className="lg:hidden">
-    <div className={`transition-all duration-300 ease-in-out ${mobileMenu.isOpen
-      ? "max-h-[500px] opacity-100 scale-100"
-      : "max-h-0 opacity-0 scale-95 pointer-events-none"
-      } overflow-hidden`}>
-      <ul className="flex flex-col items-stretch gap-0 text-deep-green font-medium font-inter tracking-wide bg-[var(--light-bg-color)] py-0 z-20 text-white">
-        {NAV_LINKS.map(link => (
-          <React.Fragment key={link.label}>
-            <li
-              className={`px-6 sm:px-8 py-3 w-full text-deep-green text-left text-sm border-b last:border-b-0 border-deep-green ${activeLink === link.label ? "font-bold text-deep-green" : ""
-                } cursor-pointer transition-colors duration-200 hover:text-primary flex items-center justify-between`}
-              onClick={() => {
-                if (link.submenus) onSubmenuToggle(link.label);
-                else onClose();
-              }}
-            >
-              {link.submenus ? (
-                <>
-                  <span className="block w-full">{link.label}</span>
-                  <svg
-                    className={`ml-2 w-4 h-4 text-gray-500 transition-transform duration-200 ${mobileMenu.activeSubmenu === link.label ? "rotate-180" : ""}`}
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth={2}
-                    viewBox="0 0 24 24"
-                    aria-hidden="true"
-                  >
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                  </svg>
-                </>
-              ) : (
-                <Link
-                  href={link.href || "#"}
-                  className="block w-full h-full"
-                  onClick={onClose}
-                >
-                  {link.label}
-                </Link>
-              )}
-            </li>
-            {link.submenus && mobileMenu.activeSubmenu === link.label && (
-              <ul className="px-8 py-2">
-                {link.submenus.map(submenu => (
-                  <li key={submenu.label} className="py-1 text-xs">
-                    <Link
-                      href={submenu.href}
-                      className={`transition-colors duration-150 ${activeSubmenu === submenu.label
-                        ? "text-accent font-bold"
-                        : "text-gray-700 hover:text-black"
-                        }`}
-                      onClick={onClose}
-                    >
-                      {submenu.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </React.Fragment>
-        ))}
-
-      </ul>
-    </div>
-  </div>
-);

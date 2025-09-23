@@ -8,6 +8,6 @@ export default function ClientNavbarWrapper() {
   const isHome = pathname === "/" || pathname === "/home";
 
   return (
-    <Navbar className={isHome ? "block lg:hidden" : "block lg:block"} />
+    <Navbar homeHeroStyle={isHome} />
   );
 }

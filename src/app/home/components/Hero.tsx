@@ -67,7 +67,7 @@ const HeroContent: FC = () => (
     {/* <Heading
       level={2}
       className="
-    text-end leading-tight tracking-wide font-bold drop-shadow-lg 
+    text-end leading-tight tracking-wide font-bold drop-shadow-lg
     relative overflow-hidden
     stroke-2 text-transparent hero-stroke-text
   "
@@ -80,7 +80,7 @@ const HeroContent: FC = () => (
     <article>
       <Heading
         level={2}
-        className="text-end  
+        className="text-end
      "
       >
         Your Complete Solution for Precision Sheet Metal Fabrication
@@ -93,7 +93,7 @@ const Hero: FC = () => (
   <GridSection className="relative overflow-x-hidden sm:-ml-4 lg:ml-0 lg:pl-4 xl:pl-0 lg:-mt-20">
     <div className="col-span-2 col-start-2 bg-[url('/images/home.jpg')] h-[80vh] lg:h-screen bg-right sm:bg-bottom-left bg-no-repeat bg-cover w-[100vw] xl:w-auto">
       <LogoSection />
-      <NavigationSection />
+      {/* <NavigationSection /> */}
       <HeroContent />
     </div>
   </GridSection>
