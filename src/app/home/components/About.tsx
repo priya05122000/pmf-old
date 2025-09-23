@@ -53,27 +53,30 @@ const About = () => {
             />
           </div>
           <div className="flex flex-col justify-end" {...ANIMATIONS.fadeUp}>
-            <Heading level={2}
-              className={`leading-[1] tracking-[-0.02em]
-                ${GOLDEN_GRADIENT} bg-clip-text text-transparent`}
-            >
-              About us
-            </Heading>
+            <article>
+              <Heading
+                level={2}
+                className={`leading-[1] tracking-[-0.02em]
+                `}
+              >
+                About us
+              </Heading>
+            </article>
+
             <span className={`mb-6 block h-1 w-24 mt-2 ${GOLDEN_GRADIENT}`} />
             <Paragraph className="text-white text-justify">
               PMF is a trusted leader in metal fabrication, specializing in
-              precision-engineered solutions in Mild Steel and Stainless
-              Steel. With a strong reputation for quality, reliability, and
+              precision-engineered solutions in Mild Steel and Stainless Steel.
+              With a strong reputation for quality, reliability, and
               craftsmanship, we cater to diverse sectors including retail,
               construction, hospitals, hotels, and more.
             </Paragraph>
             <Paragraph className="text-white text-justify mt-2">
               Since our inception, PMF has delivered tailor-made fabrication
-              services that meet the evolving demands of modern
-              infrastructure and interior design. We combine technical
-              expertise with advanced manufacturing capabilities to ensure
-              every project exceeds expectations in terms of durability,
-              design, and finish.
+              services that meet the evolving demands of modern infrastructure
+              and interior design. We combine technical expertise with advanced
+              manufacturing capabilities to ensure every project exceeds
+              expectations in terms of durability, design, and finish.
             </Paragraph>
           </div>
 
@@ -81,26 +84,25 @@ const About = () => {
             <div className="relative bg-amber-800 h-[95%] w-[80%] sm:w-[90%] lg:w-full">
               {/* Rotating image absolutely positioned at the top right corner */}
               <Image
-              src="/designs/elegance.png"
-              alt="About PMF"
-              width={120}
-              height={120}
-              className="object-contain absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 z-10 w-[100px] sm:w-[120px] h-auto"
-              style={{
-                transform: `rotate(${rotation}deg)`,
-                transition: "transform 0.1s linear",
-              }}
+                src="/designs/elegance.png"
+                alt="About PMF"
+                width={120}
+                height={120}
+                className="object-contain absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 z-10 w-[100px] sm:w-[120px] h-auto"
+                style={{
+                  transform: `rotate(${rotation}deg)`,
+                  transition: "transform 0.1s linear",
+                }}
               />
               <Image
-              src="/images/about.jpg"
-              alt="About PMF"
-              width={500}
-              height={500}
-              className="object-cover w-full shadow-lg h-full"
+                src="/images/about.jpg"
+                alt="About PMF"
+                width={500}
+                height={500}
+                className="object-cover w-full shadow-lg h-full"
               />
             </div>
           </div>
-
         </div>
       </section>
     </Section>

@@ -1,4 +1,3 @@
-
 import React from "react";
 import { GOLDEN_GRADIENT } from "@/lib/gradients";
 import GridSection from "@/components/GridSection";
@@ -37,31 +36,28 @@ const services = [
 
 const Services = () => {
   return (
-
     <div className=" w-full min-h-[120vh] sm:min-h-[70vh] lg:min-h-[60vh] flex items-center justify-center bg-[url('/images/services.jpg')] bg-cover bg-no-repeat lg:bg-center relative">
-      <div className="w-full bg-[var(--bg-color)]/80 backdrop-blur-sm flex justify-center items-center min-h-[45vh] py-10">
-        <Section >
+      <div className="w-full bg-[var(--light-bg-color)]/70 backdrop-blur-sm flex justify-center items-center min-h-[45vh] py-10">
+        <Section>
           <div>
             <div {...ANIMATIONS.fadeRight}>
               {/* Heading */}
-              <Heading level={3}
-
-                className={`leading-[1] tracking-[-0.05em] ${GOLDEN_GRADIENT} bg-clip-text text-transparent`}>
+              <Heading
+                level={3}
+                className={`leading-[1] tracking-[-0.05em] ${GOLDEN_GRADIENT} bg-clip-text text-transparent`}
+              >
                 Our Core Services
               </Heading>
-              <span
-                className={`mb-6 block h-1 w-24 mt-2 ${GOLDEN_GRADIENT}`}
-              />
+              <span className={`mb-6 block h-1 w-24 mt-2 ${GOLDEN_GRADIENT}`} />
             </div>
 
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-5 justify-between  gap-5 sm:gap-10 pt-5 xl:pt-10" {...ANIMATIONS.fadeUp}>
+            <div
+              className="grid grid-cols-1 sm:grid-cols-3 xl:grid-cols-5 justify-between  gap-5 sm:gap-10 pt-5 xl:pt-10"
+              {...ANIMATIONS.fadeUp}
+            >
               {services.map((service, index) => (
-                <div
-                  key={index}
-                  className="flex-shrink-0 snap-start"
-                >
-                  <Paragraph className="text-white font-bold mb-2">
+                <div key={index} className="flex-shrink-0 snap-start">
+                  <Paragraph size="lg" className="text-white font-bold mb-2">
                     {service.title}
                   </Paragraph>
                   <Paragraph className="text-white leading-snug">
@@ -82,10 +78,8 @@ const Services = () => {
                   </div> */}
           </div>
         </Section>
-
       </div>
     </div>
-
   );
 };
 

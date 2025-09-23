@@ -41,7 +41,7 @@ export default function TrustedSection() {
 
   return (
     <Section className="py-6 sm:py-12 xl:py-16  bg ">
-      <Heading level={6} className="text-white font-bold mb-10">Trusted by <span className="text-[#BEBEBE] "> 20,000+ </span>customers across Europe</Heading>
+      <Heading level={6} className="text-white font-bold mb-10 uppercase">Trusted by <span className="text-muted "> 20,000+ </span>customers across Europe</Heading>
       <div>
         <Slider {...settings}>
           {logos.map((logo, idx) => (

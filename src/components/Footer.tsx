@@ -19,8 +19,8 @@ export const Footer = () => {
     <footer className="w-full h-[70vh]  relative overflow-hidden pb-10 lg:pb-0 flex flex-col">
       <div className="h-full flex  flex-col relative justify-between">
         <div>
-          <Section >
-            <div className="w-full flex items-center ">
+          <Section>
+            <div className="w-full flex items-center relative">
               <Image
                 src="/images/logo.png"
                 alt="logo1"
@@ -29,10 +29,12 @@ export const Footer = () => {
                 quality={100}
                 className="object-contain h-28 w-28 "
               />
+              <Paragraph size="base" className="text-grey-custom absolute bottom-0 left-32  uppercase ">
+                Copyright 2025 Favorite Doctor,<br/> All Rights Reserved
+              </Paragraph>
             </div>
           </Section>
         </div>
-
 
         <div>
           <RightSpaceGridSection>
@@ -50,7 +52,7 @@ export const Footer = () => {
               </Paragraph>
             </div> */}
                 <Image
-                  src="/images/pmf.png"
+                  src="/images/pmf-1.png"
                   alt="logo1"
                   height={1000}
                   width={1000}
@@ -60,7 +62,8 @@ export const Footer = () => {
               </div>
 
               <div className="h-full  hidden md:block">
-                <Heading level={6}
+                <Heading
+                  level={6}
                   className={` ${GOLDEN_GRADIENT} bg-clip-text text-transparent`}
                 >
                   Explore
@@ -70,7 +73,7 @@ export const Footer = () => {
                     <Link
                       key={link.label}
                       href={link.href}
-                      className="text-base lg:text-lg text-white hover:text-[#B07515] transition-colors"
+                      className="text-base lg:text-lg text-white hover:text-gold  transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -78,15 +81,13 @@ export const Footer = () => {
                 </nav>
               </div>
 
-              <Span className="text-white absolute bottom-14 right-0">
+              {/* <Span className="text-white absolute bottom-14 right-0">
                 Copyright 2025 Favorite Doctor, All Rights Reserved
-              </Span>
+              </Span> */}
             </div>
           </RightSpaceGridSection>
         </div>
-
       </div>
-
     </footer>
   );
 };

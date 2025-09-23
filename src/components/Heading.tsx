@@ -36,7 +36,7 @@ const Heading: React.FC<HeadingProps> = ({
   const textColor = white ? "text-white" : "text-primary";
 
   const props: React.HTMLAttributes<HTMLHeadingElement> = {
-    className: `${headingStyles[level]} ${textColor} font-[Plus Jakarta Sans] ${className}`,
+    className: `${headingStyles[level]} ${textColor} font-roboto ${className}`,
     ...rest,
   };
   if (aos) {

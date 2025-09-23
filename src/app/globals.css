@@ -1,160 +1,97 @@
-/* Imports */
+
+/* =============================
+   Imports
+   ============================= */
 @import "tailwindcss";
 @import "tw-animate-css";
 
-/* Custom Variant */
+/* =============================
+   Custom Variants
+   ============================= */
 @custom-variant dark (&:is(.dark *));
 
-/* Theme Variables */
+/* =============================
+   Root Variables
+   ============================= */
+:root {
+  --bg-color: #101327;
+  --light-bg-color: #1A253C;
+  /* --bg-color: #1A253C;
+  --light-bg-color: #364B64; */
+}
+
+/* =============================
+   Theme Variables
+   ============================= */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
+  --font-sans: var(--font-roboto);
+  --font-mono: var(--font-roboto);
   --color-ring: var(--ring);
-  --color-input: var(--input);
   --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* Utilities */
+/* =============================
+   Utilities
+   ============================= */
 @layer utilities {
   .animate-spin-slow {
     animation: spin 40s linear infinite;
   }
+  .font-sf-pro {
+    font-family: var(--font-sf-pro);
+  }
+  .font-roboto {
+    font-family: var(--font-roboto);
+  }
+  .text-muted  {
+    color: #bebebe;
+  }
+  .text-gold  {
+    color: #B07515;
+  }
+  .text-white  {
+    color: #FFFFFF;
+  }
+  .text-grey-custom{
+    color :#333F57;
+  }
 }
 
-/* Scrollbar Hide */
+/* =============================
+   Scrollbar Hide
+   ============================= */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
-
 .scrollbar-hide {
-  -ms-overflow-style: none;
-  /* IE & Edge */
-  scrollbar-width: none;
-  /* Firefox */
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none;    /* Firefox */
 }
 
-/* Root Variables */
-:root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-  --bg-color: #1A253C;
-  --light-bg-color: #364B64;
-
-}
-
-/* Dark Theme Overrides */
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
-}
-
-/* Base Layer */
+/* =============================
+   Base Layer
+   ============================= */
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
-
   body {
     @apply bg-background text-foreground;
   }
 }
 
-/* Body Background */
+/* =============================
+   Body Background
+   ============================= */
 body {
   background-color: var(--bg-color);
 }
 
+/* =============================
+   Loader Styles
+   ============================= */
 .loading {
   font-size: 20px;
   font-weight: 800;
@@ -164,10 +101,6 @@ body {
 .loading span {
   display: inline-block;
   margin: 0 -.05em;
-}
-
-/* flicker letters */
-.loading span {
   animation: loading01 1.4s infinite alternate;
 }
 .loading span:nth-child(1) { animation-delay: 0s; }
@@ -183,10 +116,59 @@ body {
   100% { opacity: 0; }
 }
 
-/* move LOADING text upward */
+/* =============================
+   Loader Up Fade Animation
+   ============================= */
 .loader-up-fade {
   animation: loaderUpFade 0.7s cubic-bezier(0.4,0,0.2,1) forwards;
 }
+
+/* =============================
+   Hero Stroke Text
+   ============================= */
+.hero-stroke-text {
+  -webkit-text-stroke: 2px #E1BA60;
+  text-stroke: 2px #E1BA60;
+  color: transparent;
+  position: relative;
+}
+
+.fill-animate {
+  background: linear-gradient(90deg, #E1BA60 0%, #E1BA60 100%);
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textFill 3s linear infinite, strokeFill 3s linear infinite;
+}
+
+@keyframes textFill {
+  0% {
+    background-position: -100% 0;
+  }
+  50% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+@keyframes strokeFill {
+  0% {
+    -webkit-text-stroke: 2px #E1BA60;
+    text-stroke: 2px #E1BA60;
+  }
+  50% {
+    -webkit-text-stroke: 2px #F5D77F;
+    text-stroke: 2px #F5D77F;
+  }
+  100% {
+    -webkit-text-stroke: 2px #E1BA60;
+    text-stroke: 2px #E1BA60;
+  }
+}
+
 
 @keyframes loaderUpFade {
   0% {
@@ -199,3 +181,99 @@ body {
   }
 }
 
+
+/* 
+  these type the CSS variable as color
+  unlocking the ability for the browser 
+  to animate just that portion
+*/
+@property --＠color-1 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: hsl(40, 53%, 54%);
+}
+
+@property --＠color-2 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: hsl(49, 97%, 75%);
+}
+
+@property --＠color-3 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: hsl(30, 61%, 44%);
+}
+
+@property --＠color-4 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: hsl(48, 94%, 75%);
+}
+
+@property --＠color-5 {
+  syntax: "<color>";
+  inherits: false;
+  initial-value: hsl(32, 63%, 38%);
+}
+
+/* keyframes that change the color variables */
+@keyframes gradient-change {
+  0% {
+    --＠color-1: hsl(40, 53%, 54%);
+    --＠color-2: hsl(49, 97%, 75%);
+    --＠color-3: hsl(30, 61%, 44%);
+    --＠color-4: hsl(48, 94%, 75%);
+    --＠color-5: hsl(32, 63%, 38%);
+  }
+  25% {
+    --＠color-1: hsl(49, 97%, 75%);
+    --＠color-2: hsl(30, 61%, 44%);
+    --＠color-3: hsl(48, 94%, 75%);
+    --＠color-4: hsl(32, 63%, 38%);
+    --＠color-5: hsl(40, 53%, 54%);
+  }
+  50% {
+    --＠color-1: hsl(30, 61%, 44%);
+    --＠color-2: hsl(48, 94%, 75%);
+    --＠color-3: hsl(32, 63%, 38%);
+    --＠color-4: hsl(40, 53%, 54%);
+    --＠color-5: hsl(49, 97%, 75%);
+  }
+  75% {
+    --＠color-1: hsl(48, 94%, 75%);
+    --＠color-2: hsl(32, 63%, 38%);
+    --＠color-3: hsl(40, 53%, 54%);
+    --＠color-4: hsl(49, 97%, 75%);
+    --＠color-5: hsl(30, 61%, 44%);
+  }
+  100% {
+    --＠color-1: hsl(32, 63%, 38%);
+    --＠color-2: hsl(40, 53%, 54%);
+    --＠color-3: hsl(49, 97%, 75%);
+    --＠color-4: hsl(30, 61%, 44%);
+    --＠color-5: hsl(48, 94%, 75%);
+  }
+}
+
+article {
+  /* apply variable changes over time */
+  animation: gradient-change 4s linear infinite alternate;
+
+  background: linear-gradient(
+    to right in oklch,
+    var(--＠color-1),
+    var(--＠color-2),
+    var(--＠color-3),
+    var(--＠color-4),
+    var(--＠color-5)
+  );
+
+  /* old browser support */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  /* modern browser version */
+  background-clip: text;
+  color: transparent;
+}

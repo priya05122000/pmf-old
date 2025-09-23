@@ -1,16 +1,64 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Roboto } from "next/font/google";
+import localfont from "next/font/local";
 import "./globals.css";
 import ClientLayoutComponent from "./ClientLayoutComponent";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const roboto = Roboto({
+  weight: ["400", "700"],
   subsets: ["latin"],
+  variable: "--font-roboto",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const sfPro = localfont({
+  src: [
+    {
+      path: "../assets/fonts/SF-Pro-Display-Thin.otf",
+      weight: "100",
+      style: "normal",
+    },
+    {
+      path: "../assets/fonts/SF-Pro-Display-Ultralight.otf",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "../assets/fonts/SF-Pro-Display-Light.otf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../assets/fonts/SF-Pro-Display-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../assets/fonts/SF-Pro-Display-Medium.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../assets/fonts/SF-Pro-Display-Semibold.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../assets/fonts/SF-Pro-Display-Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../assets/fonts/SF-Pro-Display-Heavy.otf",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "../assets/fonts/SF-Pro-Display-Black.otf",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-sf-pro",
 });
 
 export const metadata: Metadata = {
@@ -25,7 +73,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${roboto.variable} ${sfPro.variable} font-sans antialiased`}>
         <ClientLayoutComponent>{children}</ClientLayoutComponent>
       </body>
     </html>

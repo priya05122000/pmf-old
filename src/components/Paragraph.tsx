@@ -25,12 +25,20 @@ const Paragraph: React.FC<ParagraphProps> = ({
   ...rest
 }) => {
   const props: React.HTMLAttributes<HTMLParagraphElement> = {
-    className: `${sizeClasses[size]}  font-inter ${className}`,
+    className: `${sizeClasses[size]}  font-sf-pro ${className}`,
     ...rest,
   };
   if (aos) {
-    (props as React.HTMLAttributes<HTMLParagraphElement> & { [key: string]: unknown })["data-aos"] = aos;
-    (props as React.HTMLAttributes<HTMLParagraphElement> & { [key: string]: unknown })["data-aos-duration"] = duration ?? 2000;
+    (
+      props as React.HTMLAttributes<HTMLParagraphElement> & {
+        [key: string]: unknown;
+      }
+    )["data-aos"] = aos;
+    (
+      props as React.HTMLAttributes<HTMLParagraphElement> & {
+        [key: string]: unknown;
+      }
+    )["data-aos-duration"] = duration ?? 2000;
   }
   return <p {...props}>{children}</p>;
 };

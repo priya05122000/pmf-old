@@ -39,7 +39,7 @@ const ParagraphList: React.FC<ParagraphListProps> = ({
 
     return (
         <ListTag
-            className={`${sizeClasses[size]} font-inter ${className} ${marginClass} ${listStyleClass}`}
+            className={`${sizeClasses[size]} font-sf-pro ${className} ${marginClass} ${listStyleClass}`}
             {...rest}
         >
             {children}

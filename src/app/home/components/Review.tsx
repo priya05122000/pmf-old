@@ -119,7 +119,10 @@ const Reviews: React.FC = () => {
                           priority={idx === 0}
                         />
                         {/* Blue gradient overlay */}
-                        <div className={`absolute inset-0 pointer-events-none bg-[#364B64]/40`} />
+                        <div
+                          className="absolute inset-0 pointer-events-none"
+                          style={{ backgroundColor: 'rgba(var(--light-bg-color-rgb, 54,75,100), 0.4)' }}
+                        />
                         {/* Text overlay */}
                         <div className="absolute inset-0 flex flex-col justify-start p-5 z-10">
                           <div className="p-2">
@@ -170,7 +173,7 @@ const Reviews: React.FC = () => {
                 if (node && navigation.prevEl !== node)
                   setNavigation((nav) => ({ ...nav, prevEl: node }));
               }}
-              className="text-2xl text-[#B07515]  focus:outline-none cursor-pointer"
+              className="text-2xl text-gold   focus:outline-none cursor-pointer"
               aria-label="Previous"
               type="button"
             >
@@ -181,7 +184,7 @@ const Reviews: React.FC = () => {
                 if (node && navigation.nextEl !== node)
                   setNavigation((nav) => ({ ...nav, nextEl: node }));
               }}
-              className="text-2xl text-[#B07515]   focus:outline-none cursor-pointer"
+              className="text-2xl text-gold    focus:outline-none cursor-pointer"
               aria-label="Next"
               type="button"
             >

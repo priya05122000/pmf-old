@@ -17,15 +17,23 @@ const Span: React.FC<SpanProps> = ({
   ...rest
 }) => {
   // Only apply white text if specifically requested
-  const textColor = white ? "text-white" : "text-[#323131]";
+  // const textColor = white ? "text-white" : "text-[#323131]";
 
   const props: React.HTMLAttributes<HTMLSpanElement> = {
-    className: `${textColor} text-xs xl:text-sm font-inter ${className}`,
+    className: ` text-xs xl:text-sm font-sf-pro ${className}`,
     ...rest,
   };
   if (aos) {
-    (props as React.HTMLAttributes<HTMLSpanElement> & { [key: string]: unknown })["data-aos"] = aos;
-    (props as React.HTMLAttributes<HTMLSpanElement> & { [key: string]: unknown })["data-aos-duration"] = duration ?? 2000;
+    (
+      props as React.HTMLAttributes<HTMLSpanElement> & {
+        [key: string]: unknown;
+      }
+    )["data-aos"] = aos;
+    (
+      props as React.HTMLAttributes<HTMLSpanElement> & {
+        [key: string]: unknown;
+      }
+    )["data-aos-duration"] = duration ?? 2000;
   }
   return <span {...props}>{children}</span>;
 };

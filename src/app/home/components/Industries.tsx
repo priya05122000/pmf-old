@@ -94,11 +94,14 @@ const Industries = () => {
     <GridSection className="relative overflow-x-hidden min-h-screen  py-10 sm:ml-4 lg:ml-0 lg:pl-4 xl:pl-0 ">
       <div className="col-span-2 col-start-2 w-[100vw] xl:w-auto">
         <div {...ANIMATIONS.fadeRight}>
-          <Heading level={1} className="font-bold leading-12 tracking-[-0.02em]">
-            <span className={`${GOLDEN_GRADIENT} bg-clip-text text-transparent`}>Industries </span>
-            <br />
-            <span className={`${GOLDEN_GRADIENT} bg-clip-text text-transparent`}>we support</span>
-          </Heading>
+          <article>
+            <Heading level={2} className={`  leading-12`}>
+              Industries
+              <br />
+              we support
+            </Heading>
+          </article>
+
           <span className={`mb-6 block h-1 w-23 mt-4 ${GOLDEN_GRADIENT}`} />
         </div>
         <div ref={sectionRef} className="relative w-full overflow-hidden">
@@ -119,9 +122,13 @@ const Industries = () => {
   `}
                 >
                   <div className=" py-5">
-                    <Paragraph className=" font-bold text-white mb-2 text-left">{item.title}</Paragraph>
+                    <Paragraph className=" font-normal text-white mb-2 text-left uppercase">
+                      {item.title}
+                    </Paragraph>
                     {idx % 2 === 0 && (
-                      <Span className="text-gray-300 mb-2 text-left">{item.description}</Span>
+                      <Span className="text-gray-300 mb-2 text-left">
+                        {item.description}
+                      </Span>
                     )}
                   </div>
                   <div className="relative w-full flex-grow">
@@ -137,7 +144,6 @@ const Industries = () => {
               ))}
             </div>
           </div>
-
         </div>
       </div>
     </GridSection>
