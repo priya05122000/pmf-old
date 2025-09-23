@@ -1,26 +1,31 @@
 import React from "react";
 
+type ParagraphSize = "xl" | "lg" | "base";
+
 interface ParagraphProps extends React.HTMLAttributes<HTMLParagraphElement> {
   children: React.ReactNode;
   className?: string;
+  size?: ParagraphSize;
   "data-aos"?: string;
   "data-aos-duration"?: string | number;
-  whiteCustom?: boolean; // Use camelCase for prop name
 }
+
+const sizeClasses: Record<ParagraphSize, string> = {
+  xl: "text-lg sm:text-xl lg:text-2xl",
+  lg: "text-base lg:text-lg",
+  base: "text-base",
+};
 
 const Paragraph: React.FC<ParagraphProps> = ({
   children,
   className = "",
+  size = "base",
   "data-aos": aos,
   "data-aos-duration": duration,
-  whiteCustom = false, // Default to dark text
   ...rest
 }) => {
-  // Use white-custom text only when specifically requested
-  const textColor = whiteCustom ? "text-white-custom" : "text-deep-green";
-
   const props: React.HTMLAttributes<HTMLParagraphElement> = {
-    className: `${textColor} text-sm xl:text-base font-inter ${className}`,
+    className: `${sizeClasses[size]}  font-inter ${className}`,
     ...rest,
   };
   if (aos) {

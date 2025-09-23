@@ -105,18 +105,18 @@ const Industries = () => {
           <div className="horiz-gallery-wrapper">
             <div
               ref={galleryRef}
-              className="horiz-gallery-strip w-fit  flex gap-10 py-4"
+              className="horiz-gallery-strip w-fit  flex gap-8 py-4"
             >
               {industries.map((item, idx) => (
                 <div
                   key={idx}
-                  className="
-                  w-full md:w-1/3 lg:w-1/5
-                  flex flex-col justify-between
-                  flex-shrink-0 snap-start
-                  bg-transparent
-                "
-                  style={{ height: idx % 2 === 0 ? 650 : 700 }}
+                  className={`
+    w-full md:w-1/3 lg:w-1/4
+    flex flex-col justify-between
+    flex-shrink-0 snap-start
+    bg-transparent
+    ${idx % 2 === 0 ? "h-[90vh]" : "h-[100vh]"}
+  `}
                 >
                   <div className=" py-5">
                     <Paragraph className=" font-bold text-white mb-2 text-left">{item.title}</Paragraph>

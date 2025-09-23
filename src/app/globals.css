@@ -1,8 +1,11 @@
+/* Imports */
 @import "tailwindcss";
 @import "tw-animate-css";
 
+/* Custom Variant */
 @custom-variant dark (&:is(.dark *));
 
+/* Theme Variables */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -43,20 +46,26 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+/* Utilities */
 @layer utilities {
   .animate-spin-slow {
     animation: spin 40s linear infinite;
   }
 }
+
+/* Scrollbar Hide */
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
 .scrollbar-hide {
-  -ms-overflow-style: none; /* IE & Edge */
-  scrollbar-width: none;    /* Firefox */
+  -ms-overflow-style: none;
+  /* IE & Edge */
+  scrollbar-width: none;
+  /* Firefox */
 }
 
+/* Root Variables */
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
@@ -92,8 +101,10 @@
   --sidebar-ring: oklch(0.708 0 0);
   --bg-color: #1A253C;
   --light-bg-color: #364B64;
+
 }
 
+/* Dark Theme Overrides */
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -128,17 +139,63 @@
   --sidebar-ring: oklch(0.556 0 0);
 }
 
+/* Base Layer */
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
-body{
+/* Body Background */
+body {
   background-color: var(--bg-color);
 }
 
+.loading {
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+  letter-spacing: .8em;
+}
+.loading span {
+  display: inline-block;
+  margin: 0 -.05em;
+}
+
+/* flicker letters */
+.loading span {
+  animation: loading01 1.4s infinite alternate;
+}
+.loading span:nth-child(1) { animation-delay: 0s; }
+.loading span:nth-child(2) { animation-delay: 0.1s; }
+.loading span:nth-child(3) { animation-delay: 0.2s; }
+.loading span:nth-child(4) { animation-delay: 0.3s; }
+.loading span:nth-child(5) { animation-delay: 0.4s; }
+.loading span:nth-child(6) { animation-delay: 0.5s; }
+.loading span:nth-child(7) { animation-delay: 0.6s; }
+
+@keyframes loading01 {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+/* move LOADING text upward */
+.loader-up-fade {
+  animation: loaderUpFade 0.7s cubic-bezier(0.4,0,0.2,1) forwards;
+}
+
+@keyframes loaderUpFade {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-60px); /* upward */
+  }
+}
 

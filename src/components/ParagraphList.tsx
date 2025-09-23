@@ -1,24 +1,31 @@
 import React from "react";
 
+type ParagraphListSize = "xl" | "lg" | "base";
+
 interface ParagraphListProps extends React.HTMLAttributes<HTMLUListElement | HTMLOListElement> {
     children: React.ReactNode;
     className?: string;
     as?: "ul" | "ol";
-    whiteCustom?: boolean;
     listStyle?: "disc" | "none" | "decimal";
-    noMargin?: boolean; // NEW: disables default ml-6
+    noMargin?: boolean; // disables default ml-6
+    size?: ParagraphListSize;
 }
+
+const sizeClasses: Record<ParagraphListSize, string> = {
+    xl: "text-lg sm:text-xl lg:text-2xl",
+    lg: "text-base lg:text-lg",
+    base: "text-sm lg:text-base",
+};
 
 const ParagraphList: React.FC<ParagraphListProps> = ({
     children,
     className = "",
     as = "ul",
-    whiteCustom = false,
     listStyle = "disc",
     noMargin = false,
+    size = "base",
     ...rest
 }) => {
-    const textColor = whiteCustom ? "text-white-custom" : "text-deep-green";
     const ListTag = as;
 
     const listStyleClass =
@@ -32,7 +39,7 @@ const ParagraphList: React.FC<ParagraphListProps> = ({
 
     return (
         <ListTag
-            className={`${textColor} text-sm xl:text-base font-inter ${className} ${marginClass} ${listStyleClass}`}
+            className={`${sizeClasses[size]} font-inter ${className} ${marginClass} ${listStyleClass}`}
             {...rest}
         >
             {children}

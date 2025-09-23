@@ -5,12 +5,9 @@ import Navbar from "./Navbar";
 
 export default function ClientNavbarWrapper() {
   const pathname = usePathname();
+  const isHome = pathname === "/" || pathname === "/home";
 
-  // Home page → show only on mobile & tablet
-  if (pathname === "/home" || pathname === "/") {
-    return <Navbar className="block lg:hidden" />;
-  }
-
-  // Other pages → show on all screen sizes
-  return <Navbar />;
+  return (
+    <Navbar className={isHome ? "block lg:hidden" : "block lg:block"} />
+  );
 }

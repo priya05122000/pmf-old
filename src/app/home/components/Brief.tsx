@@ -1,11 +1,10 @@
-
 "use client";
 
 // React and hooks
 import React, { useEffect, useRef } from "react";
 
 // Animation and motion
-import { motion, useMotionValue, useTransform, animate } from "framer-motion";
+import { motion, useMotionValue, useTransform, animate, useInView } from "framer-motion";
 
 // UI Components
 import Section from "@/components/Section";
@@ -16,36 +15,39 @@ import Paragraph from "@/components/Paragraph";
 import { GOLDEN_GRADIENT } from "@/lib/gradients";
 import { ANIMATIONS } from "@/components/Animations";
 
-
 const PROGRESS_BARS = [76, 76, 76];
 const ANIMATION_DURATION = 1.5; // seconds
 
-/**
- * Brief section with animated progress bars and marketing content.
- */
 const Brief = () => {
-  // Motion values for each progress bar
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" }); // triggers a bit before fully in view
+
+  // Create motion values ONCE per mount
   const motionValues = useRef(PROGRESS_BARS.map(() => useMotionValue(0)));
 
-  // Animate progress bars sequentially on mount
   useEffect(() => {
-    const animateBars = async () => {
-      for (let i = 0; i < PROGRESS_BARS.length; i++) {
-        await new Promise<void>((resolve) => {
-          animate(motionValues.current[i], PROGRESS_BARS[i], {
-            duration: ANIMATION_DURATION,
-            ease: [0.42, 0, 0.58, 1],
-            onComplete: () => resolve(),
+    if (isInView) {
+      const animateBars = async () => {
+        for (let i = 0; i < PROGRESS_BARS.length; i++) {
+          await new Promise<void>((resolve) => {
+            animate(motionValues.current[i], PROGRESS_BARS[i], {
+              duration: ANIMATION_DURATION,
+              ease: [0.42, 0, 0.58, 1],
+              onComplete: () => resolve(),
+            });
           });
-        });
-      }
-    };
-    animateBars();
-  }, []);
+        }
+      };
+      animateBars();
+    } else {
+      // Reset to 0 if you want to re-animate on re-entry (optional)
+      // motionValues.current.forEach((mv) => mv.set(0));
+    }
+  }, [isInView]);
 
   return (
     <Section>
-      <div className="w-full text-white flex flex-col lg:flex-row items-center justify-between lg:py-20 gap-10 lg:gap-30 xl:gap-80 my-10">
+      <div ref={ref} className="w-full text-white flex flex-col lg:flex-row items-center justify-between lg:py-20 gap-10 lg:gap-30 xl:gap-80 my-10">
         {/* Left Column: Description */}
         <div className="flex-1 text-left">
           <Heading level={4} className="text-white font-normal" {...ANIMATIONS.fadeRight}>
@@ -68,7 +70,6 @@ const Brief = () => {
             <span className={`mb-6 block h-1 w-24 sm:mt-4 ${GOLDEN_GRADIENT}`} />
           </div>
           {/* Main Heading */}
-
 
           {/* Subheading */}
           <Paragraph className="font-extrabold text-white">

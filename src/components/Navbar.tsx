@@ -91,10 +91,11 @@ const Navbar: React.FC<NavbarProps> = ({ hide = false, className = "" }) => {
 
   return (
     <nav
-      className={`fixed block lg:hidden top-0 left-0 w-full z-50 transition-all duration-300 ${hide ? "opacity-0 pointer-events-none" : "opacity-100"} ${className}`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${hide ? "opacity-0 pointer-events-none" : "opacity-100"} ${className}`}
       role="navigation"
       aria-label="Main navigation"
     >
+
       <div className="max-w-full">
         <div className="bg-[var(--bg-color)] ">
           <Section className="">

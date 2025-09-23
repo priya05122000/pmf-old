@@ -1,49 +1,92 @@
 import React from "react";
 import Image from "next/image";
+import { GOLDEN_GRADIENT } from "@/lib/gradients";
+import Paragraph from "./Paragraph";
+import Heading from "./Heading";
+import Link from "next/link";
+import Section from "./Section";
+import RightSpaceGridSection from "./RightSpaceGridSection";
+import Span from "./Span";
+
+const footerLinks = [
+  { label: "Home", href: "/" },
+  { label: "Products", href: "/products" },
+  { label: "Contact us", href: "/contact-us" },
+];
 
 export const Footer = () => {
   return (
-    <footer className="w-full lg:h-[83vh] xl:h-[90vh] bg-[#151515] text-[#DFDFDF] relative overflow-hidden pb-10 lg:pb-0">
-      {/* Logo */}
-      <div className="w-full flex items-center pl-6 sm:pl-0 lg:pl-11">
-        <Image
-          src="/images/logo1.png"
-          alt="logo1"
-          height={200}
-          width={200}
-          className="object-contain"
-        />
-      </div>
-
-      {/* Content */}
-      <div className="w-full h-full flex flex-col md:flex-row justify-between">
-        {/* Big PMF text */}
-        <div className="relative md:-mt-[80px] md:-ml-7 lg:-mt-[100px] xl:-mt-[50px] lg:-ml-7 xl:-ml-10">
-          <h1 className="font-extrabold text-[180px] sm:text-[250px] md:text-[350px] lg:text-[460px] xl:text-[550px] text-[#949292] leading-none">
-            PMF
-          </h1>
-          <div className="absolute -bottom-5 sm:-bottom-5 md:-bottom-3 right-26 sm:right-26 md:-right-20 lg:bottom-50 xl:bottom-60
-           lg:-right-52 xl:-right-60">
-            <p className="text-md sm:text-md md:text-base lg:text-[14px] xl:text-[16px]">
-              Copyright 2025 Favorite Doctor, All Rights Reserved
-            </p>
-          </div>
+    <footer className="w-full h-[70vh]  relative overflow-hidden pb-10 lg:pb-0 flex flex-col">
+      <div className="h-full flex  flex-col relative justify-between">
+        <div>
+          <Section >
+            <div className="w-full flex items-center ">
+              <Image
+                src="/images/logo.png"
+                alt="logo1"
+                height={1000}
+                width={1000}
+                quality={100}
+                className="object-contain h-28 w-28 "
+              />
+            </div>
+          </Section>
         </div>
 
-        {/* Explore Section (hidden on small) */}
-        <div className="h-full pr-6 sm:pr-10 md:pr-20 lg:pr-24 mt-8 md:mt-20 lg:mt-15 hidden md:block">
-          <h1
-            className="font-bold text-2xl bg-gradient-to-r from-[#B07515] via-[#E1BA60] via-[#F5D77F]
-            via-[#FFFFD7] via-[#F5D77F] via-[#B07515] via-[#E1BA60] via-[#F5D77F]
-            via-[#FFFFD7] via-[#F5D77F] to-[#B07515] bg-clip-text text-transparent"
-          >
-            Explore
-          </h1>
-          <p className="mt-3 text-[18px]">Home</p>
-          <p className="mt-2 text-[18px]">Products</p>
-          <p className="mt-2 text-[18px]">Contact us</p>
+
+        <div>
+          <RightSpaceGridSection>
+            <div className="w-full  h-full flex flex-col md:flex-row justify-between relative">
+              <div className=" h-full">
+                {/* <h1 className="font-extrabold text-[180px] sm:text-[250px] md:text-[350px] lg:text-[460px] xl:text-[550px] text-[#1A253C] leading-none">
+              PMF
+            </h1>
+            <div
+              className="absolute -bottom-5 sm:-bottom-5 md:-bottom-3 right-26 sm:right-26 md:-right-20 lg:bottom-50 xl:bottom-60
+            lg:-right-52 xl:-right-60"
+            >
+              <Paragraph size="base" className="text-white">
+                Copyright 2025 Favorite Doctor, All Rights Reserved
+              </Paragraph>
+            </div> */}
+                <Image
+                  src="/images/pmf.png"
+                  alt="logo1"
+                  height={1000}
+                  width={1000}
+                  quality={100}
+                  className="object-contain h-full w-full "
+                />
+              </div>
+
+              <div className="h-full  hidden md:block">
+                <Heading level={6}
+                  className={` ${GOLDEN_GRADIENT} bg-clip-text text-transparent`}
+                >
+                  Explore
+                </Heading>
+                <nav className="mt-3 flex flex-col gap-2">
+                  {footerLinks.map((link) => (
+                    <Link
+                      key={link.label}
+                      href={link.href}
+                      className="text-base lg:text-lg text-white hover:text-[#B07515] transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </nav>
+              </div>
+
+              <Span className="text-white absolute bottom-14 right-0">
+                Copyright 2025 Favorite Doctor, All Rights Reserved
+              </Span>
+            </div>
+          </RightSpaceGridSection>
         </div>
+
       </div>
+
     </footer>
   );
 };
