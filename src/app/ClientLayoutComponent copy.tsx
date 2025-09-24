@@ -60,7 +60,7 @@ export default function ClientLayout({
                 <>
                     <AOSInit />
                     <ClientNavbarWrapper />
-                    <div ref={smootherRef} id="smooth-wrapper" className="pt-20">
+                    <div ref={smootherRef} id="smooth-wrapper" className="pt-10">
                         <div className="smoother-content">
                             <main className="min-h-screen">{children}</main>
                             <Footer />

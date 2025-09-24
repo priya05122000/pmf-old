@@ -112,7 +112,7 @@ const NavLinksList: React.FC<NavLinksListProps> = ({
   <ul
     className={
       isMobile
-        ? "flex flex-col items-stretch gap-0 text-deep-green font-medium font-inter tracking-wide bg-[var(--light-bg-color)] py-0 z-20 text-white"
+        ? "flex flex-col items-stretch gap-0 text-deep-green font-medium font-inter tracking-wide bg-[var(--light-bg-color)] py-2 z-20 text-white"
         : "hidden lg:flex ml-10 items-center justify-end text-sm xl:text-base text-white-custom font-medium font-inter"
     }
   >
@@ -121,7 +121,7 @@ const NavLinksList: React.FC<NavLinksListProps> = ({
         <li
           className={
             isMobile
-              ? `px-6 sm:px-8 py-3 w-full text-deep-green text-left text-sm border-b last:border-b-0 border-deep-green ${
+              ? `px-6 sm:px-8 py-3 w-full text-deep-green text-left text-sm   ${
                   activeLink === link.label ? "font-bold text-deep-green" : ""
                 } cursor-pointer transition-colors duration-200 hover:text-primary flex items-center justify-between`
               : `relative ml-10 ${
@@ -313,7 +313,7 @@ const Navbar: React.FC<NavbarProps> = ({
   // --- Classes ---
   const heroNavClass = scrolled
     ? "fixed top-0 transition-all duration-500"
-    : "fixed top-1/3 transition-all duration-500";
+    : "fixed w-full sm:w-auto top:0 sm:top-1/3 transition-all duration-500";
 
   // --- Render ---
   return (
@@ -332,15 +332,13 @@ const Navbar: React.FC<NavbarProps> = ({
         <div className="bg-[var(--bg-color)]">
           <Section>
             <div
-              className={`flex items-center w-full relative ${pathname === "/home" ? "py-0" : "py-2"}`}
+              className={`flex items-center h-14 sm:h-auto w-full relative ${pathname === "/home" ? " sm:py-0" : "py-2"}`}
             >
-              <div
-                style={{
-                  visibility: pathname === "/home" ? "hidden" : "visible",
-                }}
-              >
+                <div
+                className={pathname === "/home" ? "sm:invisible" : "visible"}
+                >
                 <Logo />
-              </div>
+                </div>
               <NavLinksList
                 navLinks={NAV_LINKS}
                 activeLink={activeLink}

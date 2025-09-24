@@ -69,7 +69,7 @@ export default function ClientLayout({
           <ClientNavbarWrapper />
           <div ref={smootherRef} id="smooth-wrapper">
             <div className="smoother-content min-h-screen flex flex-col">
-              <main className="flex-1 pt-20">{children}</main>
+              <main className="flex-1 pt-14 sm:pt-20">{children}</main>
               <Footer />
             </div>
           </div>
