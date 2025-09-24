@@ -5,17 +5,16 @@ import { gsap } from "gsap";
 
 gsap.registerPlugin(ScrollTrigger);
 
-
 export default function PinnedSection() {
     useEffect(() => {
         ScrollTrigger.create({
             trigger: ".sticky-box",
-            start: "top 33%", // box ஆரம்பத்தில்
-            end: "top top",   // scroll முடியும் போது
-            pin: ".sticky-box", // pin box
-            pinSpacing: false,  // scroll space மட்டும் மேலாக இருக்க வேண்டுமென்றால் true
+            start: "top 33%",
+            end: "top top",
+            pin: ".sticky-box",
+            pinSpacing: false,
             scrub: true,
-            // markers: true,   // debug
+            // markers: true,
         });
     }, []);
 
