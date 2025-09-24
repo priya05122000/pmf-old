@@ -95,7 +95,7 @@ const About = () => {
                 }}
               />
               <Image
-                src="/images/about.jpg"
+                src="/images/about_us.webp"
                 alt="About PMF"
                 width={500}
                 height={500}

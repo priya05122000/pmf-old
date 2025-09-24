@@ -19,7 +19,7 @@ import PinnedSection from './components/PinnedSection';
         <About/>
         <Industries/>
         <Services/>
-        <PinnedSection />
+        {/* <PinnedSection /> */}
         <Brief/>
         <Work/>
         <TrustedSection/>

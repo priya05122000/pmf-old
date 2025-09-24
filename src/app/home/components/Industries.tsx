@@ -14,37 +14,37 @@ const industries = [
     title: "Commitment to Excellence",
     description:
       "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.",
-    image: "/images/industry1.jpg",
+    image: "/images/industry5.webp",
   },
   {
     title: "Commitment to Excellence",
     description:
       "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.",
-    image: "/images/industry2.jpg",
+    image: "/images/industry6.webp",
   },
   {
     title: "Commitment to Excellence",
     description:
       "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.",
-    image: "/images/industry3.jpg",
+    image: "/images/industry7.webp",
   },
   {
     title: "Commitment to Excellence",
     description:
       "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.",
-    image: "/images/industry1.jpg",
+    image: "/images/industry8.webp",
   },
   {
     title: "Commitment to Excellence",
     description:
       "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.",
-    image: "/images/industry2.jpg",
+    image: "/images/industry6.webp",
   },
   {
     title: "Commitment to Excellence",
     description:
       "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.",
-    image: "/images/industry3.jpg",
+    image: "/images/industry7.webp",
   },
 ];
 
@@ -65,12 +65,13 @@ const Industries = () => {
     const ctx = gsap.context(() => {
       let totalWidth = gallery.scrollWidth - section.offsetWidth;
 
+      const isMobile = window.innerWidth < 768;
       gsap.to(gallery, {
         x: -totalWidth,
         ease: "none",
         scrollTrigger: {
           trigger: section,
-          start: "top top",
+          start: isMobile ? "top-=12% top" : "top top",
           // end: () => `+=${getScrollLength()}`,
           end: () => `+=${totalWidth}`,
           pin: true,
@@ -91,7 +92,7 @@ const Industries = () => {
   }, []);
 
   return (
-    <GridSection className="relative overflow-x-hidden min-h-screen  py-10 sm:ml-4 lg:ml-0 lg:pl-4 xl:pl-0 ">
+    <GridSection className="relative overflow-x-hidden min-h-screen px-6 md:px-0 py-10 sm:ml-4 lg:ml-0 lg:pl-4 xl:pl-0 ">
       <div className="col-span-2 col-start-2 w-[100vw] xl:w-auto">
         <div {...ANIMATIONS.fadeRight}>
         
