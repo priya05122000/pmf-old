@@ -36,7 +36,7 @@ const services = [
 
 const Services = () => {
   return (
-    <div className=" w-full min-h-[120vh] sm:min-h-[70vh] lg:min-h-[60vh] flex items-center justify-center bg-[url('/images/service.webp')] bg-cover bg-no-repeat lg:bg-center relative">
+    <div className=" w-full min-h-[120vh] sm:min-h-[70vh] lg:min-h-[60vh] flex items-center justify-center bg-[url('/images/service.jpg')] bg-cover bg-no-repeat lg:bg-center relative">
       <div className="w-full bg-[var(--light-bg-color)]/70 backdrop-blur-sm flex justify-center items-center min-h-[45vh] py-10">
         <Section>
           <div>
