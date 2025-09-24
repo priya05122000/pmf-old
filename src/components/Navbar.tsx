@@ -312,8 +312,8 @@ const Navbar: React.FC<NavbarProps> = ({
 
   // --- Classes ---
   const heroNavClass = scrolled
-    ? "fixed top-0 transition-all duration-500"
-    : "fixed w-full sm:w-auto top:0 sm:top-1/3 transition-all duration-500";
+    ? "fixed w-full lg:w-auto top-0 transition-all duration-500"
+    : "fixed w-full lg:w-auto top:0 lg:top-1/3 transition-all duration-500";
 
   // --- Render ---
   return (
@@ -332,10 +332,10 @@ const Navbar: React.FC<NavbarProps> = ({
         <div className="bg-[var(--bg-color)]">
           <Section>
             <div
-              className={`flex items-center h-14 sm:h-auto w-full relative ${pathname === "/home" ? " sm:py-0" : "py-2"}`}
+              className={`flex items-center h-14  w-full relative ${pathname === "/home" ? " sm:py-0 lg:h-12" : "py-2 lg:h-14"}`}
             >
                 <div
-                className={pathname === "/home" ? "sm:invisible" : "visible"}
+                className={pathname === "/home" ? "lg:invisible" : "visible"}
                 >
                 <Logo />
                 </div>

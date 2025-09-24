@@ -29,17 +29,21 @@ export default function ClientLayout({
   // Init GSAP smoother after loader is gone
   useGSAP(() => {
     if (!loading && smootherRef.current) {
-      const existing = ScrollSmoother.get();
-      if (existing) existing.kill();
+      requestAnimationFrame(() => {
+        const existing = ScrollSmoother.get();
+        if (existing) existing.kill();
 
-      ScrollSmoother.create({
-        smooth: 2,
-        effects: true,
-        wrapper: smootherRef.current,
-        content: smootherRef.current.querySelector(".smoother-content"),
+        if (smootherRef.current) {
+          ScrollSmoother.create({
+            smooth: 1.2, // keep low on mobile
+            effects: true,
+            wrapper: smootherRef.current,
+            content: smootherRef.current.querySelector(".smoother-content") as HTMLElement,
+          });
+        }
+
+        ScrollTrigger.refresh(true); // 🔑 force refresh
       });
-
-      ScrollTrigger.refresh();
     }
 
     return () => {
@@ -47,6 +51,7 @@ export default function ClientLayout({
       if (smoother) smoother.kill();
     };
   }, [loading]);
+
 
   useEffect(() => {
     if (!loading) window.scrollTo(0, 0);
@@ -69,7 +74,7 @@ export default function ClientLayout({
           <ClientNavbarWrapper />
           <div ref={smootherRef} id="smooth-wrapper">
             <div className="smoother-content min-h-screen flex flex-col">
-              <main className="flex-1 pt-14 sm:pt-20">{children}</main>
+              <main className="flex-1 pt-14 lg:pt-20">{children}</main>
               <Footer />
             </div>
           </div>
