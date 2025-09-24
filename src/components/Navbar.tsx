@@ -258,26 +258,26 @@ const Navbar: React.FC<NavbarProps> = ({
   const [scrolled, setScrolled] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (pathname === "/home" && homeHeroStyle && navRef.current) {
-      gsap.registerPlugin(ScrollTrigger);
-      const initialTop = window.innerHeight * 0;
-      gsap.set(navRef.current, { y: initialTop });
-      gsap.to(navRef.current, {
-        scrollTrigger: {
-          trigger: navRef.current,
-          start: "top top",
-          end: "bottom top",
-          scrub: 0.3,
-          markers: true,
-        },
-        y: 0,
-      });
-    }
-    return () => {
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, [pathname, homeHeroStyle]);
+    useEffect(() => {
+      if (pathname === "/home" && homeHeroStyle && navRef.current) {
+        gsap.registerPlugin(ScrollTrigger);
+        const initialTop = window.innerHeight * 0;
+        gsap.set(navRef.current, { y: initialTop });
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: navRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+            markers: false,
+          },
+        });
+        tl.to(navRef.current, { y: 0, duration: 3 }); // duration controls the speed
+      }
+      return () => {
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+      };
+    }, [pathname, homeHeroStyle]);
 
   useEffect(() => {
     const handleScroll = () => {

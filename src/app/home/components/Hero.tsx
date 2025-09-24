@@ -31,8 +31,8 @@ const NavLink: FC<NavLinkProps> = ({ href, children, withDot = false }) => (
 );
 
 const LogoSection: FC = () => (
-  <div className="absolute w-1/3 h-1/3 left-0 top-0 hidden lg:block">
-    <div className="relative p-6 h-full  bg-[var(--bg-color)]  w-[75%]">
+  <div className="absolute w-[30%] h-1/3 left-0 top-0 hidden lg:block z-10 pointer-events-none">
+    <div className="relative p-6 h-full bg-[var(--bg-color)] w-[75%]">
       <Image
         src="/logos/logo.png"
         alt="logo1"
@@ -117,7 +117,8 @@ const Hero: FC = () => {
 
   return (
     <GridSection className="relative overflow-x-hidden sm:-ml-4 lg:ml-0 lg:pl-4 xl:pl-0 lg:-mt-20">
-      <div className="col-span-2 col-start-2 bg-[url('/images/home.jpg')] h-[80vh] lg:h-screen bg-right sm:bg-bottom-left bg-no-repeat bg-cover w-[100vw] xl:w-auto">
+      {/* Add padding-top to prevent content from being hidden under navbar */}
+      <div className="col-span-2 col-start-2 bg-[url('/images/home.webp')] h-[80vh] lg:h-screen bg-right sm:bg-bottom-left bg-no-repeat bg-cover w-[100vw] xl:w-auto pt-16 lg:pt-20">
         <HeroContent />
       </div>
       <LogoSection />
