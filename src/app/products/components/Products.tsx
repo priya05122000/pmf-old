@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+// import { motion, AnimatePresence } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { GOLDEN_GRADIENT } from "@/lib/gradients";
@@ -58,7 +58,7 @@ function ProductCard({
           }`}
         />
         <p
-          className="absolute bottom-2 right-2 text-sm p-2 mr-3 mb-3 rounded-md"
+          className="absolute bottom-2 right-2 text-sm p-2 mr-3 mb-3 rounded-md text-gray-300"
           style={{ backgroundColor: "rgba(255,255,255,0.06)" }}
         >
           {product.name}
@@ -69,46 +69,59 @@ function ProductCard({
 }
 
 // Image Modal
-function ImageModal({
-  image,
-  onClose,
-}: {
-  image: string;
-  onClose: () => void;
-}) {
-  return (
-    <AnimatePresence>
-      {image && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black bg-opacity-80 flex items-center justify-center z-50"
-          onClick={onClose}
-        >
-          <motion.div
-            initial={{ scale: 0.8 }}
-            animate={{ scale: 1 }}
-            exit={{ scale: 0.8 }}
-            transition={{ duration: 0.3 }}
-          >
-            <Image
-              src={image}
-              alt="Selected"
-              width={500}
-              height={400}
-              className="object-contain"
-            />
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
+// function ImageModal({
+//   image,
+//   onClose,
+// }: {
+//   image: string;
+//   onClose: () => void;
+// }) {
+//   return (
+//     <AnimatePresence>
+//       {image && (
+//         <motion.div
+//           initial={{ opacity: 0 }}
+//           animate={{ opacity: 1 }}
+//           exit={{ opacity: 0 }}
+//           className="fixed inset-0 h-[100vh] bg-black bg-opacity-80 flex items-center justify-center z-50"
+//           onClick={onClose}
+//         >
+//           <motion.div
+//             initial={{ scale: 0.8 }}
+//             animate={{ scale: 1 }}
+//             exit={{ scale: 0.8 }}
+//             transition={{ duration: 0.3 }}
+//           >
+//             <Image
+//               src={image}
+//               alt="Selected"
+//               width={500}
+//               height={400}
+//               className="object-contain"
+//             />
+//           </motion.div>
+//         </motion.div>
+//       )}
+//     </AnimatePresence>
+//   );
+// }
 
 export function Products() {
+
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+
+  // Prevent background scroll when modal is open
+  // useEffect(() => {
+  //   if (selectedImage) {
+  //     document.body.classList.add('overflow-hidden');
+  //   } else {
+  //     document.body.classList.remove('overflow-hidden');
+  //   }
+  //   return () => {
+  //     document.body.classList.remove('overflow-hidden');
+  //   };
+  // }, [selectedImage]);
 
   const leftRef = useRef<HTMLDivElement>(null);
   const centerRef = useRef<HTMLDivElement>(null);
@@ -144,10 +157,16 @@ export function Products() {
     };
   }, [isMobile]);
 
-  // Split products into 3 columns
-  const leftProducts = products.filter((_, i) => i % 3 === 0);
-  const centerProducts = products.filter((_, i) => i % 3 === 1);
-  const rightProducts = products.filter((_, i) => i % 3 === 2);
+  // Split products for 1 column (mobile) and 3 columns (md+)
+  const leftProducts = isMobile
+    ? products // all products in one column for mobile
+    : products.filter((_, i) => i % 3 === 0);
+  const centerProducts = !isMobile
+    ? products.filter((_, i) => i % 3 === 1)
+    : [];
+  const rightProducts = isMobile
+    ? [] // no right column for mobile
+    : products.filter((_, i) => i % 3 === 2);
 
   return (
     <div className="pt-10 sm:pt-20">
@@ -164,7 +183,7 @@ export function Products() {
         </div>
       </Section>
 
-      <div className="grid-section flex pt-20 text-foreground overflow-hidden relative">
+      <div className="grid-section flex pt-20 text-foreground overflow-hidden relative mb-10 md:mb-0">
         {/* Left Column */}
         <div ref={leftRef} className="flex-1 flex flex-col">
           {leftProducts.map((p) => (
@@ -172,42 +191,46 @@ export function Products() {
               key={p.id}
               product={p}
               onClick={() => setSelectedImage(p.image)}
-              className="border-y border-r  border-[#B07515] "
+              className="border-y border-r  border-[#1A253C] "
             />
           ))}
         </div>
 
-        {/* Center Column */}
-        <div ref={centerRef} className="flex-1 flex flex-col">
-          {centerProducts.map((p) => (
-            <ProductCard
-              key={p.id}
-              product={p}
-              onClick={() => setSelectedImage(p.image)}
-              className="border  border-[#B07515] "
-            />
-          ))}
-        </div>
+        {/* Center Column (only on md+) */}
+        {!isMobile && (
+          <div ref={centerRef} className="flex-1 flex flex-col">
+            {centerProducts.map((p) => (
+              <ProductCard
+                key={p.id}
+                product={p}
+                onClick={() => setSelectedImage(p.image)}
+                className="border  border-[#1A253C] "
+              />
+            ))}
+          </div>
+        )}
 
         {/* Right Column */}
+        {!isMobile && (
         <div ref={rightRef} className="flex-1 flex flex-col  ">
           {rightProducts.map((p) => (
             <ProductCard
               key={p.id}
               product={p}
               onClick={() => setSelectedImage(p.image)}
-              className="border-y border-l  border-[#B07515] "
+              className="border-y border-l  border-[#1A253C] "
             />
           ))}
         </div>
+        )}
 
         {/* Image Modal */}
-        {selectedImage && (
+        {/* {selectedImage && (
           <ImageModal
             image={selectedImage}
             onClose={() => setSelectedImage(null)}
           />
-        )}
+        )} */}
       </div>
     </div>
   );

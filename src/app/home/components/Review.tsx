@@ -28,14 +28,14 @@ type Review = {
 // Data
 const reviewData: Review[] = [
   {
-    image: "/images/review.jpg",
+    image: "/images/review3.webp",
     logo: "/images/review-logo.png",
     title: "Commitment to Excellence",
     content:
       "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting. Every project we undertake is driven by innovation, precision, and a deep understanding of client needs.",
   },
   {
-    image: "/images/review.jpg",
+    image: "/images/review2.webp",
     logo: "/images/review-logo.png",
     title: "Industries We Serve",
     list: [
@@ -47,21 +47,21 @@ const reviewData: Review[] = [
     ],
   },
   {
-    image: "/images/review.jpg",
+    image: "/images/review2.webp",
     logo: "/images/review-logo.png",
     title: "Customer Satisfaction",
     content:
       "We pride ourselves on exceeding customer expectations. Our team works closely with clients to ensure every detail is perfect, resulting in high satisfaction and repeat business.",
   },
   {
-    image: "/images/review.jpg",
+    image: "/images/review3.webp",
     logo: "/images/review-logo.png",
     title: "Quality Materials",
     content:
       "We use only the highest quality stainless steel and materials, ensuring durability and longevity in every product we deliver.",
   },
   {
-    image: "/images/review.jpg",
+    image: "/images/review2.webp",
     logo: "/images/review-logo.png",
     title: "Innovation",
     content:
@@ -79,12 +79,12 @@ const Reviews: React.FC = () => {
   return (
     <Section className="min-h-screen">
       <div className="h-[85vh]">
-        <div className="grid grid-cols-[1fr_2fr] h-full">
+        <div className="grid lg:grid-cols-[1fr_2fr] h-full">
           {/* Heading */}
           <div className="mb-8 h-full flex flex-col justify-center">
             <article>
               <Heading level={1} className="leading-[1] tracking-[-0.02em]">
-                  Review
+                Review
               </Heading>
             </article>
 
@@ -108,9 +108,9 @@ const Reviews: React.FC = () => {
             >
               {reviewData.map((review, idx) => (
                 <SwiperSlide key={idx}>
-                  <div className="overflow-hidden mx-auto relative">
-                    <div className={`p-1 ${GOLDEN_GRADIENT}`}>
-                      <div className="relative overflow-hidden">
+                  <div className="overflow-hidden mx-auto relative h-[420px] lg:h-[620px]">
+                    <div className={`p-1 ${GOLDEN_GRADIENT} h-full`}>
+                      <div className="relative overflow-hidden h-full">
                         <Image
                           src={review.image}
                           alt={review.title}
@@ -123,8 +123,8 @@ const Reviews: React.FC = () => {
                         <div
                           className="absolute inset-0 pointer-events-none"
                           style={{
-                            backgroundColor:
-                              "rgba(var(--light-bg-color-rgb, 54,75,100), 0.4)",
+                            background:
+                              "linear-gradient(to bottom, rgba(16,19,39,0.95) 30%, rgba(26,37,60,0.5) 100%)",
                           }}
                         />
                         {/* Text overlay */}
