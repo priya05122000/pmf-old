@@ -38,7 +38,9 @@ export default function ClientLayout({
             smooth: 1.2, // keep low on mobile
             effects: true,
             wrapper: smootherRef.current,
-            content: smootherRef.current.querySelector(".smoother-content") as HTMLElement,
+            content: smootherRef.current.querySelector(
+              ".smoother-content"
+            ) as HTMLElement,
           });
         }
 
@@ -52,11 +54,9 @@ export default function ClientLayout({
     };
   }, [loading]);
 
-
   useEffect(() => {
     if (!loading) window.scrollTo(0, 0);
   }, [loading]);
-
 
   return (
     <>
@@ -72,6 +72,12 @@ export default function ClientLayout({
         <div>
           <AOSInit />
           <ClientNavbarWrapper />
+          {/* <div>
+            <div className=" min-h-screen flex flex-col">
+              <main className="flex-1 pt-14 lg:pt-20">{children}</main>
+              <Footer />
+            </div>
+          </div> */}
           <div ref={smootherRef} id="smooth-wrapper">
             <div className="smoother-content min-h-screen flex flex-col">
               <main className="flex-1 pt-14 lg:pt-20">{children}</main>

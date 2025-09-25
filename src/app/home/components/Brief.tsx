@@ -55,7 +55,7 @@ const Brief = () => {
         {/* Left Column: Description */}
         <div className="flex-1 text-left">
           <Heading
-            level={4}
+            level={5}
             className="text-white font-normal"
             {...ANIMATIONS.fadeRight}
           >
