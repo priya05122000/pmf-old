@@ -169,7 +169,7 @@ export function Products() {
     : products.filter((_, i) => i % 3 === 2);
 
   return (
-    <div className="pt-10 sm:pt-20">
+    <div className="pt-14 ">
       <Section>
         <div className="flex justify-between items-center ">
           <Heading level={4} className="text-white font-bold">

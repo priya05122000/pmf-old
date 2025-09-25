@@ -336,3 +336,7 @@ article {
   background-clip: text;
   color: transparent;
 }
+
+.bg-blue-custom {
+  background-color: #101327;
+}

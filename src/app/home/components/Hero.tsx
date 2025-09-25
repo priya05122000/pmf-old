@@ -18,7 +18,7 @@ const LogoSection: FC = () => (
         height={1000}
         width={1000}
         quality={100}
-        className="object-contain h-14 w-auto absolute right-0 px-4"
+        className="object-contain h-14 w-auto absolute right-0 px-6"
       />
     </div>
     {/* <NavigationSection /> */}
@@ -68,8 +68,8 @@ const Hero: FC = () => {
     if (nav && typeof window !== "undefined") {
       const win = window as typeof window & { gsap?: unknown };
       if (win.gsap) {
-  // TODO: Replace 'as unknown as GSAPType' with actual GSAP type if available
-  (win.gsap as unknown as { to: (target: Element, vars: Record<string, unknown>) => unknown }).to(nav, {
+        // TODO: Replace 'as unknown as GSAPType' with actual GSAP type if available
+        (win.gsap as unknown as { to: (target: Element, vars: Record<string, unknown>) => unknown }).to(nav, {
           scrollTrigger: {
             trigger: nav,
             start: "top top",
@@ -89,7 +89,7 @@ const Hero: FC = () => {
   }, []);
 
   return (
-    <GridSection className="relative overflow-x-hidden sm:-ml-4 lg:ml-0 lg:pl-4 xl:pl-0 lg:-mt-20">
+    <GridSection className="relative overflow-x-hidden sm:-ml-4 lg:ml-0 lg:pl-4 xl:pl-0 ">
       {/* Add padding-top to prevent content from being hidden under navbar */}
       <div className="col-span-2 col-start-2 bg-[url('/images/home.webp')] h-[80vh] lg:h-screen bg-right sm:bg-bottom-left bg-no-repeat bg-cover w-[100vw] xl:w-auto pt-16 lg:pt-20">
         <HeroContent />
