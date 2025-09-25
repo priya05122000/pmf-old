@@ -81,7 +81,7 @@ const About = () => {
           </div>
 
           <div className="flex items-end relative" {...ANIMATIONS.fadeUp}>
-            <div className="relative bg-amber-800 h-[95%] w-[80%] sm:w-[90%] lg:w-full">
+            <div className="relative  h-[95%] w-[80%] sm:w-[90%] lg:w-full">
               {/* Rotating image absolutely positioned at the top right corner */}
               <Image
                 src="/designs/elegance.png"

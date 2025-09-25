@@ -21,7 +21,7 @@ const RightSpaceGridSection: React.FC<RightSpaceGridSectionProps> = ({
           md:grid-cols-[1fr_minmax(auto,theme(maxWidth.3xl))_1fr]
           lg:grid-cols-[1fr_minmax(auto,theme(maxWidth.5xl))_1fr]
           xl:grid-cols-[1fr_minmax(auto,theme(maxWidth.7xl))_1fr]
-          mx-auto px-0 md:pl-0 md:pr-4 lg:pr-8 lg:pl-0 xl:pr-0 xl:pl-0">
+          mx-auto px-0 md:pl-0 md:pr-4 lg:pr-4 lg:pl-0 xl:pr-0 xl:pl-0">
                 <div className="col-span-2">
                     {children}
                 </div>

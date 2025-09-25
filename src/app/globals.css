@@ -100,7 +100,7 @@
    ============================= */
 html,
 body {
-  overscroll-behavior: none;
+  overscroll-behavior: auto;
   height: 100%;
 }
 

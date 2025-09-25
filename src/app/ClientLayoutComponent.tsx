@@ -72,18 +72,18 @@ export default function ClientLayout({
         <div>
           <AOSInit />
           <ClientNavbarWrapper />
-          {/* <div>
+          <div>
             <div className=" min-h-screen flex flex-col">
               <main className="flex-1 pt-14 lg:pt-20">{children}</main>
               <Footer />
             </div>
-          </div> */}
-          <div ref={smootherRef} id="smooth-wrapper">
+          </div>
+          {/* <div ref={smootherRef} id="smooth-wrapper">
             <div className="smoother-content min-h-screen flex flex-col">
               <main className="flex-1 pt-14 lg:pt-20">{children}</main>
               <Footer />
             </div>
-          </div>
+          </div> */}
         </div>
       )}
     </>

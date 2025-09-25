@@ -32,7 +32,6 @@ interface NavLinksListProps {
   activeLink: string;
   activeSubmenu: string | null;
   onLinkClick?: (link: NavLink) => void;
-  onSubmenuClick?: (submenu: SubMenu) => void;
   submenuOpenLabel?: string | null;
   isMobile?: boolean;
   onSubmenuToggle?: (label: string) => void;
@@ -103,7 +102,6 @@ const NavLinksList: React.FC<NavLinksListProps> = ({
   activeLink,
   activeSubmenu,
   onLinkClick,
-  onSubmenuClick,
   submenuOpenLabel,
   isMobile = false,
   onSubmenuToggle,

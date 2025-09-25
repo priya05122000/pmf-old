@@ -9,7 +9,6 @@ import Brief from "./components/Brief";
 import Work from "./components/Work";
 import TrustedSection from "./components/TrustedSection";
 import Review from "./components/Review";
-import PinnedSection from "./components/PinnedSection";
 
 const HomePage = () => {
   return (

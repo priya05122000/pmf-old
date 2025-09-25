@@ -12,12 +12,42 @@ import Span from "@/components/Span";
 import { ANIMATIONS } from "@/components/Animations";
 
 const industries = [
-  { title: "Commitment to Excellence", description: "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.", image: "/images/industry5.webp" },
-  { title: "Commitment to Excellence", description: "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.", image: "/images/industry6.webp" },
-  { title: "Commitment to Excellence", description: "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.", image: "/images/industry7.webp" },
-  { title: "Commitment to Excellence", description: "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.", image: "/images/industry8.webp" },
-  { title: "Commitment to Excellence", description: "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.", image: "/images/industry6.webp" },
-  { title: "Commitment to Excellence", description: "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.", image: "/images/industry7.webp" },
+  {
+    title: "Commitment to Excellence",
+    description:
+      "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.",
+    image: "/images/industry5.webp",
+  },
+  {
+    title: "Commitment to Excellence",
+    description:
+      "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.",
+    image: "/images/industry6.webp",
+  },
+  {
+    title: "Commitment to Excellence",
+    description:
+      "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.",
+    image: "/images/industry7.webp",
+  },
+  {
+    title: "Commitment to Excellence",
+    description:
+      "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.",
+    image: "/images/industry8.webp",
+  },
+  {
+    title: "Commitment to Excellence",
+    description:
+      "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.",
+    image: "/images/industry6.webp",
+  },
+  {
+    title: "Commitment to Excellence",
+    description:
+      "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting.",
+    image: "/images/industry7.webp",
+  },
 ];
 
 const Industries = () => {
@@ -28,67 +58,38 @@ const Industries = () => {
     if (typeof window === "undefined") return;
     gsap.registerPlugin(ScrollTrigger);
 
-    const section = sectionRef.current;
     const gallery = galleryRef.current;
-    if (!section || !gallery) return;
+    const section = sectionRef.current;
+    if (!gallery || !section) return;
 
-    let ctx: gsap.Context;
+    // const getScrollLength = () => gallery.scrollWidth - section.offsetWidth;
 
-    const setup = () => {
-      ctx?.revert();
-
+    const ctx = gsap.context(() => {
       const totalWidth = gallery.scrollWidth - section.offsetWidth;
-      if (totalWidth <= 0) return;
 
-      ctx = gsap.context(() => {
-        gsap.to(gallery, {
-          x: () => -(gallery.scrollWidth - section.offsetWidth),
-          ease: "none",
-          scrollTrigger: {
-            trigger: section,
-            start: "top top+=48px",
-            end: () => `+=${gallery.scrollWidth - section.offsetWidth}`,
-            pin: true,
-            scrub: true,
-            invalidateOnRefresh: true,
-            onEnter: () => console.log("✅ ScrollTrigger entered"),
-            onLeave: () => console.log("⬇️ left trigger"),
-          },
-        });
-      }, section);
-
-      ScrollTrigger.refresh();
-    };
-
-    const waitForImages = async () => {
-      const imgs = Array.from(gallery.querySelectorAll("img")) as HTMLImageElement[];
-      await Promise.all(
-        imgs.map(img =>
-          img.complete
-            ? Promise.resolve()
-            : new Promise(res => {
-              img.onload = () => res(null);
-              img.onerror = () => res(null);
-            })
-        )
-      );
-      // Wait one more frame for layout to stabilize on mobile
-      requestAnimationFrame(() => {
-        requestAnimationFrame(setup);
+      const isMobile = window.innerWidth < 768;
+      gsap.to(gallery, {
+        x: -totalWidth,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: isMobile ? "top top+=48px" : "top top+=48px",
+          // end: () => `+=${getScrollLength()}`,
+          end: () => `+=${totalWidth}`,
+          pin: true,
+          scrub: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+        },
       });
-    };
+    }, section);
 
-    waitForImages();
-
-    const onResize = () => ScrollTrigger.refresh();
-    window.addEventListener("resize", onResize);
-    window.addEventListener("orientationchange", onResize);
+    const handleResize = () => ScrollTrigger.refresh();
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      ctx?.revert();
-      window.removeEventListener("resize", onResize);
-      window.removeEventListener("orientationchange", onResize);
-      ScrollTrigger.getAll().forEach(t => t.kill());
+      ctx.revert();
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -108,7 +109,10 @@ const Industries = () => {
 
         <div ref={sectionRef} className="relative w-full overflow-hidden">
           <div className="horiz-gallery-wrapper">
-            <div ref={galleryRef} className="horiz-gallery-strip w-fit flex gap-8 py-4">
+            <div
+              ref={galleryRef}
+              className="horiz-gallery-strip w-fit flex gap-8 py-4"
+            >
               {industries.map((item, idx) => (
                 <div
                   key={idx}
@@ -124,7 +128,9 @@ const Industries = () => {
                       {item.title}
                     </Paragraph>
                     {idx % 2 === 0 && (
-                      <Span className="text-gray-300 mb-2 text-left">{item.description}</Span>
+                      <Span className="text-gray-300 mb-2 text-left">
+                        {item.description}
+                      </Span>
                     )}
                   </div>
                   <div className="relative w-full flex-grow">
@@ -133,7 +139,9 @@ const Industries = () => {
                       alt={item.title}
                       fill
                       className="object-cover rounded-xs"
-                      style={{ objectPosition: idx === 0 ? "right" : "center" }}
+                      style={{
+                        objectPosition: idx === 0 ? "right" : "center",
+                      }}
                     />
                   </div>
                 </div>

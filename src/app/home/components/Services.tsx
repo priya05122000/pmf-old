@@ -1,6 +1,5 @@
 import React from "react";
 import { GOLDEN_GRADIENT } from "@/lib/gradients";
-import GridSection from "@/components/GridSection";
 import Section from "@/components/Section";
 import Heading from "@/components/Heading";
 import Paragraph from "@/components/Paragraph";
@@ -42,10 +41,7 @@ const Services = () => {
           <div>
             <div {...ANIMATIONS.fadeRight}>
               <article>
-                <Heading
-                  level={3}
-                  className={`leading-[1] tracking-[-0.05em]`}
-                >
+                <Heading level={3} className={`leading-[1] tracking-[-0.05em]`}>
                   Our Core Services
                 </Heading>
               </article>
@@ -62,22 +58,12 @@ const Services = () => {
                   <Paragraph size="lg" className="text-white font-bold mb-2">
                     {service.title}
                   </Paragraph>
-                  <Paragraph className="text-white leading-snug">
+                  <Paragraph className="text-white leading-snug font-light">
                     {service.description}
                   </Paragraph>
                 </div>
               ))}
             </div>
-
-            {/* Services List */}
-            {/* <div
-                    className="
-            flex flex-col gap-7 mt-10
-            md:flex-row md:overflow-x-auto scrollbar-hide md:snap-x md:snap-mandatory
-          "
-                  >
-
-                  </div> */}
           </div>
         </Section>
       </div>
