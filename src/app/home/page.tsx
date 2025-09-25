@@ -10,6 +10,7 @@ import Work from './components/Work';
 import TrustedSection from './components/TrustedSection';
 import Review from './components/Review';
 import PinnedSection from './components/PinnedSection';
+import HorizontalScroll from './components/HorizontalScroll';
 
  const HomePage = () => {
   return (
@@ -18,6 +19,7 @@ import PinnedSection from './components/PinnedSection';
         <Choose/>
         <About/>
         <Industries/>
+        {/* <HorizontalScroll/> */}
         <Services/>
         {/* <PinnedSection /> */}
         <Brief/>

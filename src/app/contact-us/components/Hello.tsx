@@ -17,7 +17,7 @@ const Hello = () => (
               SAY HELLO! <br /> WE ARE HAPPY TO HEAR FROM YOU.
             </Heading>
           </div>
-          <div className="h-full flex items-center">
+          <div className="h-full flex items-center mt-3">
             <div className=" text-white space-y-6 text-base ">
               <div>
                 <Heading level={5} className="font-bold   mb-1">
