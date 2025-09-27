@@ -71,7 +71,7 @@ const Industries = () => {
         ease: "none",
         scrollTrigger: {
           trigger: section,
-          start: isMobile ? "top-=12% top" : "top top",
+          start: isMobile ? "top top" : "top top",
           // end: () => `+=${getScrollLength()}`,
           end: () => `+=${totalWidth}`,
           pin: true,

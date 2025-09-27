@@ -1,13 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+// --- Imports ---
+import React, { useState, useRef, useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import Section from "./Section";
 
-// Types
+// --- Types ---
 interface SubMenu {
   label: string;
   href: string;
@@ -24,7 +27,30 @@ interface MobileMenuState {
   activeSubmenu: string | null;
 }
 
-// Constants
+interface NavLinksListProps {
+  navLinks: NavLink[];
+  activeLink: string;
+  activeSubmenu: string | null;
+  onLinkClick?: (link: NavLink) => void;
+  onSubmenuClick?: (submenu: SubMenu) => void;
+  submenuOpenLabel?: string | null;
+  isMobile?: boolean;
+  onSubmenuToggle?: (label: string) => void;
+  onClose?: () => void;
+}
+
+interface HamburgerButtonProps {
+  isOpen: boolean;
+  onClick: () => void;
+}
+
+interface NavbarProps {
+  hide?: boolean;
+  className?: string;
+  homeHeroStyle?: boolean;
+}
+
+// --- Constants ---
 const NAV_LINKS: NavLink[] = [
   { label: "Home", href: "/home" },
   { label: "Products", href: "/products" },
@@ -34,27 +60,28 @@ const NAV_LINKS: NavLink[] = [
 const COMPANY = {
   name: "Promed",
   logo: "/logos/logo.png",
-  homeUrl: "/home"
+  homeUrl: "/home",
 };
 
-// Utility: get active link label
+// --- Utilities ---
 const getActiveNavInfo = (
   pathname: string,
   navLinks: NavLink[]
 ): { activeLink: string; activeSubmenu: string | null } => {
   for (const link of navLinks) {
-    if (link.href === pathname) return { activeLink: link.label, activeSubmenu: null };
+    if (link.href === pathname)
+      return { activeLink: link.label, activeSubmenu: null };
     if (link.submenus) {
       for (const submenu of link.submenus) {
-        if (submenu.href === pathname) return { activeLink: link.label, activeSubmenu: submenu.label };
+        if (submenu.href === pathname)
+          return { activeLink: link.label, activeSubmenu: submenu.label };
       }
     }
   }
   return { activeLink: "", activeSubmenu: null };
 };
 
-// --- COMPONENTS ---
-
+// --- Components ---
 const Logo: React.FC = () => (
   <div className="flex items-center gap-2 shrink-0 h-full justify-center">
     <Link href={COMPANY.homeUrl}>
@@ -71,18 +98,6 @@ const Logo: React.FC = () => (
   </div>
 );
 
-interface NavLinksListProps {
-  navLinks: NavLink[];
-  activeLink: string;
-  activeSubmenu: string | null;
-  onLinkClick?: (link: NavLink) => void;
-  onSubmenuClick?: (submenu: SubMenu) => void;
-  submenuOpenLabel?: string | null;
-  isMobile?: boolean;
-  onSubmenuToggle?: (label: string) => void;
-  onClose?: () => void;
-}
-
 const NavLinksList: React.FC<NavLinksListProps> = ({
   navLinks,
   activeLink,
@@ -97,40 +112,54 @@ const NavLinksList: React.FC<NavLinksListProps> = ({
   <ul
     className={
       isMobile
-        ? "flex flex-col items-stretch gap-0 text-deep-green font-medium font-inter tracking-wide bg-[var(--light-bg-color)] py-0 z-20 text-white"
+        ? "flex flex-col items-stretch gap-0 text-deep-green font-medium font-inter tracking-wide bg-[var(--light-bg-color)] py-2 z-20 text-white"
         : "hidden lg:flex ml-10 items-center justify-end text-sm xl:text-base text-white-custom font-medium font-inter"
     }
   >
-    {navLinks.map(link => (
+    {navLinks.map((link) => (
       <React.Fragment key={link.label}>
         <li
           className={
             isMobile
-              ? `px-6 sm:px-8 py-3 w-full text-deep-green text-left text-sm border-b last:border-b-0 border-deep-green ${activeLink === link.label ? "font-bold text-deep-green" : ""
-              } cursor-pointer transition-colors duration-200 hover:text-primary flex items-center justify-between`
-              : `relative ml-10 ${activeLink === link.label ? "text-accent" : ""} hover:text-accent cursor-pointer transition-colors duration-200 group`
+              ? `px-6 sm:px-8 py-3 w-full text-deep-green text-left text-sm   ${
+                  activeLink === link.label ? "font-bold text-deep-green" : ""
+                } cursor-pointer transition-colors duration-200 hover:text-primary flex items-center justify-between`
+              : `relative ml-10 ${
+                  activeLink === link.label ? "text-accent" : ""
+                } hover:text-accent cursor-pointer transition-colors duration-200 group`
           }
           onClick={() => {
-            if (isMobile && link.submenus && onSubmenuToggle) onSubmenuToggle(link.label);
+            if (isMobile && link.submenus && onSubmenuToggle)
+              onSubmenuToggle(link.label);
             else if (isMobile && !link.submenus && onClose) onClose();
             if (onLinkClick) onLinkClick(link);
           }}
         >
           {link.submenus ? (
             <>
-              <span className={isMobile ? "block w-full" : "block w-full h-full py-2"}>
+              <span
+                className={
+                  isMobile ? "block w-full" : "block w-full h-full py-2"
+                }
+              >
                 {link.label}
               </span>
               {isMobile && (
                 <svg
-                  className={`ml-2 w-4 h-4 text-gray-500 transition-transform duration-200 ${submenuOpenLabel === link.label ? "rotate-180" : ""}`}
+                  className={`ml-2 w-4 h-4 text-gray-500 transition-transform duration-200 ${
+                    submenuOpenLabel === link.label ? "rotate-180" : ""
+                  }`}
                   fill="none"
                   stroke="currentColor"
                   strokeWidth={2}
                   viewBox="0 0 24 24"
                   aria-hidden="true"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19 9l-7 7-7-7"
+                  />
                 </svg>
               )}
             </>
@@ -150,11 +179,16 @@ const NavLinksList: React.FC<NavLinksListProps> = ({
           {/* Desktop submenu */}
           {!isMobile && link.submenus && (
             <ul className="absolute left-0 top-full bg-background text-gray-900 rounded shadow-lg min-w-[200px] z-40 py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible pointer-events-none group-hover:pointer-events-auto transition-all duration-300 transform translate-y-2 group-hover:translate-y-0">
-              {link.submenus.map(submenu => (
-                <li key={submenu.label} className="px-4 py-2 transition-colors duration-150">
+              {link.submenus.map((submenu) => (
+                <li
+                  key={submenu.label}
+                  className="px-4 py-2 transition-colors duration-150"
+                >
                   <Link
                     href={submenu.href}
-                    className={`block w-full text-sm ${activeSubmenu === submenu.label ? "text-accent" : ""}`}
+                    className={`block w-full text-sm ${
+                      activeSubmenu === submenu.label ? "text-accent" : ""
+                    }`}
                   >
                     {submenu.label}
                   </Link>
@@ -166,14 +200,15 @@ const NavLinksList: React.FC<NavLinksListProps> = ({
         {/* Mobile submenu */}
         {isMobile && link.submenus && submenuOpenLabel === link.label && (
           <ul className="px-8 py-2">
-            {link.submenus.map(submenu => (
+            {link.submenus.map((submenu) => (
               <li key={submenu.label} className="py-1 text-xs">
                 <Link
                   href={submenu.href}
-                  className={`transition-colors duration-150 ${activeSubmenu === submenu.label
-                    ? "text-accent font-bold"
-                    : "text-gray-700 hover:text-black"
-                    }`}
+                  className={`transition-colors duration-150 ${
+                    activeSubmenu === submenu.label
+                      ? "text-accent font-bold"
+                      : "text-gray-700 hover:text-black"
+                  }`}
                   onClick={onClose}
                 >
                   {submenu.label}
@@ -187,12 +222,10 @@ const NavLinksList: React.FC<NavLinksListProps> = ({
   </ul>
 );
 
-interface HamburgerButtonProps {
-  isOpen: boolean;
-  onClick: () => void;
-}
-
-const HamburgerButton: React.FC<HamburgerButtonProps> = ({ isOpen, onClick }) => (
+const HamburgerButton: React.FC<HamburgerButtonProps> = ({
+  isOpen,
+  onClick,
+}) => (
   <button
     className="lg:hidden flex flex-col justify-center items-center ml-auto text-white"
     onClick={onClick}
@@ -207,89 +240,127 @@ const HamburgerButton: React.FC<HamburgerButtonProps> = ({ isOpen, onClick }) =>
   </button>
 );
 
-interface NavbarProps {
-  hide?: boolean;
-  className?: string;
-  homeHeroStyle?: boolean;
-}
-
+// --- Main Navbar ---
 const Navbar: React.FC<NavbarProps> = ({
   hide = false,
   className = "",
   homeHeroStyle = false,
 }) => {
+  // --- State ---
   const [mobileMenu, setMobileMenu] = useState<MobileMenuState>({
     isOpen: false,
-    activeSubmenu: null
+    activeSubmenu: null,
   });
   const pathname = usePathname();
   const { activeLink, activeSubmenu } = getActiveNavInfo(pathname, NAV_LINKS);
 
+  // --- Scroll Position ---
+  const [scrolled, setScrolled] = useState(false);
+  const navRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      if (pathname === "/home" && homeHeroStyle && navRef.current) {
+        gsap.registerPlugin(ScrollTrigger);
+        const initialTop = window.innerHeight * 0;
+        gsap.set(navRef.current, { y: initialTop });
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: navRef.current,
+            start: "top top",
+            end: "bottom top",
+            scrub: true,
+            markers: false,
+          },
+        });
+        tl.to(navRef.current, { y: 0, duration: 3 }); // duration controls the speed
+      }
+      return () => {
+        ScrollTrigger.getAll().forEach((t) => t.kill());
+      };
+    }, [pathname, homeHeroStyle]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // --- Handlers ---
   const toggleMobileMenu = () => {
-    setMobileMenu(prev => ({
+    setMobileMenu((prev) => ({
       ...prev,
       isOpen: !prev.isOpen,
-      activeSubmenu: prev.isOpen ? null : prev.activeSubmenu
+      activeSubmenu: prev.isOpen ? null : prev.activeSubmenu,
     }));
   };
 
   const handleSubmenuToggle = (label: string) => {
-    setMobileMenu(prev => ({
+    setMobileMenu((prev) => ({
       ...prev,
-      activeSubmenu: prev.activeSubmenu === label ? null : label
+      activeSubmenu: prev.activeSubmenu === label ? null : label,
     }));
   };
 
   const closeMobileMenu = () => {
     setMobileMenu({
       isOpen: false,
-      activeSubmenu: null
+      activeSubmenu: null,
     });
   };
 
-  // Hero-style class for /home
-  // const heroNavClass =
-  //   "absolute w-1/3 left-0 top-1/3 text-white justify-start gap-10 hidden lg:flex z-50";
-  const heroNavClass =
-    "fixed top-1/3";
+  // --- Classes ---
+  const heroNavClass = scrolled
+    ? "fixed w-full lg:w-auto top-0 transition-all duration-500"
+    : "fixed w-full lg:w-auto top:0 lg:top-1/3 transition-all duration-500";
 
+  // --- Render ---
   return (
     <nav
+      ref={pathname === "/home" && homeHeroStyle ? navRef : undefined}
       className={`
-    left-0  z-50
-    ${hide ? "opacity-0 pointer-events-none" : "opacity-100"}
-    ${className}
-    ${pathname === "/home" && homeHeroStyle
-          ? heroNavClass
-          : "fixed top-0 w-full"}
-  `}
+        left-0 z-50
+        ${hide ? "opacity-0 pointer-events-none" : "opacity-100"}
+        ${className}
+        ${pathname === "/home" && homeHeroStyle ? heroNavClass : "fixed top-0 w-full"}
+      `}
       role="navigation"
       aria-label="Main navigation"
     >
-
       <div className="max-w-full">
         <div className="bg-[var(--bg-color)]">
           <Section>
-            <div className={`flex items-center w-full relative ${pathname === "/home" ? "py-0" : "py-2"}`}>
-              <div style={{ visibility: pathname === "/home" ? "hidden" : "visible" }}>
+            <div
+              className={`flex items-center h-14  w-full relative ${pathname === "/home" ? " sm:py-0 lg:h-12" : "py-2 lg:h-14"}`}
+            >
+                <div
+                className={pathname === "/home" ? "lg:invisible" : "visible"}
+                >
                 <Logo />
-              </div>
+                </div>
               <NavLinksList
                 navLinks={NAV_LINKS}
                 activeLink={activeLink}
                 activeSubmenu={activeSubmenu}
               />
-              <HamburgerButton isOpen={mobileMenu.isOpen} onClick={toggleMobileMenu} />
+              <HamburgerButton
+                isOpen={mobileMenu.isOpen}
+                onClick={toggleMobileMenu}
+              />
             </div>
           </Section>
         </div>
       </div>
       {/* Mobile Navigation */}
       <div className="lg:hidden">
-        <div className={`transition-all duration-300 ease-in-out ${mobileMenu.isOpen
-          ? "max-h-[500px] opacity-100 scale-100"
-          : "max-h-0 opacity-0 scale-95 pointer-events-none"
-          } overflow-hidden`}>
+        <div
+          className={`transition-all duration-300 ease-in-out ${
+            mobileMenu.isOpen
+              ? "max-h-[500px] opacity-100 scale-100"
+              : "max-h-0 opacity-0 scale-95 pointer-events-none"
+          } overflow-hidden`}
+        >
           <NavLinksList
             navLinks={NAV_LINKS}
             activeLink={activeLink}
@@ -305,4 +376,5 @@ const Navbar: React.FC<NavbarProps> = ({
   );
 };
 
+// --- Export ---
 export default Navbar;

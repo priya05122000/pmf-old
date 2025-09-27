@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FC, ReactNode } from "react";
+import React, { FC, ReactNode, useEffect } from "react";
 import GridSection from "@/components/GridSection";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,12 +8,14 @@ import { BLUE_GRADIENT, GOLDEN_GRADIENT } from "@/lib/gradients";
 import Heading from "@/components/Heading";
 import { ANIMATIONS } from "@/components/Animations";
 import Paragraph from "@/components/Paragraph";
+import { marker } from "framer-motion/client";
 
 // Common styles reused in multiple places
 const NAV_LINK_CLASS =
   "text-lg font-medium cursor-pointer hover:text-white/70 transition flex items-center font-sf-pro";
 const DOT_CLASS = `w-2 h-2 mt-1 mr-2 rounded-full ${GOLDEN_GRADIENT}`;
-const NAV_SECTION_CLASS = `nav-section absolute w-1/3 ${BLUE_GRADIENT} left-0 top-1/3 text-white justify-end p-2 gap-10 hidden lg:flex`;
+// const NAV_SECTION_CLASS = ` nav-section absolute w-1/3 ${BLUE_GRADIENT} left-0 top-1/3 text-white justify-end p-2 gap-10 hidden lg:flex`;
+const NAV_SECTION_CLASS = `nav-section sticky top-0  w-full ${BLUE_GRADIENT}  text-white justify-end p-2 gap-10 hidden lg:flex`;
 
 interface NavLinkProps {
   href: string;
@@ -29,8 +31,8 @@ const NavLink: FC<NavLinkProps> = ({ href, children, withDot = false }) => (
 );
 
 const LogoSection: FC = () => (
-  <div className="absolute w-1/4 h-1/3 bg-[var(--bg-color)] left-0 top-0 hidden lg:block">
-    <div className="relative p-6 h-full">
+  <div className="absolute w-[30%] h-1/3 left-0 top-0 hidden lg:block z-10 pointer-events-none">
+    <div className="relative p-6 h-full bg-[var(--bg-color)] w-[75%]">
       <Image
         src="/logos/logo.png"
         alt="logo1"
@@ -40,6 +42,7 @@ const LogoSection: FC = () => (
         className="object-contain h-14 w-auto absolute right-0 px-4"
       />
     </div>
+    {/* <NavigationSection /> */}
   </div>
 );
 
@@ -89,14 +92,38 @@ const HeroContent: FC = () => (
   </div>
 );
 
-const Hero: FC = () => (
-  <GridSection className="relative overflow-x-hidden sm:-ml-4 lg:ml-0 lg:pl-4 xl:pl-0 lg:-mt-20">
-    <div className="col-span-2 col-start-2 bg-[url('/images/home.webp')] h-[80vh] lg:h-screen bg-right sm:bg-bottom-left bg-no-repeat bg-cover w-[100vw] xl:w-auto">
+const Hero: FC = () => {
+  useEffect(() => {
+    // Only do GSAP animations that do NOT pin
+    const nav = document.querySelector(".nav-section");
+    if (nav && typeof window !== "undefined" && (window as any).gsap) {
+      (window as any).gsap.to(nav, {
+        scrollTrigger: {
+          trigger: nav,
+          start: "top top",
+          end: "bottom top",
+          // remove pin and scrub
+          pin: true,
+          pinSpacing: false,
+          // scrub: true,
+          markers: true,
+        },
+        // any animation you want without affecting sticky
+        opacity: 1,
+        duration: 1,
+      });
+    }
+  }, []);
+
+  return (
+    <GridSection className="relative overflow-x-hidden sm:-ml-4 lg:ml-0 lg:pl-4 xl:pl-0 lg:-mt-20">
+      {/* Add padding-top to prevent content from being hidden under navbar */}
+      <div className="col-span-2 col-start-2 bg-[url('/images/home.webp')] h-[80vh] lg:h-screen bg-right sm:bg-bottom-left bg-no-repeat bg-cover w-[100vw] xl:w-auto pt-16 lg:pt-20">
+        <HeroContent />
+      </div>
       <LogoSection />
-      {/* <NavigationSection /> */}
-      <HeroContent />
-    </div>
-  </GridSection>
-);
+    </GridSection>
+  );
+};
 
 export default Hero;

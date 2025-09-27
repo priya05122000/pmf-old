@@ -12,7 +12,7 @@ import Review from './components/Review';
 import PinnedSection from './components/PinnedSection';
 import HorizontalScroll from './components/HorizontalScroll';
 
- const HomePage = () => {
+const HomePage = () => {
   return (
     <div>
         <Hero/>
@@ -27,6 +27,6 @@ import HorizontalScroll from './components/HorizontalScroll';
         <TrustedSection/>
         <Review/>
     </div>
-  )
-}
+  );
+};
 export default HomePage;
