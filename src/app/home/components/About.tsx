@@ -64,14 +64,14 @@ const About = () => {
             </article>
 
             <span className={`mb-6 block h-1 w-24 mt-2 ${GOLDEN_GRADIENT}`} />
-            <Paragraph className="text-white text-justify">
+            <Paragraph size="lg" className="text-white text-justify">
               PMF is a trusted leader in metal fabrication, specializing in
               precision-engineered solutions in Mild Steel and Stainless Steel.
               With a strong reputation for quality, reliability, and
               craftsmanship, we cater to diverse sectors including retail,
               construction, hospitals, hotels, and more.
             </Paragraph>
-            <Paragraph className="text-white text-justify mt-2">
+            <Paragraph  size="lg" className="text-white text-justify mt-2">
               Since our inception, PMF has delivered tailor-made fabrication
               services that meet the evolving demands of modern infrastructure
               and interior design. We combine technical expertise with advanced

@@ -105,7 +105,7 @@ const Brief = () => {
           {/* Main Heading */}
 
           {/* Subheading */}
-          <Paragraph className="font-extrabold text-white">
+          <Paragraph size="base" className="font-extrabold text-white uppercase">
             Crafting Tomorrow&apos;s Steel Future
           </Paragraph>
 

@@ -8,9 +8,11 @@ import Heading from "@/components/Heading";
 import { ANIMATIONS } from "@/components/Animations";
 import Paragraph from "@/components/Paragraph";
 
+import { BLUE_GRADIENT } from "@/lib/gradients";
+const NAV_SECTION_CLASS = `nav-section absolute w-[30%] lg:w-[25%] xl:w-[30%] ${BLUE_GRADIENT}  top-1/3 text-white justify-end px-4 py-2 gap-10 hidden sm:flex`;
 
 const LogoSection: FC = () => (
-  <div className="absolute w-[30%] h-1/3 left-0 top-0 hidden lg:block z-10 pointer-events-none">
+  <div className="absolute w-[30%] h-1/3 left-0 top-0 hidden sm:block z-10 pointer-events-none">
     <div className="relative p-6 h-full bg-[var(--bg-color)] w-[75%]">
       <Image
         src="/logos/logo.png"
@@ -21,7 +23,6 @@ const LogoSection: FC = () => (
         className="object-contain h-14 w-auto absolute right-0 px-6"
       />
     </div>
-    {/* <NavigationSection /> */}
   </div>
 );
 
@@ -69,7 +70,11 @@ const Hero: FC = () => {
       const win = window as typeof window & { gsap?: unknown };
       if (win.gsap) {
         // TODO: Replace 'as unknown as GSAPType' with actual GSAP type if available
-        (win.gsap as unknown as { to: (target: Element, vars: Record<string, unknown>) => unknown }).to(nav, {
+        (
+          win.gsap as unknown as {
+            to: (target: Element, vars: Record<string, unknown>) => unknown;
+          }
+        ).to(nav, {
           scrollTrigger: {
             trigger: nav,
             start: "top top",
@@ -89,12 +94,17 @@ const Hero: FC = () => {
   }, []);
 
   return (
-    <GridSection className="relative overflow-x-hidden sm:-ml-4 lg:ml-0 lg:pl-4 xl:pl-0 ">
+    <GridSection className="relative overflow-x-hidden sm:ml-4 lg:ml-0 lg:pl-4 xl:pl-0 ">
       {/* Add padding-top to prevent content from being hidden under navbar */}
       <div className="col-span-2 col-start-2 bg-[url('/images/home.webp')] h-[80vh] lg:h-screen bg-right sm:bg-bottom-left bg-no-repeat bg-cover w-[100vw] xl:w-auto pt-16 lg:pt-20">
         <HeroContent />
       </div>
       <LogoSection />
+      <div className={`${NAV_SECTION_CLASS}`}>
+        <Paragraph size="lg">Trust</Paragraph>
+        <Paragraph size="lg">Values</Paragraph>
+        <Paragraph size="lg">Quality</Paragraph>
+      </div>
     </GridSection>
   );
 };

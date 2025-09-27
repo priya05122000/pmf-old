@@ -75,7 +75,7 @@ const Reviews: React.FC = () => {
   }>({ prevEl: null, nextEl: null });
 
   return (
-    <Section className="min-h-screen">
+    <Section className="min-h-screen  flex  sm:items-center">
       <div className="h-[85vh]">
         <div className="grid lg:grid-cols-[1fr_2fr] h-full">
           {/* Heading */}
@@ -90,7 +90,7 @@ const Reviews: React.FC = () => {
           </div>
 
           {/* Swiper */}
-          <div className="flex-1 min-w-0 ">
+          <div className="flex-1 min-w-0   h-full">
             <Swiper
               modules={[Navigation, Autoplay]}
               spaceBetween={16}
@@ -106,8 +106,8 @@ const Reviews: React.FC = () => {
             >
               {reviewData.map((review, idx) => (
                 <SwiperSlide key={idx}>
-                  <div className="overflow-hidden mx-auto relative h-[420px] lg:h-[620px]">
-                    <div className={`p-[1px] ${GOLDEN_GRADIENT} h-full`}>
+                  <div className="overflow-hidden mx-auto relative h-[60vh] lg:h-[82vh]">
+                    <div className={`p-[1px] ${GOLDEN_GRADIENT} h-full `}>
                       <div className="relative overflow-hidden h-full">
                         <Image
                           src={review.image}
@@ -174,7 +174,7 @@ const Reviews: React.FC = () => {
         </div>
 
         {/* Navigation Buttons */}
-        <div className="flex flex-col items-end mt-4 ">
+        <div className="flex flex-col items-end  ">
           {/* <Span className="text-blue-custom">Prev/Nxt</Span> */}
           <div className="flex items-center space-x-4 mt-2">
             <button

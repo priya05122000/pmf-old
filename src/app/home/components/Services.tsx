@@ -55,7 +55,7 @@ const Services = () => {
             >
               {services.map((service, index) => (
                 <div key={index} className="flex-shrink-0 snap-start">
-                  <Paragraph size="lg" className="text-white font-bold mb-2">
+                  <Paragraph size="base" className="text-white font-bold mb-2 uppercase">
                     {service.title}
                   </Paragraph>
                   <Paragraph className="text-white leading-snug font-light">

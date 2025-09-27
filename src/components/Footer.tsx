@@ -6,6 +6,8 @@ import Link from "next/link";
 import Section from "./Section";
 import RightSpaceGridSection from "./RightSpaceGridSection";
 import Span from "./Span";
+import { FaFacebookF } from "react-icons/fa6";
+import { SiInstagram } from "react-icons/si";
 
 const footerLinks = [
   { label: "Home", href: "/" },
@@ -28,10 +30,7 @@ export const Footer = () => {
                 quality={100}
                 className="object-contain h-28 w-28 "
               />
-              <Span
-                
-                className="text-grey-custom absolute bottom-0 left-32  uppercase "
-              >
+              <Span className="text-grey-custom absolute bottom-0 left-32  uppercase ">
                 Copyright 2025 Favorite Doctor,
                 <br /> All Rights Reserved
               </Span>
@@ -44,14 +43,13 @@ export const Footer = () => {
             <div className="col-span-2  ">
               <div className="w-full  h-full flex flex-col-reverse   md:flex-row justify-between relative sm:gap-20 lg:gap-10">
                 <div className=" h-full -ml-6 sm:ml-0 mt-10 sm:mt-0">
-                
                   <Image
                     src="/images/pmf-1.png"
                     alt="logo1"
                     height={1000}
                     width={1000}
                     quality={100}
-                    className="object-contain h-full w-full "
+                    className="object-contain h-full w-xl lg:w-3xl xl:w-6xl "
                   />
                 </div>
 
@@ -72,12 +70,12 @@ export const Footer = () => {
                         {link.label}
                       </Link>
                     ))}
+                    <Span className="text-white flex gap-3 mt-2 lg:mt-4 ">
+                      <FaFacebookF className="w-4 h-4"/>
+                      <SiInstagram  className="w-4 h-4"/>
+                    </Span>
                   </nav>
                 </div>
-
-                {/* <Span className="text-white absolute bottom-14 right-0">
-                Copyright 2025 Favorite Doctor, All Rights Reserved
-              </Span> */}
               </div>
             </div>
           </RightSpaceGridSection>
