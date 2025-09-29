@@ -21,20 +21,33 @@ import Paragraph from "@/components/Paragraph";
 import { GOLDEN_GRADIENT } from "@/lib/gradients";
 import { ANIMATIONS } from "@/components/Animations";
 
-const PROGRESS_BARS = [76, 76, 76];
+const PROGRESS_BARS = [76, 50, 83];
 const ANIMATION_DURATION = 1.5; // seconds
 
 const Brief = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" }); // triggers a bit before fully in view
 
-  // Create motion values ONCE per mount
-  const motionValues = useRef(PROGRESS_BARS.map(() => useMotionValue(0)));
+  // Create motion values and transforms ONCE per mount, all hooks at top level
+  const mv0 = useMotionValue(0);
+  const mv1 = useMotionValue(0);
+  const mv2 = useMotionValue(0);
+  const motionValues = [mv0, mv1, mv2];
+  const rounded = [
+    useTransform(mv0, (val) => Math.round(val) + "%"),
+    useTransform(mv1, (val) => Math.round(val) + "%"),
+    useTransform(mv2, (val) => Math.round(val) + "%"),
+  ];
+  const widthPercent = [
+    useTransform(mv0, (val) => `${val}%`),
+    useTransform(mv1, (val) => `${val}%`),
+    useTransform(mv2, (val) => `${val}%`),
+  ];
 
   useEffect(() => {
     if (isInView) {
       // Animate all bars at the same time
-      motionValues.current.forEach((mv, i) => {
+      motionValues.forEach((mv, i) => {
         animate(mv, PROGRESS_BARS[i], {
           duration: ANIMATION_DURATION,
           ease: [0.42, 0, 0.58, 1],
@@ -42,8 +55,9 @@ const Brief = () => {
       });
     } else {
       // Reset to 0 if you want to re-animate on re-entry (optional)
-      // motionValues.current.forEach((mv) => mv.set(0));
+      // motionValues.forEach((mv) => mv.set(0));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isInView]);
 
   return (
@@ -91,43 +105,32 @@ const Brief = () => {
           {/* Main Heading */}
 
           {/* Subheading */}
-          <Paragraph className="font-extrabold text-white">
+          <Paragraph size="base" className="font-extrabold text-white uppercase">
             Crafting Tomorrow&apos;s Steel Future
           </Paragraph>
 
           {/* Animated Progress Bars */}
           <div className="flex flex-col gap-6 ">
-            {PROGRESS_BARS.map((percent, idx) => {
-              const rounded = useTransform(
-                motionValues.current[idx],
-                (val) => Math.round(val) + "%"
-              );
-              const widthPercent = useTransform(
-                motionValues.current[idx],
-                (val) => `${val}%`
-              );
-
-              return (
-                <div key={idx} className="w-full pb-4">
-                  <div className="relative w-full h-2 rounded-full bg-[#E1BA60]/20">
-                    {/* Filled Bar */}
-                    <motion.div
-                      className={`h-2 ${GOLDEN_GRADIENT}`} 
-                      style={{ width: widthPercent }}
-                    />
-                    {/* Thumb with Percentage */}
-                    <motion.div
-                      className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-gradient-to-r from-[#FFF4C1] to-[#B07515] shadow-lg border border-yellow-300 flex items-center justify-center`}
-                      style={{ left: widthPercent, translateX: "-50%" }}
-                    >
-                      <motion.span className="absolute top-[-24px] text-sm text-white">
-                        {rounded}
-                      </motion.span>
-                    </motion.div>
-                  </div>
+            {PROGRESS_BARS.map((percent, idx) => (
+              <div key={idx} className="w-full pb-4">
+                <div className="relative w-full h-2 rounded-full bg-[#E1BA60]/20">
+                  {/* Filled Bar */}
+                  <motion.div
+                    className={`h-2 ${GOLDEN_GRADIENT}`} 
+                    style={{ width: widthPercent[idx] }}
+                  />
+                  {/* Thumb with Percentage */}
+                  <motion.div
+                    className={`absolute top-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-gradient-to-r from-[#FFF4C1] to-[#B07515] shadow-lg border border-yellow-300 flex items-center justify-center`}
+                    style={{ left: widthPercent[idx], translateX: "-50%" }}
+                  >
+                    <motion.span className="absolute top-[-24px] text-sm text-white">
+                      {rounded[idx]}
+                    </motion.span>
+                  </motion.div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
       </div>

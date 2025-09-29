@@ -13,7 +13,7 @@ const HorizontalScroll = () => {
   useEffect(() => {
     const sections = gsap.utils.toArray<HTMLElement>(".panel");
 
-    let scrollTween = gsap.to(sections, {
+  const scrollTween = gsap.to(sections, {
       xPercent: -100 * (sections.length - 2), // move panels left
       ease: "none",
       scrollTrigger: {

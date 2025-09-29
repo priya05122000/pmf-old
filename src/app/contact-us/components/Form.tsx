@@ -64,8 +64,8 @@ const Form: FC = () => {
   };
 
   return (
-    <div className="py-10 sm:py-20 flex items-center justify-center px-4">
-      <div className="w-full max-w-xl bg-transparent p-6 rounded-lg">
+    <div className="py-10 sm:py-20 flex items-center justify-center">
+      <div className="w-full max-w-xl bg-transparent p-6 sm:p-8 rounded-lg">
         {/* Title */}
         {/* <h1 className={`text-center font-bold leading-[1] tracking-[-0.02em]
           text-4xl sm:text-5xl md:text-7xl lg:text-5xl xl:text-6xl ${GOLDEN_GRADIENT} bg-clip-text text-transparent mb-8`}>
@@ -83,21 +83,21 @@ const Form: FC = () => {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="flex gap-4">
+          <div className="flex flex-col sm:flex-row gap-4">
             <FormInput
               name="firstName"
               placeholder="Name"
               value={formData.firstName}
               onChange={handleChange}
               required
-              className="w-1/2 p-3 border border-gray-700 text-white placeholder-white focus:outline-none focus:border-[#b8892d]"
+              className="w-full sm:w-1/2 p-3 border border-gray-700 text-white placeholder-white focus:outline-none focus:border-[#b8892d]"
             />
             <FormInput
               name="lastName"
               placeholder="Last name"
               value={formData.lastName}
               onChange={handleChange}
-              className="w-1/2 p-3 border border-gray-700 text-white placeholder-white focus:outline-none focus:border-[#b8892d]"
+              className="w-full sm:w-1/2 p-3 border border-gray-700 text-white placeholder-white focus:outline-none focus:border-[#b8892d]"
             />
           </div>
           <FormInput

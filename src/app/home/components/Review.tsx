@@ -10,10 +10,8 @@ import { CgArrowLongLeft, CgArrowLongRight } from "react-icons/cg";
 // Custom components & constants
 import Paragraph from "@/components/Paragraph";
 import Heading from "@/components/Heading";
-import Span from "@/components/Span";
 import Section from "@/components/Section";
-import { ANIMATIONS } from "@/components/Animations";
-import { BLUE_GRADIENT, GOLDEN_GRADIENT } from "@/lib/gradients";
+import { GOLDEN_GRADIENT } from "@/lib/gradients";
 import ParagraphList from "@/components/ParagraphList";
 
 // Types
@@ -29,14 +27,14 @@ type Review = {
 const reviewData: Review[] = [
   {
     image: "/images/review3.webp",
-    logo: "/images/review-logo.png",
+    logo: "/logos/1.png",
     title: "Commitment to Excellence",
     content:
       "At PMF, our mission is to provide metal fabrication solutions that are not only functional but also visually appealing and long-lasting. Every project we undertake is driven by innovation, precision, and a deep understanding of client needs.",
   },
   {
     image: "/images/review2.webp",
-    logo: "/images/review-logo.png",
+    logo: "/logos/2.png",
     title: "Industries We Serve",
     list: [
       "Retail Chains & Showrooms",
@@ -48,21 +46,21 @@ const reviewData: Review[] = [
   },
   {
     image: "/images/review2.webp",
-    logo: "/images/review-logo.png",
+    logo: "/logos/3.png",
     title: "Customer Satisfaction",
     content:
       "We pride ourselves on exceeding customer expectations. Our team works closely with clients to ensure every detail is perfect, resulting in high satisfaction and repeat business.",
   },
   {
     image: "/images/review3.webp",
-    logo: "/images/review-logo.png",
+    logo: "/logos/1.png",
     title: "Quality Materials",
     content:
       "We use only the highest quality stainless steel and materials, ensuring durability and longevity in every product we deliver.",
   },
   {
     image: "/images/review2.webp",
-    logo: "/images/review-logo.png",
+    logo: "/logos/3.png",
     title: "Innovation",
     content:
       "Our engineers and designers are constantly innovating to provide solutions that are both practical and cutting-edge.",
@@ -77,7 +75,7 @@ const Reviews: React.FC = () => {
   }>({ prevEl: null, nextEl: null });
 
   return (
-    <Section className="min-h-screen">
+    <Section className="min-h-screen  flex  sm:items-center">
       <div className="h-[85vh]">
         <div className="grid lg:grid-cols-[1fr_2fr] h-full">
           {/* Heading */}
@@ -92,7 +90,7 @@ const Reviews: React.FC = () => {
           </div>
 
           {/* Swiper */}
-          <div className="flex-1 min-w-0 ">
+          <div className="flex-1 min-w-0   h-full">
             <Swiper
               modules={[Navigation, Autoplay]}
               spaceBetween={16}
@@ -108,8 +106,8 @@ const Reviews: React.FC = () => {
             >
               {reviewData.map((review, idx) => (
                 <SwiperSlide key={idx}>
-                  <div className="overflow-hidden mx-auto relative h-[420px] lg:h-[620px]">
-                    <div className={`p-1 ${GOLDEN_GRADIENT} h-full`}>
+                  <div className="overflow-hidden mx-auto relative h-[60vh] lg:h-[82vh]">
+                    <div className={`p-[1px] ${GOLDEN_GRADIENT} h-full `}>
                       <div className="relative overflow-hidden h-full">
                         <Image
                           src={review.image}
@@ -158,7 +156,7 @@ const Reviews: React.FC = () => {
                               <Image
                                 src={review.logo}
                                 alt={review.title}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-contain"
                                 width={350}
                                 height={260}
                                 priority={idx === 0}
@@ -176,7 +174,7 @@ const Reviews: React.FC = () => {
         </div>
 
         {/* Navigation Buttons */}
-        <div className="flex flex-col items-end mt-4 ">
+        <div className="flex flex-col items-end  ">
           {/* <Span className="text-blue-custom">Prev/Nxt</Span> */}
           <div className="flex items-center space-x-4 mt-2">
             <button

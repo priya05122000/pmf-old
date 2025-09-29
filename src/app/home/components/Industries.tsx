@@ -63,7 +63,7 @@ const Industries = () => {
     // const getScrollLength = () => gallery.scrollWidth - section.offsetWidth;
 
     const ctx = gsap.context(() => {
-      let totalWidth = gallery.scrollWidth - section.offsetWidth;
+      const totalWidth = gallery.scrollWidth - section.offsetWidth;
 
       const isMobile = window.innerWidth < 768;
       gsap.to(gallery, {
@@ -71,7 +71,7 @@ const Industries = () => {
         ease: "none",
         scrollTrigger: {
           trigger: section,
-          start: isMobile ? "top top" : "top top",
+          start: isMobile ? "top top+=56px" : "top top",
           // end: () => `+=${getScrollLength()}`,
           end: () => `+=${totalWidth}`,
           pin: true,
@@ -110,7 +110,7 @@ const Industries = () => {
           <div className="horiz-gallery-wrapper">
             <div
               ref={galleryRef}
-              className="horiz-gallery-strip w-fit  flex gap-8 py-4"
+              className="horiz-gallery-strip w-fit flex gap-8 py-4"
             >
               {industries.map((item, idx) => (
                 <div
@@ -139,7 +139,9 @@ const Industries = () => {
                       alt={item.title}
                       fill
                       className="object-cover rounded-xs"
-                      style={{ objectPosition: idx === 0 ? "right" : "center" }}
+                      style={{
+                        objectPosition: idx === 0 ? "right" : "center",
+                      }}
                     />
                   </div>
                 </div>

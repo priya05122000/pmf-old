@@ -108,7 +108,7 @@ function ProductCard({
 
 export function Products() {
 
-  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  // Removed unused selectedImage state
   const [isMobile, setIsMobile] = useState(false);
 
   // Prevent background scroll when modal is open
@@ -169,15 +169,17 @@ export function Products() {
     : products.filter((_, i) => i % 3 === 2);
 
   return (
-    <div className="pt-10 sm:pt-20">
+    <div className="pt-14 ">
       <Section>
         <div className="flex justify-between items-center ">
           <Heading level={4} className="text-white font-bold">
             Products
           </Heading>
-          <img
+          <Image
             src="/images/filter.png"
             alt="filter"
+            width={40}
+            height={40}
             className="h-10 w-10 object-contain"
           />
         </div>
@@ -190,8 +192,8 @@ export function Products() {
             <ProductCard
               key={p.id}
               product={p}
-              onClick={() => setSelectedImage(p.image)}
               className="border-y border-r  border-[#1A253C] "
+              onClick={() => {}}
             />
           ))}
         </div>
@@ -203,8 +205,8 @@ export function Products() {
               <ProductCard
                 key={p.id}
                 product={p}
-                onClick={() => setSelectedImage(p.image)}
                 className="border  border-[#1A253C] "
+                onClick={() => {}}
               />
             ))}
           </div>
@@ -217,8 +219,8 @@ export function Products() {
             <ProductCard
               key={p.id}
               product={p}
-              onClick={() => setSelectedImage(p.image)}
               className="border-y border-l  border-[#1A253C] "
+              onClick={() => {}}
             />
           ))}
         </div>

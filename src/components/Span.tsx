@@ -5,7 +5,7 @@ interface SpanProps extends React.HTMLAttributes<HTMLSpanElement> {
   className?: string;
   "data-aos"?: string;
   "data-aos-duration"?: string | number;
-  white?: boolean; // Add this prop to enable white text when needed
+  // white?: boolean; // Removed unused prop
 }
 
 const Span: React.FC<SpanProps> = ({
@@ -13,7 +13,7 @@ const Span: React.FC<SpanProps> = ({
   className = "",
   "data-aos": aos,
   "data-aos-duration": duration,
-  white = false, // Default to dark text
+  // white = false, // Removed unused prop
   ...rest
 }) => {
   // Only apply white text if specifically requested

@@ -7,6 +7,7 @@ import "swiper/css";
 import Image from "next/image";
 import Section from "@/components/Section";
 import Heading from "@/components/Heading";
+import { GOLDEN_GRADIENT } from "@/lib/gradients";
 
 const logos = [
   { src: "/logos/anjana_opticals.png", alt: "Partner 1" },
@@ -30,9 +31,16 @@ export default function TrustedSection() {
 
   return (
     <Section className="py-6 sm:py-12 xl:py-16 bg">
-      <Heading level={6} className="text-white font-bold mb-10 uppercase">
+      {/* <Heading level={6} className="text-white font-bold mb-10 uppercase">
         Trusted by <span className="text-muted">20,000+</span> customers across
         Europe
+      </Heading> */}
+      <Heading level={6} className="text-white font-bold mb-10 uppercase">
+        Trusted by{" "}
+        <span className={`text-transparent ${GOLDEN_GRADIENT} bg-clip-text`}>
+          20,000+
+        </span>{" "}
+        customers across Europe
       </Heading>
       <Swiper
         modules={[Autoplay]}
