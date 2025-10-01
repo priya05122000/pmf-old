@@ -56,7 +56,7 @@ export const Footer = () => {
                 <div className="h-full  block">
                   <Heading
                     level={6}
-                    className={` ${GOLDEN_GRADIENT} bg-clip-text text-transparent`}
+                    className={` gradient-animation-one bg-clip-text text-transparent`}
                   >
                     Explore
                   </Heading>

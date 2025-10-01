@@ -28,7 +28,7 @@ const Work = () => {
             </Heading>
           </article>
           <span
-            className={`mb-6 block h-1 w-24 mt-2 sm:mt-4 ${GOLDEN_GRADIENT}`}
+            className={`mb-6 block h-1 w-24 mt-2 sm:mt-4 gradient-animation`}
           />
         </div>
       </Section>

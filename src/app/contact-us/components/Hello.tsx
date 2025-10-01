@@ -7,7 +7,7 @@ import { ANIMATIONS } from "@/components/Animations";
 import Link from "next/link";
 
 const Hello = () => (
-  <div className="w-full min-h-[100vh] sm:min-h-[70vh] lg:min-h-[60vh] flex items-center justify-center bg-[url('/images/services.jpg')] bg-cover bg-no-repeat lg:bg-center relative">
+  <div className="w-full min-h-[90vh] sm:min-h-[70vh] lg:min-h-[60vh] flex items-center justify-center bg-[url('/images/services.jpg')] bg-cover bg-no-repeat lg:bg-center relative">
     <div className="w-full bg-[var(--light-bg-color)]/70 backdrop-blur-sm flex justify-center items-center min-h-[45vh] py-10">
       <Section>
         <div className="grid grid-cols-1 md:grid-cols-2 h-full gap-10">

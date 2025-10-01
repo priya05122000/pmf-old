@@ -63,7 +63,7 @@ const About = () => {
               </Heading>
             </article>
 
-            <span className={`mb-6 block h-1 w-24 mt-2 ${GOLDEN_GRADIENT}`} />
+            <span className={`mb-6 block h-1 w-24 mt-2 gradient-animation`} />
             <Paragraph size="lg" className="text-white text-justify">
               PMF is a trusted leader in metal fabrication, specializing in
               precision-engineered solutions in Mild Steel and Stainless Steel.

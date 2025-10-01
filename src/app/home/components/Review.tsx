@@ -86,7 +86,7 @@ const Reviews: React.FC = () => {
               </Heading>
             </article>
 
-            <span className={`mb-6 block h-1 w-16 mt-2 ${GOLDEN_GRADIENT}`} />
+            <span className={`mb-6 block h-1 w-16 mt-2 gradient-animation`} />
           </div>
 
           {/* Swiper */}
@@ -135,7 +135,7 @@ const Reviews: React.FC = () => {
                               {review.title}
                             </Heading>
                             <span
-                              className={`mb-4 block h-1 w-16 sm:w-20 mt-2 ${GOLDEN_GRADIENT}`}
+                              className={`mb-4 block h-1 w-16 sm:w-20 mt-2 gradient-animation`}
                             />
                             {review.content && (
                               <Paragraph size="base" className="text-white ">

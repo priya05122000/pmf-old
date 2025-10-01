@@ -37,7 +37,7 @@ export default function TrustedSection() {
       </Heading> */}
       <Heading level={6} className="text-white font-bold mb-10 uppercase">
         Trusted by{" "}
-        <span className={`text-transparent ${GOLDEN_GRADIENT} bg-clip-text`}>
+        <span className={`text-transparent gradient-animation-one bg-clip-text`}>
           20,000+
         </span>{" "}
         customers across Europe

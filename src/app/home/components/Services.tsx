@@ -46,7 +46,7 @@ const Services = () => {
                 </Heading>
               </article>
 
-              <span className={`mb-6 block h-1 w-24 mt-2 ${GOLDEN_GRADIENT}`} />
+              <span className={`mb-6 block h-1 w-24 mt-2 gradient-animation`} />
             </div>
 
             <div

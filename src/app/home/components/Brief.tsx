@@ -99,7 +99,7 @@ const Brief = () => {
               </Heading>
             </article>
             <span
-              className={`mb-6 block h-1 w-24 sm:mt-4 ${GOLDEN_GRADIENT}`}
+              className={`mb-6 block h-1 w-24 sm:mt-4 gradient-animation`}
             />
           </div>
           {/* Main Heading */}
@@ -116,7 +116,7 @@ const Brief = () => {
                 <div className="relative w-full h-2 rounded-full bg-[#E1BA60]/20">
                   {/* Filled Bar */}
                   <motion.div
-                    className={`h-2 ${GOLDEN_GRADIENT}`} 
+                    className={`h-2 gradient-animation rounded-full`}
                     style={{ width: widthPercent[idx] }}
                   />
                   {/* Thumb with Percentage */}

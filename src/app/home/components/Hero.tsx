@@ -36,7 +36,9 @@ const HeroContent: FC = () => (
       We specialize in crafting high-quality stainless steel furniture, tailored
       to meet the demands of environments where hygiene is paramount.
     </Paragraph>
-    <span className={`mb-2 block h-1 w-14 sm:w-20 mt-10 ${GOLDEN_GRADIENT}`} />
+    {/* <span className={`mb-2 block h-1 w-14 sm:w-20 mt-10 ${GOLDEN_GRADIENT}`} /> */}
+
+    <span className={`mb-2 block h-1 w-14 sm:w-20 mt-10 gradient-animation `} />
     {/* <Heading
       level={2}
       className="

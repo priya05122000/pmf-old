@@ -124,7 +124,7 @@ const Choose: FC = () => {
             </Heading> */}
 
             <Heading level={6} className="text-white uppercase">
-              Trusted by <span className={`text-transparent ${GOLDEN_GRADIENT} bg-clip-text`}>20,000+</span>{" "}
+              Trusted by <span className={`text-transparent gradient-animation-one bg-clip-text`}>20,000+</span>{" "}
               customers across Europe
             </Heading>
 
@@ -161,7 +161,7 @@ const Choose: FC = () => {
                   ))}
                 </ParagraphList>
                 <div className=" pt-10">
-                  <span className={`mb-2 block h-1 w-16 ${GOLDEN_GRADIENT}`} />
+                  <span className={`mb-2 block h-1 w-16 gradient-animation`} />
                   <article>
                     <Heading level={2} className={`  leading-16`}>
                       Why Choose

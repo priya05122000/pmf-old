@@ -144,7 +144,7 @@ const Form: FC = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className={`w-full py-3 mt-4 font-semibold text-blue-custom rounded-sm ${GOLDEN_GRADIENT} hover:opacity-90 transition`}
+            className={`w-full py-2 mt-4 font-semibold text-blue-custom  gradient-animation hover:opacity-90 transition`}
           >
             Submit
           </button>
