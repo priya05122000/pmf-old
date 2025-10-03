@@ -1,6 +1,5 @@
 import React from "react";
 import Image from "next/image";
-import { GOLDEN_GRADIENT } from "@/lib/gradients";
 import Heading from "./Heading";
 import Link from "next/link";
 import Section from "./Section";

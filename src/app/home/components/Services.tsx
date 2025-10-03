@@ -1,5 +1,4 @@
 import React from "react";
-import { GOLDEN_GRADIENT } from "@/lib/gradients";
 import Section from "@/components/Section";
 import Heading from "@/components/Heading";
 import Paragraph from "@/components/Paragraph";

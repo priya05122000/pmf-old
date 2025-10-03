@@ -1,7 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent, FC } from "react";
 import Heading from "@/components/Heading";
 import Span from "@/components/Span";
-import { GOLDEN_GRADIENT } from "@/lib/gradients";
 
 
 type FormData = {

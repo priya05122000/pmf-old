@@ -1,7 +1,6 @@
 import { useEffect, useRef } from "react";
 import GridSection from "@/components/GridSection";
 import Heading from "@/components/Heading";
-import { GOLDEN_GRADIENT } from "@/lib/gradients";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

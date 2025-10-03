@@ -3,7 +3,6 @@
 import React, { FC, useEffect } from "react";
 import GridSection from "@/components/GridSection";
 import Image from "next/image";
-import { GOLDEN_GRADIENT } from "@/lib/gradients";
 import Heading from "@/components/Heading";
 import { ANIMATIONS } from "@/components/Animations";
 import Paragraph from "@/components/Paragraph";

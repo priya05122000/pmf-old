@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 
-import { GOLDEN_GRADIENT, LIGHT_BLUE_GRADIENT } from "@/lib/gradients";
+import { LIGHT_BLUE_GRADIENT } from "@/lib/gradients";
 import Section from "@/components/Section";
 import Heading from "@/components/Heading";
 import ParagraphList from "@/components/ParagraphList";

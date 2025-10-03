@@ -18,7 +18,6 @@ import Heading from "@/components/Heading";
 import Paragraph from "@/components/Paragraph";
 
 // Constants
-import { GOLDEN_GRADIENT } from "@/lib/gradients";
 import { ANIMATIONS } from "@/components/Animations";
 
 const PROGRESS_BARS = [76, 50, 83];

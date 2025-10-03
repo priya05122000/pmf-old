@@ -7,7 +7,6 @@ import "swiper/css";
 import Image from "next/image";
 import Section from "@/components/Section";
 import Heading from "@/components/Heading";
-import { GOLDEN_GRADIENT } from "@/lib/gradients";
 
 const logos = [
   { src: "/logos/anjana_opticals.png", alt: "Partner 1" },

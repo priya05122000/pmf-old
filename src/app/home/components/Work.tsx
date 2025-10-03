@@ -3,7 +3,6 @@ import Heading from "@/components/Heading";
 import Paragraph from "@/components/Paragraph";
 import RightSpaceGridSection from "@/components/RightSpaceGridSection";
 import Section from "@/components/Section";
-import { GOLDEN_GRADIENT } from "@/lib/gradients";
 import React from "react";
 
 const Work = () => {
